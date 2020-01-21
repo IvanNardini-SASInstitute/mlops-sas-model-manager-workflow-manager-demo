@@ -1,0 +1,22 @@
+# Docker container system folder 
+
+# vscode setting
+.vscode/
+
+# Jupyterlab 
+project/.local/
+
+project/2_jupyter_lab/.ipynb_checkpoints/
+
+project/2_jupyter_lab/utils/
+
+# Jenkins
+project/3_continuous_integration/old/
+
+# Slides
+slides/
+
+#Other
+config.txt
+
+openstack.pem

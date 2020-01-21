@@ -1,0 +1,48 @@
+Setup steps:
+
+Be sure you pull all files and .sh jenkins image needs. 
+
+Then: 
+
+1) docker image build -t datascience/jenkins .
+2) docker run --name jenkinsrv -d -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home datascience/jenkins
+3) docker container logs jenkinsrv
+
+
+4) Follow this instructions https://medium.com/faun/basic-ci-cd-for-python-projects-with-docker-and-jenkins-38eeb547fb28
+
+The problem is that this image does not work with Docker. 
+
+When installing Jenkins on a host, the easiest way to do it is to run a Docker container that contains the Jenkins server in it. This saves you the trouble of having to install Jenkins and all it’s dependencies on the host machine directly.
+Jenkins provides a Docker image called jenkins/jenkins that has the Jenkins server in it.
+However, if your Jenkins pipeline uses Docker as an agent (which is common and convenient), the jenkins/jenkins image won’t work.
+
+At the end of the day, you may want to install docker stack in the jenkins container. Or you can do something really elegant: 
+
+1) install only the docker-client 
+2) use the docker engine of the host to spin up containers
+
+https://blog.nestybox.com/2019/09/29/jenkins.html#problems-with-jenkins-inside-a-container
+
+# Building Jenkins pipeline
+
+## STAGE 1: Checkout SCM
+
+We use webhooks but that requires you to expose your CI server to the public internet (you can still whitelist IPs though).
+
+https://www.youtube.com/watch?v=s73nhwYBtzE
+
+https://www.thegeekstuff.com/2016/10/jenkins-git-setup/
+
+https://webhookrelay.com/blog/2017/11/23/github-jenkins-guide/
+
+Example:
+wget -O /usr/local/bin/relay https://storage.googleapis.com/webhookrelay/downloads/relay-linux-amd64
+
+relay login -k 27cabf00-526a-4d40-b8b1-5776a4eabaf4 -s m8WX4JBhFKF9
+
+relay login -k your-token-key -s your-token-secret
+
+## STAGE 2: Build Python container for running Code quality test
+
+
