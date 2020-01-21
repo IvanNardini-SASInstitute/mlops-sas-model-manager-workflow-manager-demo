@@ -4,6 +4,7 @@
 .vscode/
 
 # Jupyterlab 
+
 project/.local/
 
 project/2_jupyter_lab/.ipynb_checkpoints/

@@ -23,7 +23,7 @@ services:
     # Mongodb seeder service
     mongo_seeder:
         container_name: mongo_seeder
-        build: ./1_data/mongo_seed
+        build: ./1_data/mongo_seed/
         networks: 
             - dsnet
         depends_on:
@@ -47,13 +47,13 @@ services:
     jupyter:
         image: datascience/jupyter_lab
         container_name: jupyterlab
-        build: ./2_jupyter_lab
+        build: ./2_jupyter_lab/
         networks: 
             - dsnet
         ports:
             - 8888:8888
         volumes: 
-            - ./2_jupyter_lab:/home/jovyan/work
+            - ./2_jupyter_lab/:/home/jovyan/work
     
     # CI/CD Jenkins service
     # jenkins:
