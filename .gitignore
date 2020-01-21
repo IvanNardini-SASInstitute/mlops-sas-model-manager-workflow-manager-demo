@@ -13,6 +13,10 @@ project/2_jupyter_lab/utils/
 # Jenkins
 project/3_continuous_integration/old/
 
+#docs
+
+project/docs/DataAnalytics_Docker_JupyterNotebooks_PySpark.pdf
+
 # Slides
 slides/
 
