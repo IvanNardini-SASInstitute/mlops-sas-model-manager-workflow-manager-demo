@@ -61,7 +61,7 @@ services:
     #     container_name: jenkins
     #     networks: 
     #         - dsnet
-    #     build: ./continuous_integration
+    #     build: ./3_continuous_integration
     #     ports:
     #         - 8080:8080
     #         - 50000:50000
