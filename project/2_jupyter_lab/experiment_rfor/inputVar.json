@@ -1,0 +1,128 @@
+[
+  {
+    "name": "CLAGE",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "CLNO",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "DEBTINC",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "DELINQ",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "DEROG",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "DebtCon",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "HomeImp",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "LOAN",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "MORTDUE",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "Mgr",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "NINQ",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "Office",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "Other",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "ProfExe",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "Sales",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "Self",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "VALUE",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "YOJ",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  }
+]

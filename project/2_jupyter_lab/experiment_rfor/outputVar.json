@@ -1,0 +1,9 @@
+[
+  {
+    "name": "P_BAD0",
+    "role": "target",
+    "type": "decimal",
+    "level": "nominal",
+    "length": 8
+  }
+]

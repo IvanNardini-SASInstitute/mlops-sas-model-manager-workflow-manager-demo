@@ -45,4 +45,6 @@ relay login -k your-token-key -s your-token-secret
 
 ## STAGE 2: Build Python container for running Code quality test
 
+https://mdyzma.github.io/2017/10/14/python-app-and-jenkins/
+
 
