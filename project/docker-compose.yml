@@ -61,10 +61,12 @@ services:
     #     container_name: jenkins
     #     networks: 
     #         - dsnet
-    #     build: ./3_continuous_integration
+    #     build: ./3_continuous_integration/0_jenkins
     #     ports:
     #         - 8080:8080
     #         - 50000:50000
+    #     volumes:
+    #         - /var/run/docker.sock:/var/run/docker.sock
 
     # CI/CD Jenkins 
     #

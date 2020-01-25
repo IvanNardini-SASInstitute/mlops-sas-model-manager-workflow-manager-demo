@@ -1,0 +1,584 @@
+{
+    "name": "dmcas_lift",
+    "revision": 0,
+    "order": 0,
+    "parameterMap": {
+        "_DataRole_": {
+            "parameter": "_DataRole_",
+            "type": "char",
+            "label": "Data Role",
+            "length": 10,
+            "order": 1,
+            "values": [
+                "_DataRole_"
+            ],
+            "preformatted": false
+        },
+        "_PartInd_": {
+            "parameter": "_PartInd_",
+            "type": "num",
+            "label": "Partition Indicator",
+            "length": 8,
+            "order": 2,
+            "values": [
+                "_PartInd_"
+            ],
+            "preformatted": false
+        },
+        "_PartInd__f": {
+            "parameter": "_PartInd__f",
+            "type": "char",
+            "label": "Formatted Partition",
+            "length": 12,
+            "order": 3,
+            "values": [
+                "_PartInd__f"
+            ],
+            "preformatted": false
+        },
+        "_Column_": {
+            "parameter": "_Column_",
+            "type": "char",
+            "label": "Analysis Variable",
+            "length": 32,
+            "order": 4,
+            "values": [
+                "_Column_"
+            ],
+            "preformatted": false
+        },
+        "_Event_": {
+            "parameter": "_Event_",
+            "type": "char",
+            "label": "Event",
+            "length": 8,
+            "order": 5,
+            "values": [
+                "_Event_"
+            ],
+            "preformatted": false
+        },
+        "_Depth_": {
+            "parameter": "_Depth_",
+            "type": "num",
+            "label": "Depth",
+            "length": 8,
+            "order": 7,
+            "values": [
+                "_Depth_"
+            ],
+            "preformatted": false
+        },
+        "_NObs_": {
+            "parameter": "_NObs_",
+            "type": "num",
+            "label": "Sum of Frequencies",
+            "length": 8,
+            "order": 8,
+            "values": [
+                "_NObs_"
+            ],
+            "preformatted": false
+        },
+        "_Gain_": {
+            "parameter": "_Gain_",
+            "type": "num",
+            "label": "Gain",
+            "length": 8,
+            "order": 9,
+            "values": [
+                "_Gain_"
+            ],
+            "preformatted": false
+        },
+        "_Resp_": {
+            "parameter": "_Resp_",
+            "type": "num",
+            "label": "% Captured Response",
+            "length": 8,
+            "order": 10,
+            "values": [
+                "_Resp_"
+            ],
+            "preformatted": false
+        },
+        "_CumResp_": {
+            "parameter": "_CumResp_",
+            "type": "num",
+            "label": "Cumulative % Captured Response",
+            "length": 8,
+            "order": 11,
+            "values": [
+                "_CumResp_"
+            ],
+            "preformatted": false
+        },
+        "_PctResp_": {
+            "parameter": "_PctResp_",
+            "type": "num",
+            "label": "% Response",
+            "length": 8,
+            "order": 12,
+            "values": [
+                "_PctResp_"
+            ],
+            "preformatted": false
+        },
+        "_CumPctResp_": {
+            "parameter": "_CumPctResp_",
+            "type": "num",
+            "label": "Cumulative % Response",
+            "length": 8,
+            "order": 13,
+            "values": [
+                "_CumPctResp_"
+            ],
+            "preformatted": false
+        },
+        "_Lift_": {
+            "parameter": "_Lift_",
+            "type": "num",
+            "label": "Lift",
+            "length": 8,
+            "order": 14,
+            "values": [
+                "_Lift_"
+            ],
+            "preformatted": false
+        },
+        "_CumLift_": {
+            "parameter": "_CumLift_",
+            "type": "num",
+            "label": "Cumulative Lift",
+            "length": 8,
+            "order": 15,
+            "values": [
+                "_CumLift_"
+            ],
+            "preformatted": false
+        }
+    },
+    "data": [
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 10.017530678687704,
+                "_NObs_": 400,
+                "_Gain_": 382,
+                "_Resp_": 48.29329962073325,
+                "_CumResp_": 48.29329962073325,
+                "_PctResp_": 95.5,
+                "_CumPctResp_": 95.5,
+                "_Lift_": 4.820878634639697,
+                "_CumLift_": 4.820878634639697
+            },
+            "rowNumber": 0.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 20.010017530678688,
+                "_NObs_": 399,
+                "_Gain_": 235,
+                "_Resp_": 29.70922882427307,
+                "_CumResp_": 78.00252844500632,
+                "_PctResp_": 58.89724310776943,
+                "_CumPctResp_": 77.2215269086358,
+                "_Lift_": 2.973156659030636,
+                "_CumLift_": 3.8981739184093898
+            },
+            "rowNumber": 1.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 30.00250438266967,
+                "_NObs_": 399,
+                "_Gain_": 105,
+                "_Resp_": 13.274336283185843,
+                "_CumResp_": 91.27686472819217,
+                "_PctResp_": 26.31578947368421,
+                "_CumPctResp_": 60.26711185308849,
+                "_Lift_": 1.328431698715816,
+                "_CumLift_": 3.0423081874763884
+            },
+            "rowNumber": 2.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 39.99499123466065,
+                "_NObs_": 399,
+                "_Gain_": 28,
+                "_Resp_": 3.5398230088495577,
+                "_CumResp_": 94.81668773704172,
+                "_PctResp_": 7.017543859649122,
+                "_CumPctResp_": 46.963055729492794,
+                "_Lift_": 0.35424845299088425,
+                "_CumLift_": 2.3707140521853947
+            },
+            "rowNumber": 3.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 49.987478086651635,
+                "_NObs_": 399,
+                "_Gain_": 22,
+                "_Resp_": 2.781289506953224,
+                "_CumResp_": 97.59797724399493,
+                "_PctResp_": 5.513784461152882,
+                "_CumPctResp_": 38.677354709418836,
+                "_Lift_": 0.27833807020712337,
+                "_CumLift_": 1.9524485127017623
+            },
+            "rowNumber": 4.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 60.00500876533934,
+                "_NObs_": 400,
+                "_Gain_": 11,
+                "_Resp_": 1.390644753476612,
+                "_CumResp_": 98.98862199747155,
+                "_PctResp_": 2.75,
+                "_CumPctResp_": 32.679465776293824,
+                "_Lift_": 0.13882111251580279,
+                "_CumLift_": 1.6496726529044403
+            },
+            "rowNumber": 5.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 69.9474079639369,
+                "_NObs_": 397,
+                "_Gain_": 3,
+                "_Resp_": 0.37926675094816686,
+                "_CumResp_": 99.36788874841972,
+                "_PctResp_": 0.7556675062972292,
+                "_CumPctResp_": 28.141783029001072,
+                "_Lift_": 0.03814640142408137,
+                "_CumLift_": 1.4206085920960971
+            },
+            "rowNumber": 6.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 79.9899824693213,
+                "_NObs_": 401,
+                "_Gain_": 2,
+                "_Resp_": 0.2528445006321113,
+                "_CumResp_": 99.62073324905182,
+                "_PctResp_": 0.4987531172069825,
+                "_CumPctResp_": 24.671258609893552,
+                "_Lift_": 0.02517725912778105,
+                "_CumLift_": 1.2454151154147275
+            },
+            "rowNumber": 7.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 89.9824693213123,
+                "_NObs_": 399,
+                "_Gain_": 0,
+                "_Resp_": 0.0,
+                "_CumResp_": 99.62073324905182,
+                "_PctResp_": 0.0,
+                "_CumPctResp_": 21.9315335374339,
+                "_Lift_": 0.0,
+                "_CumLift_": 1.1071126853978959
+            },
+            "rowNumber": 8.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 99.94991234660657,
+                "_NObs_": 398,
+                "_Gain_": 3,
+                "_Resp_": 0.37926675094816686,
+                "_CumResp_": 100.0,
+                "_PctResp_": 0.7537688442211055,
+                "_CumPctResp_": 19.819594086695062,
+                "_Lift_": 0.038050556194372614,
+                "_CumLift_": 1.000501127536958
+            },
+            "rowNumber": 9.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 100.0,
+                "_NObs_": 2,
+                "_Gain_": 0,
+                "_Resp_": 0.0,
+                "_CumResp_": 100.0,
+                "_PctResp_": 0.0,
+                "_CumPctResp_": 19.809666917104934,
+                "_Lift_": 0.0,
+                "_CumLift_": 1.0
+            },
+            "rowNumber": 10.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           2",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 10.015251652262329,
+                "_NObs_": 197,
+                "_Gain_": 187,
+                "_Resp_": 46.984924623115575,
+                "_CumResp_": 46.984924623115575,
+                "_PctResp_": 94.9238578680203,
+                "_CumPctResp_": 94.9238578680203,
+                "_Lift_": 4.691337397648139,
+                "_CumLift_": 4.691337397648139
+            },
+            "rowNumber": 0.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           2",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 20.030503304524657,
+                "_NObs_": 197,
+                "_Gain_": 120,
+                "_Resp_": 30.15075376884422,
+                "_CumResp_": 77.1356783919598,
+                "_PctResp_": 60.913705583756354,
+                "_CumPctResp_": 77.91878172588832,
+                "_Lift_": 3.0104838915389127,
+                "_CumLift_": 3.8509106445935255
+            },
+            "rowNumber": 1.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           2",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 29.994916115912556,
+                "_NObs_": 196,
+                "_Gain_": 40,
+                "_Resp_": 10.050251256281408,
+                "_CumResp_": 87.1859296482412,
+                "_PctResp_": 20.408163265306122,
+                "_CumPctResp_": 58.8135593220339,
+                "_Lift_": 1.0086145010768126,
+                "_CumLift_": 2.906690230815092
+            },
+            "rowNumber": 2.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           2",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 40.01016776817489,
+                "_NObs_": 197,
+                "_Gain_": 18,
+                "_Resp_": 4.522613065326634,
+                "_CumResp_": 91.70854271356784,
+                "_PctResp_": 9.137055837563452,
+                "_CumPctResp_": 46.37865311308767,
+                "_Lift_": 0.45157258373083686,
+                "_CumLift_": 2.2921309214433028
+            },
+            "rowNumber": 3.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           2",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 49.97458057956279,
+                "_NObs_": 196,
+                "_Gain_": 11,
+                "_Resp_": 2.763819095477387,
+                "_CumResp_": 94.47236180904522,
+                "_PctResp_": 5.612244897959184,
+                "_CumPctResp_": 38.2502543234995,
+                "_Lift_": 0.27736898779612346,
+                "_CumLift_": 1.8904082978473242
+            },
+            "rowNumber": 4.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           2",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 59.98983223182511,
+                "_NObs_": 197,
+                "_Gain_": 14,
+                "_Resp_": 3.5175879396984926,
+                "_CumResp_": 97.98994974874373,
+                "_PctResp_": 7.1065989847715745,
+                "_CumPctResp_": 33.05084745762712,
+                "_Lift_": 0.3512231206795398,
+                "_CumLift_": 1.6334426369133803
+            },
+            "rowNumber": 5.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           2",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 70.00508388408744,
+                "_NObs_": 197,
+                "_Gain_": 4,
+                "_Resp_": 1.0050251256281406,
+                "_CumResp_": 98.99497487437185,
+                "_PctResp_": 2.030456852791878,
+                "_CumPctResp_": 28.612926652142338,
+                "_Lift_": 0.10034946305129708,
+                "_CumLift_": 1.414111224240301
+            },
+            "rowNumber": 6.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           2",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 79.96949669547534,
+                "_NObs_": 196,
+                "_Gain_": 2,
+                "_Resp_": 0.5025125628140703,
+                "_CumResp_": 99.49748743718592,
+                "_PctResp_": 1.0204081632653061,
+                "_CumPctResp_": 25.174825174825177,
+                "_Lift_": 0.05043072505384063,
+                "_CumLift_": 1.2441929929367115
+            },
+            "rowNumber": 7.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           2",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 89.98474834773768,
+                "_NObs_": 197,
+                "_Gain_": 1,
+                "_Resp_": 0.25125628140703515,
+                "_CumResp_": 99.74874371859298,
+                "_PctResp_": 0.5076142131979695,
+                "_CumPctResp_": 22.429378531073446,
+                "_Lift_": 0.02508736576282427,
+                "_CumLift_": 1.108507225392499
+            },
+            "rowNumber": 8.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           2",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 99.89832231825115,
+                "_NObs_": 195,
+                "_Gain_": 1,
+                "_Resp_": 0.25125628140703515,
+                "_CumResp_": 100.0,
+                "_PctResp_": 0.5128205128205128,
+                "_CumPctResp_": 20.254452926208653,
+                "_Lift_": 0.025344672078340416,
+                "_CumLift_": 1.0010178117048345
+            },
+            "rowNumber": 9.0
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           2",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Depth_": 100.0,
+                "_NObs_": 2,
+                "_Gain_": 0,
+                "_Resp_": 0.0,
+                "_CumResp_": 100.0,
+                "_PctResp_": 0.0,
+                "_CumPctResp_": 20.23385866802237,
+                "_Lift_": 0.0,
+                "_CumLift_": 1.0
+            },
+            "rowNumber": 10.0
+        }
+    ],
+    "version": 1,
+    "xInteger": false,
+    "yInteger": false
+}

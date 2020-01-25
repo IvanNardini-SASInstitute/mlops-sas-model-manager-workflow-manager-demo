@@ -13,6 +13,8 @@ project/2_jupyter_lab/viya_services/
 
 project/2_jupyter_lab/template_container.zip
 
+project/2_jupyter_lab/QS_Reg_PyModel.zip
+
 
 # Jenkins
 project/3_continuous_integration/0_jenkins/old/

@@ -24,6 +24,14 @@ At the end of the day, you may want to install docker stack in the jenkins conta
 
 https://blog.nestybox.com/2019/09/29/jenkins.html#problems-with-jenkins-inside-a-container
 
+Commands: 
+
+1) docker build -t jenkins-docker .
+2) docker run --name test_jenkins --rm -d -v /var/run/docker.sock:/var/run/docker.sock -P jenkins-docker
+3) docker logs test_jenkins
+4) docker exec -it test_jenkins bin/bash
+
+
 # Building Jenkins pipeline
 
 ## STAGE 1: Checkout SCM
