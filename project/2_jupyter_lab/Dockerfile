@@ -19,7 +19,7 @@ RUN apt-get update && \
 USER $NB_UID
 
 # Install Python 3 packages
-RUN conda install --quiet --yes \
+RUN conda update --quiet --yes -n base conda && conda install --quiet --yes \
     'beautifulsoup4=4.8.*' \
     'conda-forge::blas=*=openblas' \
     'bokeh=1.3*' \
@@ -29,6 +29,7 @@ RUN conda install --quiet --yes \
     'dill=0.3*' \
     'h5py=2.9*' \
     'hdf5=1.10*' \
+    'inflection' \
     'ipywidgets=7.5*' \
     'matplotlib-base=3.1.*' \
     'numba=0.45*' \
@@ -74,13 +75,21 @@ RUN cd /tmp && \
     fix-permissions /home/$NB_USER
 
 USER root
-# Install XGBoost library
-RUN cd /etc &&\
-    git clone --recursive https://github.com/dmlc/xgboost && \
-    chmod -R 777 xgboost &&\
-    cd xgboost && \
-    make -j4 && \
-    cd python-package; python setup.py install
+
+# USER $NB_UID --> it's ok with root but some warning try NB_UID
+
+# Install XGBoost library --> some issue with installation. I use pip
+# RUN cd /etc &&\
+#     git clone --recursive https://github.com/dmlc/xgboost && \
+#     chmod -R 777 xgboost &&\
+#     cd xgboost && \
+#     make -j4 && \
+#     cd python-package; python setup.py install
+
+RUN pip install xgboost
+
+# Install SAS Swat package
+RUN pip install swat
 
 USER $NB_UID
 
