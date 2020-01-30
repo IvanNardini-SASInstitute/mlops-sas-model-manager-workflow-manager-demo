@@ -1,0 +1,482 @@
+{
+    "name": "dmcas_roc",
+    "revision": 0,
+    "order": 0,
+    "parameterMap": {
+        "_DataRole_": {
+            "parameter": "_DataRole_",
+            "type": "char",
+            "label": "Data Role",
+            "length": 10,
+            "order": 1,
+            "values": [
+                "_DataRole_"
+            ],
+            "preformatted": false
+        },
+        "_PartInd_": {
+            "parameter": "_PartInd_",
+            "type": "num",
+            "label": "Partition Indicator",
+            "length": 8,
+            "order": 2,
+            "values": [
+                "_PartInd_"
+            ],
+            "preformatted": false
+        },
+        "_PartInd__f": {
+            "parameter": "_PartInd__f",
+            "type": "char",
+            "label": "Formatted Partition",
+            "length": 12,
+            "order": 3,
+            "values": [
+                "_PartInd__f"
+            ],
+            "preformatted": false
+        },
+        "_Column_": {
+            "parameter": "_Column_",
+            "type": "num",
+            "label": "Analysis Variable",
+            "length": 32,
+            "order": 4,
+            "values": [
+                "_Column_"
+            ],
+            "preformatted": false
+        },
+        "_Event_": {
+            "parameter": "_Event_",
+            "type": "char",
+            "label": "Event",
+            "length": 8,
+            "order": 5,
+            "values": [
+                "_Event_"
+            ],
+            "preformatted": false
+        },
+        "_Cutoff_": {
+            "parameter": "_Cutoff_",
+            "type": "num",
+            "label": "Cutoff",
+            "length": 8,
+            "order": 6,
+            "values": [
+                "_Cutoff_"
+            ],
+            "preformatted": false
+        },
+        "_Sensitivity_": {
+            "parameter": "_Sensitivity_",
+            "type": "num",
+            "label": "Sensitivity",
+            "length": 8,
+            "order": 7,
+            "values": [
+                "_Sensitivity_"
+            ],
+            "preformatted": false
+        },
+        "_Specificity_": {
+            "parameter": "_Specificity_",
+            "type": "num",
+            "label": "Specificity",
+            "length": 8,
+            "order": 8,
+            "values": [
+                "_Specificity_"
+            ],
+            "preformatted": false
+        },
+        "_FPR_": {
+            "parameter": "_FPR_",
+            "type": "num",
+            "label": "False Positive Rate",
+            "length": 8,
+            "order": 9,
+            "values": [
+                "_FPR_"
+            ],
+            "preformatted": false
+        },
+        "_OneMinusSpecificity_": {
+            "parameter": "_OneMinusSpecificity_",
+            "type": "num",
+            "label": "1 - Specificity",
+            "length": 8,
+            "order": 10,
+            "values": [
+                "_OneMinusSpecificity_"
+            ],
+            "preformatted": false
+        }
+    },
+    "data": [
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 1.0,
+                "_Sensitivity_": 0.0,
+                "_Specificity_": 1.0,
+                "_FPR_": 0.0,
+                "_OneMinusSpecificity_": 0.0
+            },
+            "rowNumber": 1
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 1.0,
+                "_Sensitivity_": 0.2876376988984088,
+                "_Specificity_": 1.0,
+                "_FPR_": 0.0,
+                "_OneMinusSpecificity_": 0.0
+            },
+            "rowNumber": 2
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.9,
+                "_Sensitivity_": 0.5973072215422277,
+                "_Specificity_": 1.0,
+                "_FPR_": 0.0,
+                "_OneMinusSpecificity_": 0.0
+            },
+            "rowNumber": 3
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.8,
+                "_Sensitivity_": 0.7723378212974297,
+                "_Specificity_": 1.0,
+                "_FPR_": 0.0,
+                "_OneMinusSpecificity_": 0.0
+            },
+            "rowNumber": 4
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.7,
+                "_Sensitivity_": 0.9143206854345165,
+                "_Specificity_": 1.0,
+                "_FPR_": 0.0,
+                "_OneMinusSpecificity_": 0.0
+            },
+            "rowNumber": 5
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.6,
+                "_Sensitivity_": 0.966952264381885,
+                "_Specificity_": 1.0,
+                "_FPR_": 0.0,
+                "_OneMinusSpecificity_": 0.0
+            },
+            "rowNumber": 6
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.5,
+                "_Sensitivity_": 0.988984088127295,
+                "_Specificity_": 0.9996851385390428,
+                "_FPR_": 0.00031486146095717883,
+                "_OneMinusSpecificity_": 0.00031486146095717883
+            },
+            "rowNumber": 7
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.4,
+                "_Sensitivity_": 0.996328029375765,
+                "_Specificity_": 0.993073047858942,
+                "_FPR_": 0.0069269521410579345,
+                "_OneMinusSpecificity_": 0.0069269521410579345
+            },
+            "rowNumber": 8
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.3,
+                "_Sensitivity_": 0.9987760097919217,
+                "_Specificity_": 0.97544080604534,
+                "_FPR_": 0.02455919395465995,
+                "_OneMinusSpecificity_": 0.02455919395465995
+            },
+            "rowNumber": 9
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.2,
+                "_Sensitivity_": 1.0,
+                "_Specificity_": 0.9338790931989924,
+                "_FPR_": 0.06612090680100756,
+                "_OneMinusSpecificity_": 0.06612090680100756
+            },
+            "rowNumber": 10
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.1,
+                "_Sensitivity_": 1.0,
+                "_Specificity_": 0.8000629722921915,
+                "_FPR_": 0.19993702770780855,
+                "_OneMinusSpecificity_": 0.19993702770780855
+            },
+            "rowNumber": 11
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TRAIN",
+                "_PartInd_": 1,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.0,
+                "_Sensitivity_": 1.0,
+                "_Specificity_": 0.0,
+                "_FPR_": 1.0,
+                "_OneMinusSpecificity_": 1.0
+            },
+            "rowNumber": 12
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 1.0,
+                "_Sensitivity_": 0.0,
+                "_Specificity_": 1.0,
+                "_FPR_": 0.0,
+                "_OneMinusSpecificity_": 0.0
+            },
+            "rowNumber": 13
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 1.0,
+                "_Sensitivity_": 0.07795698924731183,
+                "_Specificity_": 0.9993730407523511,
+                "_FPR_": 0.0006269592476489029,
+                "_OneMinusSpecificity_": 0.0006269592476489029
+            },
+            "rowNumber": 14
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.9,
+                "_Sensitivity_": 0.20698924731182797,
+                "_Specificity_": 0.9993730407523511,
+                "_FPR_": 0.0006269592476489029,
+                "_OneMinusSpecificity_": 0.0006269592476489029
+            },
+            "rowNumber": 15
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.8,
+                "_Sensitivity_": 0.3521505376344086,
+                "_Specificity_": 0.9968652037617555,
+                "_FPR_": 0.003134796238244514,
+                "_OneMinusSpecificity_": 0.003134796238244514
+            },
+            "rowNumber": 16
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.7,
+                "_Sensitivity_": 0.48118279569892475,
+                "_Specificity_": 0.9924764890282132,
+                "_FPR_": 0.007523510971786834,
+                "_OneMinusSpecificity_": 0.007523510971786834
+            },
+            "rowNumber": 17
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.6,
+                "_Sensitivity_": 0.6236559139784946,
+                "_Specificity_": 0.9818181818181818,
+                "_FPR_": 0.01818181818181818,
+                "_OneMinusSpecificity_": 0.01818181818181818
+            },
+            "rowNumber": 18
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.5,
+                "_Sensitivity_": 0.7150537634408602,
+                "_Specificity_": 0.9692789968652038,
+                "_FPR_": 0.030721003134796237,
+                "_OneMinusSpecificity_": 0.030721003134796237
+            },
+            "rowNumber": 19
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.4,
+                "_Sensitivity_": 0.782258064516129,
+                "_Specificity_": 0.9454545454545454,
+                "_FPR_": 0.05454545454545454,
+                "_OneMinusSpecificity_": 0.05454545454545454
+            },
+            "rowNumber": 20
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.3,
+                "_Sensitivity_": 0.8467741935483871,
+                "_Specificity_": 0.9141065830721004,
+                "_FPR_": 0.08589341692789969,
+                "_OneMinusSpecificity_": 0.08589341692789969
+            },
+            "rowNumber": 21
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.2,
+                "_Sensitivity_": 0.9274193548387096,
+                "_Specificity_": 0.8426332288401254,
+                "_FPR_": 0.1573667711598746,
+                "_OneMinusSpecificity_": 0.1573667711598746
+            },
+            "rowNumber": 22
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.1,
+                "_Sensitivity_": 0.9758064516129032,
+                "_Specificity_": 0.6670846394984327,
+                "_FPR_": 0.3329153605015674,
+                "_OneMinusSpecificity_": 0.3329153605015674
+            },
+            "rowNumber": 23
+        },
+        {
+            "dataMap": {
+                "_DataRole_": "TEST",
+                "_PartInd_": 2,
+                "_PartInd__f": "           1",
+                "_Column_": "BAD",
+                "_Event_": "1",
+                "_Cutoff_": 0.0,
+                "_Sensitivity_": 1.0,
+                "_Specificity_": 0.0,
+                "_FPR_": 1.0,
+                "_OneMinusSpecificity_": 1.0
+            },
+            "rowNumber": 24
+        }
+    ],
+    "version": 1,
+    "xInteger": false,
+    "yInteger": false
+}
