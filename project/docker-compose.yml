@@ -2,8 +2,11 @@ version: "3"
 
 networks:
     dsnet:
+    jenkins:
 
 services:
+
+    ### DEVELOPMENT ENVIROMENT ###
 
     # Mongodb database service
     mongo:
@@ -54,26 +57,41 @@ services:
             - 8888:8888
         volumes: 
             - ./2_jupyter_lab/:/home/jovyan/work
-    
-    # CI/CD Jenkins service
-    # jenkins:
-    #     image: jenkins
-    #     container_name: jenkins
-    #     networks: 
-    #         - dsnet
-    #     build: ./3_continuous_integration/0_jenkins
-    #     ports:
-    #         - 8080:8080
-    #         - 50000:50000
-    #     volumes:
-    #         - /var/run/docker.sock:/var/run/docker.sock
 
-    # CI/CD Jenkins 
-    #
-    #
-    #
-    #
+    ### CI/CD ENVIRONMENT ###
+    
+    # Jenkins service
+    jenkins-master:
+        image: "devopslab/jenkins"
+        container_name: "jenkins-blueocean"
+        privileged: true
+        build: ./3_continuous_integration/0_jenkins/
+        ports:
+          - "50000:50000"
+          - "8080:8080"
+        volumes:
+            - "jenkins-docker-certs:/certs/client"
+            - "jenkins-data:/var/jenkins_home"
+            - "./:/home"
+        networks: 
+            - jenkins
+    
+    docker:
+        privileged: true
+        image: "docker:dind"
+        container_name: "jenkins-docker"
+        ports:
+            - "2376:2376"
+        environment: 
+            - DOCKER_TLS_CERTDIR=/certs
+        volumes: 
+            - "jenkins-docker-certs:/certs/client"
+            - "jenkins-data:/var/jenkins_home"
+        networks: 
+            - jenkins
 
 
 volumes:
     mongodb:
+    jenkins-docker-certs:
+    jenkins-data:

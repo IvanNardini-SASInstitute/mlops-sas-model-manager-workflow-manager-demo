@@ -7,8 +7,6 @@ Then:
 1) docker image build -t datascience/jenkins .
 2) docker run --name jenkinsrv -d -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home datascience/jenkins
 3) docker container logs jenkinsrv
-
-
 4) Follow this instructions https://medium.com/faun/basic-ci-cd-for-python-projects-with-docker-and-jenkins-38eeb547fb28
 
 The problem is that this image does not work with Docker. 
@@ -17,42 +15,84 @@ When installing Jenkins on a host, the easiest way to do it is to run a Docker c
 Jenkins provides a Docker image called jenkins/jenkins that has the Jenkins server in it.
 However, if your Jenkins pipeline uses Docker as an agent (which is common and convenient), the jenkins/jenkins image won’t work.
 
-At the end of the day, you may want to install docker stack in the jenkins container. Or you can do something really elegant: 
+At the end of the day, you may want to 
 
-1) install only the docker-client 
-2) use the docker engine of the host to spin up containers
+a) install docker stack in the jenkins container. Or you can do something really elegant: 
 
-https://blog.nestybox.com/2019/09/29/jenkins.html#problems-with-jenkins-inside-a-container
+    1) install only the docker-client 
+    2) use the docker engine of the host to spin up containers
 
-Commands: 
+    https://blog.nestybox.com/2019/09/29/jenkins.html#problems-with-jenkins-inside-a-container
 
-1) docker build -t jenkins-docker .
-2) docker run --name test_jenkins --rm -d -v /var/run/docker.sock:/var/run/docker.sock -P jenkins-docker
-3) docker logs test_jenkins
-4) docker exec -it test_jenkins bin/bash
+    Commands: 
 
+    1) docker build -t jenkins-docker .
+    2) docker run --name test_jenkins --rm -d -v /var/run/docker.sock:/var/run/docker.sock -P jenkins-docker
+    3) docker logs test_jenkins
+    4) docker exec -it test_jenkins bin/bash
 
-# Building Jenkins pipeline
+    # Building Jenkins pipeline
 
-## STAGE 1: Checkout SCM
+    ## STAGE 1: Checkout SCM
 
-We use webhooks but that requires you to expose your CI server to the public internet (you can still whitelist IPs though).
+    We use webhooks but that requires you to expose your CI server to the public internet (you can still whitelist IPs though).
 
-https://www.youtube.com/watch?v=s73nhwYBtzE
+    https://www.youtube.com/watch?v=s73nhwYBtzE
 
-https://www.thegeekstuff.com/2016/10/jenkins-git-setup/
+    https://www.thegeekstuff.com/2016/10/jenkins-git-setup/
 
-https://webhookrelay.com/blog/2017/11/23/github-jenkins-guide/
+    https://webhookrelay.com/blog/2017/11/23/github-jenkins-guide/
 
-Example:
-wget -O /usr/local/bin/relay https://storage.googleapis.com/webhookrelay/downloads/relay-linux-amd64
+    Example:
+    wget -O /usr/local/bin/relay https://storage.googleapis.com/webhookrelay/downloads/relay-linux-amd64
 
-relay login -k 27cabf00-526a-4d40-b8b1-5776a4eabaf4 -s m8WX4JBhFKF9
+    relay login -k 27cabf00-526a-4d40-b8b1-5776a4eabaf4 -s m8WX4JBhFKF9
 
-relay login -k your-token-key -s your-token-secret
+    relay login -k your-token-key -s your-token-secret
 
-## STAGE 2: Build Python container for running Code quality test
+    ## STAGE 2: Build Python container for running Code quality test
 
-https://mdyzma.github.io/2017/10/14/python-app-and-jenkins/
+    https://mdyzma.github.io/2017/10/14/python-app-and-jenkins/
 
+b) Configure jenkins-blueocean
 
+    # Initial setup
+
+    https://jenkins.io/doc/book/installing/
+
+    docker network create jenkins
+
+    docker volume create jenkins-docker-certs
+    docker volume create jenkins-data
+
+    docker container run --name jenkins-docker --rm --detach --privileged --network jenkins --network-alias docker --env DOCKER_TLS_CERTDIR=/certs --volume jenkins-docker-certs:/certs/client --volume jenkins-data:/var/jenkins_home --volume ${pwd}:/home docker:dind
+
+    docker container run --name jenkins-blueocean --rm --detach --network jenkins --env DOCKER_HOST=tcp://docker:2376 --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 --volume jenkins-data:/var/jenkins_home --volume jenkins-docker-certs:/certs/client:ro --volume ${pwd}:/home --publish 8080:8080 --publish 50000:50000 jenkinsci/blueocean
+
+    ## Post-installation
+
+    We use webhooks but that requires you to expose your CI server to the public internet (you can still whitelist IPs though).
+
+    https://webhookrelay.com/blog/2017/11/23/github-jenkins-guide/
+
+    Example:
+
+    docker exec -it -u 0 jenkins-blueocean bin/bash
+    sudo wget -O /usr/local/bin/relay https://storage.googleapis.com/webhookrelay/downloads/relay-linux-386
+
+    chmod 777 -R /usr/local/bin/relay
+
+    relay login -k your-token-key -s your-token-secret
+
+    relay login -k c41d7529-9c4b-4f84-9eef-2aadbd6ae1c8 -s oSDHvcKWDdIC
+
+    export RELAY_KEY=c41d7529-9c4b-4f84-9eef-2aadbd6ae1c8
+    export RELAY_SECRET=oSDHvcKWDdIC
+
+    relay forward --bucket github-jenkins http://localhost:8080/github-webhook/
+
+    Forwarding:
+    https://my.webhookrelay.com/v1/webhooks/d1de96fa-8764-403d-acbe-37aab955d207 -> http://localhost:8080/github-webhook/
+    Starting webhook relay agent...
+    2020-01-28 05:06:44.071 INFO    using standard transport...
+    2020-01-28 05:06:44.167 INFO    webhook relay ready...  {"host": "my.webhookrelay.com:8080", "buckets": ["9fb70da7-0cbf-4cb7-9c18-b584fef8cd32"]}
