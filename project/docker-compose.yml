@@ -6,7 +6,7 @@ networks:
 
 services:
 
-    ### DEVELOPMENT ENVIROMENT ###
+    ### DEVELOPMENT ENVIRONMENT ###
 
     # Mongodb database service
     mongo:
