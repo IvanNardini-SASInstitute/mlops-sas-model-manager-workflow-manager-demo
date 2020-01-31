@@ -9,6 +9,9 @@ pipeline {
                     image 'conda/miniconda3:latest' 
                 }
             }
+            steps {        
+                sh 'conda --version'
+            }
         }
     }
 }
