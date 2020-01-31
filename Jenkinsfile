@@ -6,11 +6,11 @@ pipeline {
         stage('Build') { 
             agent {
                 docker {
-                    image 'conda/miniconda3:latest' 
+                    image 'python:2-alpine' 
                 }
             }
             steps {        
-                sh 'conda --version'
+                sh 'python -m py_compile project/2_jupyter_lab/experiment_rfor/score.py'
             }
         }
     }
