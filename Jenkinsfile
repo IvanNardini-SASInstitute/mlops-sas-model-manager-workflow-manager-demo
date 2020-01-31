@@ -3,7 +3,7 @@
 pipeline {
     agent none 
     stages {
-        stage('Build environment') { 
+        stage('Build') { 
             agent {
                 docker {
                     image 'conda/miniconda3:latest' 
