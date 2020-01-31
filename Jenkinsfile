@@ -1,4 +1,4 @@
-// Jenkinsfile test
+// Jenkinsfile testing
 pipeline {
     agent none
     stages {
