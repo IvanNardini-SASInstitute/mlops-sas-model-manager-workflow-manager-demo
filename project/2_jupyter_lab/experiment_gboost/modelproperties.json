@@ -5,7 +5,7 @@
   "scoreCodeType": "python",
   "trainTable": " ",
   "trainCodeType": "Python",
-  "algorithm": "gradient boosting",
+  "algorithm": "Gradient boosting",
   "targetVariable": "BAD",
   "targetEvent": "1",
   "targetLevel": "BINARY",

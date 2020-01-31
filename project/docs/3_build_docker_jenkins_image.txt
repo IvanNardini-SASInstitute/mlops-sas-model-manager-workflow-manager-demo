@@ -78,7 +78,7 @@ b) Configure jenkins-blueocean
     Example:
 
     docker exec -it -u 0 jenkins-blueocean bin/bash
-    sudo wget -O /usr/local/bin/relay https://storage.googleapis.com/webhookrelay/downloads/relay-linux-386
+    wget -O /usr/local/bin/relay https://storage.googleapis.com/webhookrelay/downloads/relay-linux-386
 
     chmod 777 -R /usr/local/bin/relay
 
