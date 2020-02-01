@@ -2,16 +2,16 @@
 pipeline {
     agent none
     stages {
-        stage('Build') {
-            agent {
-                docker {
-                    image 'python:2-alpine'
-                }
-            }
-            steps {
-                sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
-            }
-        }
+        // stage('Build') {
+        //     agent {
+        //         docker {
+        //             image 'python:2-alpine'
+        //         }
+        //     }
+        //     steps {
+        //         sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
+        //     }
+        // }
         stage('Code quality test') {
             agent { 
                 // dockerfile {
@@ -19,14 +19,11 @@ pipeline {
                 //     dir 'project/3_CI_CD/code_quality_test'
                 // }             
                 docker {
-                    image 'in92/devops_pylint:v1.0' 
+                    image 'in92/devops_pylint:v1.1' 
                 }  
             }
             steps {
-                withEnv(['PYLINTHOME=.']) {
-                    sh 'pylint project/2_DevLab/experiment_rfor/score.py'
-                }
-                sh "python -c 'import sys,json; json.load(sys.stdin)' < file.json"
+                sh 'pylint project/2_DevLab/experiment_rfor/score.py'
             }
         }
     }
