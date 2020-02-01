@@ -23,7 +23,7 @@ pipeline {
                 }  
             }
             steps {
-                sh 'py.lint project/2_DevLab/experiment_rfor/score.py'
+                sh 'pylint project/2_DevLab/experiment_rfor/score.py'
                 sh "python -c 'import sys,json; json.load(sys.stdin)' < file.json"
             }
         }
