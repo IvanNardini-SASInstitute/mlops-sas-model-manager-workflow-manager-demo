@@ -23,7 +23,7 @@ pipeline {
                 }  
             }
             steps {
-                sh 'pylint project/2_DevLab/experiment_rfor/score.py'
+                sh 'pylint --disable=C project/2_DevLab/experiment_rfor/score.py'
             }
         }
     }
