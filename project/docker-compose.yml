@@ -9,7 +9,7 @@ services:
 
     ### DEVELOPMENT ENVIRONMENT ###
 
-    # Mongodb database service
+    # # Mongodb database service
     # mongo:
     #     image: mongo
     #     container_name: mongo
@@ -47,7 +47,7 @@ services:
     #     depends_on: 
     #         - mongo
 
-    # Jupyter (Python) DEVelopment enviroment 
+    # # Jupyter (Python) DEVelopment enviroment 
     # jupyter:
     #     image: datascience/jupyter_lab
     #     container_name: jupyterlab
@@ -57,7 +57,7 @@ services:
     #     ports:
     #         - 8888:8888
     #     volumes: 
-    #         - ./2_jupyter_lab/:/home/jovyan/work
+    #         - ./2_DevLab/:/home/jovyan/work
 
     ### CI/CD ENVIRONMENT ###
     
