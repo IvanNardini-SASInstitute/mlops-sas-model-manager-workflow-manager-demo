@@ -73,6 +73,7 @@ services:
         volumes:
             - "jenkins-docker-certs:/certs/client"
             - "jenkins-data:/var/jenkins_home"
+            # Check the right path. Should be /home/project
             - "./:/home"
         networks: 
             - jenkins

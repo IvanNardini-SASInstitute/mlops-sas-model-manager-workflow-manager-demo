@@ -12,19 +12,12 @@ pipeline {
                 sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
             }
         }
-        stage('Test') { 
-            agent {
-                docker {
-                    image 'qnib/pytest' 
-                }
+        stage('Code quality test') { 
+            agent { dockerfile true }
             }
             steps {
-                sh 'py.test --verbose --junit-xml test-reports/results.xml project/2_DevLab/experiment_rfor/score.py'
-            }
-            post {
-                always {
-                    junit 'test-reports/results.xml' 
-                }
+                sh 'py.lint project/2_DevLab/experiment_rfor/score.py'
+                sh "python -c 'import sys,json; json.load(sys.stdin)' < file.json"
             }
         }
     }
