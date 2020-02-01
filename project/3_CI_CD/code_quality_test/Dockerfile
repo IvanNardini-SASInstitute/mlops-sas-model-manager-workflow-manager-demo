@@ -4,6 +4,6 @@ WORKDIR /usr/src/app
 
 RUN pip install pylint
 
-COPY ./project/3_CI_CD/code_quality_test .
+COPY . .
 
 # CMD [ "pylint", "./tests/wrong.py" ]
