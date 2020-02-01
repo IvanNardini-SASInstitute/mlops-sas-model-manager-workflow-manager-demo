@@ -7,25 +7,15 @@
 
 project/.local/
 
-project/2_jupyter_lab/.ipynb_checkpoints/
+project/2_DevLab/.ipynb_checkpoints/
 
-project/2_jupyter_lab/viya_services/
-
-project/2_jupyter_lab/template_container.zip
-
-project/2_jupyter_lab/QS_Reg_PyModel.zip
-
-project/2_jupyter_lab/viyapy
-
-project/2_jupyter_lab/pythonmodel.zip
-
+project/2_DevLab/viyapy/
 
 # Jenkins
-project/3_continuous_integration/0_jenkins/old/
 
 #docs
 
-project/docs/DataAnalytics_Docker_JupyterNotebooks_PySpark.pdf
+project/docs/
 
 # Slides
 slides/

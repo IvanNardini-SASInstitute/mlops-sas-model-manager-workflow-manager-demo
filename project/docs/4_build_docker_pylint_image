@@ -1,6 +1,0 @@
-Setup steps:
-
-1) docker build -t devops/pylint .
-
-2) docker container run --name qualitytest devops/pylint .
-
