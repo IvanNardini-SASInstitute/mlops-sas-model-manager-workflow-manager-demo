@@ -27,7 +27,7 @@ services:
     # # Mongodb seeder service
     # mongo_seeder:
     #     container_name: mongo_seeder
-    #     build: ./1_Data/mongo_seed/
+    #     build: ./1_Data/
     #     networks: 
     #         - dsnet
     #     depends_on:
