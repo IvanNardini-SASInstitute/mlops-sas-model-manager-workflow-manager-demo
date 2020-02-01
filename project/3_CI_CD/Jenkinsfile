@@ -14,10 +14,10 @@ pipeline {
         }
         stage('Code quality test') {
             agent { 
-                dockerfile {
-                    filename 'Dockerfile'
-                    dir 'project/3_CI_CD/code_quality_test'
-                }               
+                // dockerfile {
+                //     filename 'Dockerfile'
+                //     dir 'project/3_CI_CD/code_quality_test'
+                // }               
             }
             steps {
                 sh 'py.lint project/2_DevLab/experiment_rfor/score.py'

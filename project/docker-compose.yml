@@ -66,7 +66,7 @@ services:
         image: "devopslab/jenkins"
         container_name: "jenkins-blueocean"
         privileged: true
-        build: ./3_CI_CD/0_jenkins/
+        build: ./3_CI_CD/
         ports:
           - "50000:50000"
           - "8080:8080"
