@@ -1,0 +1,79 @@
+version: "3"
+
+networks:
+    dsnet:
+
+services:
+
+    # Mongodb database service
+    mongo:
+        image: mongo
+        container_name: mongo
+        environment:
+            MONGO_INITDB_DATABASE: training_database
+            # MONGO_INITDB_ROOT_USERNAME: admin
+            # MONGO_INITDB_ROOT_PASSWORD: pass
+        volumes:
+            - mongodb:/data/db
+        networks: 
+            - dsnet
+        ports:
+            - 27017:27017
+    
+    # Mongodb seeder service
+    mongo_seeder:
+        container_name: mongo_seeder
+        build: ./1_data/mongo_seed/
+        networks: 
+            - dsnet
+        depends_on:
+            - mongo
+
+    # # Mongodb management console
+    # mongo-express:
+    #     image: mongo-express
+    #     container_name: mongo_express
+    #     networks: 
+    #         - dsnet
+    #     ports:
+    #         - 8081:8081
+    #     # environment:
+    #     #     ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+    #     #     ME_CONFIG_MONGODB_ADMINPASSWORD: pass
+    #     depends_on: 
+    #         - mongo
+
+    # Jupyter (Python) DEVelopment enviroment 
+    jupyter:
+        image: datascience/jupyter_lab
+        container_name: jupyterlab
+        build: ./2_jupyter_lab/
+        networks: 
+            - dsnet
+        ports:
+            - 8888:8888
+        volumes: 
+            - ./2_jupyter_lab/:/home/jovyan/work
+    
+    # CI/CD Jenkins service
+    # jenkins:
+    #     image: jenkins
+    #     container_name: jenkins
+    #     networks: 
+    #         - dsnet
+    #     build: ./3_continuous_integration/0_jenkins
+    #     ports:
+    #         - 8080:8080
+    #         - 50000:50000
+    #     volumes:
+    #         - /var/run/docker.sock:/var/run/docker.sock
+
+    # CI/CD Jenkins 
+    #
+    #
+    #
+    #
+
+
+volumes:
+    mongodb:
