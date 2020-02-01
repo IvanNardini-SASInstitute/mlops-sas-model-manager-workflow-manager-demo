@@ -3,7 +3,7 @@
 # vscode setting
 .vscode/
 
-# Jupyterlab 
+# 2_DevLab
 
 project/.local/
 
@@ -11,7 +11,11 @@ project/2_DevLab/.ipynb_checkpoints/
 
 project/2_DevLab/viyapy/
 
-# Jenkins
+# 3_CI_CD
+
+project/3_CI_CD/code_quality_test/bad_scenario_demo
+
+project/3_CI_CD/code_quality_test/good_scenario_demo
 
 #docs
 
