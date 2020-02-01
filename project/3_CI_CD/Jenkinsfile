@@ -12,9 +12,8 @@ pipeline {
                 sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
             }
         }
-        stage('Code quality test') { 
+        stage('Code quality test') {
             agent { dockerfile true }
-            }
             steps {
                 sh 'py.lint project/2_DevLab/experiment_rfor/score.py'
                 sh "python -c 'import sys,json; json.load(sys.stdin)' < file.json"
