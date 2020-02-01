@@ -9,7 +9,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'python -m py_compile project/2_jupyter_lab/experiment_rfor/score.py'
+                sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
             }
         }
         stage('Test') { 
@@ -19,7 +19,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'py.test --verbose --junit-xml test-reports/results.xml project/2_jupyter_lab/experiment_rfor/score.py'
+                sh 'py.test --verbose --junit-xml test-reports/results.xml project/2_DevLab/experiment_rfor/score.py'
             }
             post {
                 always {
