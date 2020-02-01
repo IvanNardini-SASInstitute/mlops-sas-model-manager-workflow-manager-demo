@@ -1,0 +1,4 @@
+
+
+class ViyaException(Exception):
+    pass

@@ -1,0 +1,8 @@
+include setup.py
+include README.md
+include LICENSE
+recursive-exclude viyapy *.pyc
+recursive-exclude viyapy *.pyo
+prune tests
+prune docs
+prune examples
