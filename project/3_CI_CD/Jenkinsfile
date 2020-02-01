@@ -13,7 +13,10 @@ pipeline {
             }
         }
         stage('Code quality test') {
-            agent { dockerfile true }
+            agent { 
+                dockerfile true 
+                dir './project/3_CI_CD/code_quality_test'
+            }
             steps {
                 sh 'py.lint project/2_DevLab/experiment_rfor/score.py'
                 sh "python -c 'import sys,json; json.load(sys.stdin)' < file.json"
