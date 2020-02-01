@@ -5,4 +5,5 @@ LABEL description="A basic python:3 image modified for data quality test "
 
 WORKDIR /usr/src/app
 
-RUN pip install pylint
+RUN pip install pylint numpy pandas joblib
+
