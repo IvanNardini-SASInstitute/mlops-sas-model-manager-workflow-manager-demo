@@ -7,4 +7,5 @@ ENV PYLINTHOME=.
 
 WORKDIR /usr/src/app
 
-RUN pip install pylint numpy pandas joblib
+RUN pip install pylint numpy pandas joblib sklearn
+RUN pip3 install pymongo

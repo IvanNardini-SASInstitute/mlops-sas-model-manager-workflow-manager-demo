@@ -12,33 +12,18 @@ pipeline {
         //         sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
         //     }
         // }
-        // stage('Code quality test') {
-        //     agent { 
-        //         // dockerfile {
-        //         //     filename 'Dockerfile'
-        //         //     dir 'project/3_CI_CD/code_quality_test'
-        //         // }             
-        //         docker {
-        //             image 'in92/devops_pylint:v1.2' 
-        //         }  
-        //     }
-        //     steps {
-        //         sh 'pylint --disable=C project/2_DevLab/experiment_rfor/score.py'
-        //         sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
-        //     }
-
         stage('Code quality test') {
             agent {
                 docker {
-                    image 'in92/devops_pylint:v1.2' 
+                    image 'in92/devops_pylint:v1.3' 
                 }
             }
             steps {
                 parallel(
-                score: {
+                score code test: {
                     sh 'pylint --disable=C project/2_DevLab/experiment_rfor/score.py'
                 },
-                train: {
+                train code test: {
                     sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
                 }
                 )

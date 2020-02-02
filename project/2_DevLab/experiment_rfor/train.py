@@ -12,6 +12,7 @@ import pandas as pd
 
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.impute import SimpleImputer
+import sklearn.model_selection as model_selection
 from sklearn.ensemble import RandomForestClassifier
 
 # Tool libraries

@@ -1,7 +1,7 @@
 version: "3"
 
 networks:
-    # dsnet:
+    dsnet:
     jenkins:
 
 
@@ -10,28 +10,28 @@ services:
     ### DEVELOPMENT ENVIRONMENT ###
 
     # # Mongodb database service
-    # mongo:
-    #     image: mongo
-    #     container_name: mongo
-    #     environment:
-    #         MONGO_INITDB_DATABASE: training_database
-    #         # MONGO_INITDB_ROOT_USERNAME: admin
-    #         # MONGO_INITDB_ROOT_PASSWORD: pass
-    #     volumes:
-    #         - mongodb:/data/db
-    #     networks: 
-    #         - dsnet
-    #     ports:
-    #         - 27017:27017
+    mongo:
+        image: mongo
+        container_name: mongo
+        environment:
+            MONGO_INITDB_DATABASE: training_database
+            # MONGO_INITDB_ROOT_USERNAME: admin
+            # MONGO_INITDB_ROOT_PASSWORD: pass
+        volumes:
+            - mongodb:/data/db
+        networks: 
+            - dsnet
+        ports:
+            - 27017:27017
     
     # # Mongodb seeder service
-    # mongo_seeder:
-    #     container_name: mongo_seeder
-    #     build: ./1_Data/
-    #     networks: 
-    #         - dsnet
-    #     depends_on:
-    #         - mongo
+    mongo_seeder:
+        container_name: mongo_seeder
+        build: ./1_Data/
+        networks: 
+            - dsnet
+        depends_on:
+            - mongo
 
     # # Mongodb management console
     # mongo-express:
@@ -48,16 +48,16 @@ services:
     #         - mongo
 
     # # Jupyter (Python) DEVelopment enviroment 
-    # jupyter:
-    #     image: datascience/jupyter_lab
-    #     container_name: jupyterlab
-    #     build: ./2_DevLab/
-    #     networks: 
-    #         - dsnet
-    #     ports:
-    #         - 8888:8888
-    #     volumes: 
-    #         - ./2_DevLab/:/home/jovyan/work
+    jupyter:
+        image: datascience/jupyter_lab
+        container_name: jupyterlab
+        build: ./2_DevLab/
+        networks: 
+            - dsnet
+        ports:
+            - 8888:8888
+        volumes: 
+            - ./2_DevLab/:/home/jovyan/work
 
     ### CI/CD ENVIRONMENT ###
     
@@ -94,6 +94,6 @@ services:
 
 
 volumes:
-    # mongodb:
+    mongodb:
     jenkins-docker-certs:
     jenkins-data:
