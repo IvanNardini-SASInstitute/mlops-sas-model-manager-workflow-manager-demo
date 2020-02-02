@@ -23,10 +23,10 @@ pipeline {
             steps {
                 parallel(
 
-                scorecodetest: {
+                score_code: {
                     sh 'pylint --disable=C project/2_DevLab/experiment_rfor/score.py'
                 },
-                traincodetest: {
+                train_code: {
                     sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
                 }
 
@@ -41,6 +41,18 @@ pipeline {
 
                 failure {
                         echo 'Code failed the quality test, please see logs.'
+                    }
+            }
+        }
+
+        stage('Data Quality Test') {
+
+            script {
+                    try {
+                        readJSON file: 'project/2_DevLab/experiment_rfor/fileMetadata.json'
+                    } catch (Exception e) {
+                        echo "Caught: ${e} JSON not valid."
+                        // currentBuild.result = 'FAILURE'
                     }
             }
         }
