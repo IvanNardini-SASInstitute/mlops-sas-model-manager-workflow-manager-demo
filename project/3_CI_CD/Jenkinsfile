@@ -48,21 +48,29 @@ pipeline {
 
         stage('Code Validation Test') {
 
-            agent {
-                docker {
-                    image 'python:3-alpine' 
-                }
-            }
-
             parallel {
 
                 stage('Validate Train Code') {
+
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
+
                     steps {
                         sh 'python -m py_compile project/2_DevLab/experiment_rfor/train.py'
                     }
                 }
 
                 stage('Validate Score Code') {
+
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
+
                     steps {
                         sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
                     }
