@@ -12,7 +12,7 @@ pipeline {
         //         sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
         //     }
         // }
-        stage('Code quality test') {
+        stage('Code Quality Test') {
 
             agent {
                 docker {
@@ -21,6 +21,7 @@ pipeline {
             }
 
             steps {
+                // Nicetohave: rewrite parallel
                 parallel(
 
                 score_code: {
@@ -45,7 +46,37 @@ pipeline {
             }
         }
 
+        stage('Code Validation Test') {
+
+            agent {
+                docker {
+                    image 'python:3-alpine' 
+                }
+            }
+
+            parallel {
+
+                stage('Validate Train Code') {
+                    steps {
+                        sh 'python -m py_compile project/2_DevLab/experiment_rfor/train.py'
+                    }
+                }, 
+
+                stage('Validate Score Code') {
+                    steps {
+                        sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
+                    }
+                }
+            }
+        }
+
+        // stage('Unit Test') {
+        // }
+
         stage('MetaData Quality Test') {
+
+            // Nicetohave: Add some output message when it's ok and logs
+            // Nicetohave: rewrite parallel
 
             agent any
 
@@ -103,5 +134,8 @@ pipeline {
                     }
             }
         }
+
+        // stage('SAS Model Manager Repository service') {
+        // }
     }
 }
