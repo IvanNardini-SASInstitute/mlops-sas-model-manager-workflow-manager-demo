@@ -47,13 +47,16 @@ pipeline {
 
         stage('Data Quality Test') {
 
-            script {
-                    try {
-                        readJSON file: 'project/2_DevLab/experiment_rfor/fileMetadata.json'
-                    } catch (Exception e) {
-                        echo "Caught: ${e} JSON not valid."
-                        // currentBuild.result = 'FAILURE'
-                    }
+            steps{
+
+                script {
+                        try {
+                            readJSON file: 'project/2_DevLab/experiment_rfor/fileMetadata.json'
+                        } catch (Exception e) {
+                            echo "Caught: ${e} JSON not valid."
+                            // currentBuild.result = 'FAILURE'
+                        }
+                }
             }
         }
     }
