@@ -20,10 +20,10 @@ pipeline {
             }
             steps {
                 parallel(
-                score code test: {
+                scorecodetest: {
                     sh 'pylint --disable=C project/2_DevLab/experiment_rfor/score.py'
                 },
-                train code test: {
+                traincodetest: {
                     sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
                 }
                 )
