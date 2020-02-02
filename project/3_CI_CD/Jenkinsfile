@@ -60,7 +60,7 @@ pipeline {
                     steps {
                         sh 'python -m py_compile project/2_DevLab/experiment_rfor/train.py'
                     }
-                }, 
+                }
 
                 stage('Validate Score Code') {
                     steps {
