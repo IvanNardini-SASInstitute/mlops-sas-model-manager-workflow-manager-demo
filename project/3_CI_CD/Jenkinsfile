@@ -53,31 +53,40 @@ pipeline {
 
                 parallel(
 
-                    script {
+                    fileMetadata_test: {
+
+                        script {
                             try {
                                 readJSON file: 'project/2_DevLab/experiment_rfor/fileMetadata.json'
                             } catch (Exception e) {
                                 echo "Caught: ${e} JSON not valid!"
                                 currentBuild.result = 'FAILURE'
                             }
-                    }
+                        }
+                    },
 
-                    script {
+                    inputVar_test: {
+                        
+                        script {
                             try {
                                 readJSON file: 'project/2_DevLab/experiment_rfor/inputVar.json'
                             } catch (Exception e) {
                                 echo "Caught: ${e} JSON not valid!"
                                 currentBuild.result = 'FAILURE'
                             }
-                    }
+                        }
+                    },
 
-                    script {
+                    outputVar_test: {
+                        
+                        script {
                             try {
                                 readJSON file: 'project/2_DevLab/experiment_rfor/outputVar.json'
                             } catch (Exception e) {
                                 echo "Caught: ${e} JSON not valid!"
                                 currentBuild.result = 'FAILURE'
                             }
+                        }
                     }
 
                 )
