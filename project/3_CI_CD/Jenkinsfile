@@ -47,6 +47,8 @@ pipeline {
 
         stage('Data Quality Test') {
 
+            agent any
+
             steps{
 
                 script {
