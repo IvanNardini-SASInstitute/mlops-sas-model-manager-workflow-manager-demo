@@ -53,7 +53,7 @@ pipeline {
                         try {
                             readJSON file: 'project/2_DevLab/experiment_rfor/fileMetadata.json'
                         } catch (Exception e) {
-                            echo "Caught: ${e} JSON not valid."
+                            echo "Caught: ${e} JSON not valid!"
                             // currentBuild.result = 'FAILURE'
                         }
                 }
