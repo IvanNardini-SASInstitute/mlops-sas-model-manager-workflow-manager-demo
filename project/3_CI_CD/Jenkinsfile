@@ -168,7 +168,7 @@ pipeline {
         //     }
         // }
 
-        stage('MetaData Quality Test') {
+        stage('Model MetaData Quality Test') {
 
             parallel {
 
@@ -198,16 +198,30 @@ pipeline {
                     }
 
                 }
+
+                stage('Validate fileMetadata.json file') {
+
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
+
+                    steps {
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/3_CI_CD/data_quality_test/bad_scenario_demo/fileMetadata.json"
+                    }
+
+                }
             }
 
             post {
 
                 success {
-                        echo 'Score and Train code files successfully validated!'
+                        echo 'Model MetaData files successfully validated!'
                     }
 
                 failure {
-                        echo 'Code failed the Validation test, please see logs.'
+                        echo 'Model MetaData files failed the quality test, please see review them.'
                     }
             }
         }
