@@ -1,0 +1,16 @@
+[
+  {
+    "name": "P_BAD1",
+    "role": "target",
+    "type": "decimal",
+    "level": "nominal",
+    "length": 8
+  },
+  {
+    "name": "P_BAD0",
+    "role": "target",
+    "type": "decimal",
+    "level": "nominal",
+    "length": 8
+  }
+]

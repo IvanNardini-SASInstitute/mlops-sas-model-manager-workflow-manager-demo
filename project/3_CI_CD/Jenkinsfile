@@ -45,7 +45,7 @@ pipeline {
             }
         }
 
-        stage('Data Quality Test') {
+        stage('MetaData Quality Test') {
 
             agent any
 
@@ -53,12 +53,23 @@ pipeline {
 
                 script {
                         try {
-                            readJSON file: 'project/2_DevLab/experiment_rfor/fileMetadata.json'
+                            readJSON file: 'project/2_CI_CD/data_quality_test/bad_scenario_demo/fileMetadata.json'
                         } catch (Exception e) {
                             echo "Caught: ${e} JSON not valid!"
-                            // currentBuild.result = 'FAILURE'
+                            currentBuild.result = 'FAILURE'
                         }
                 }
+            }
+
+            post {
+
+                success {
+                        echo 'The required JSON files are correct!'
+                    }
+
+                failure {
+                        echo 'JSON files failed the quality test, please see review them.'
+                    }
             }
         }
     }
