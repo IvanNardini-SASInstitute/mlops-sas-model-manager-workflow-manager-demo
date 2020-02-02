@@ -2,7 +2,7 @@
 pipeline {
     agent none
     stages {
-        
+
         stage('Code Quality Test') {
 
             parallel{
@@ -77,74 +77,141 @@ pipeline {
                     }
                 }
             }
+
+            post {
+
+                success {
+                        echo 'Score and Train code files successfully validated!'
+                    }
+
+                failure {
+                        echo 'Code failed the Validation test, please see logs.'
+                    }
+            }
         }
 
         // stage('Unit Test') {
+
+        //     // Build the container used from SAS
+        //     // Nice to have: download it from SAS registry
+
+        //     agent {
+                
+        //         docker {
+        //             image 'in92/devops_pylint:v1.3' 
+        //                  }
+        //             }
+
+            
+        // }
+
+        // stage('MetaData Quality Test') {
+
+        //     // Nicetohave: Add some output message when it's ok and logs
+        //     // Nicetohave: rewrite parallel
+        //     // Nicetohave: python container
+
+        //     agent any
+
+        //     steps{
+
+        //         parallel(
+
+        //             fileMetadata_test: {
+
+        //                 script {
+        //                     try {
+        //                         readJSON file: 'project/2_DevLab/experiment_rfor/fileMetadata.json'
+        //                     } catch (Exception e) {
+        //                         echo "Caught: ${e} JSON not valid!"
+        //                         currentBuild.result = 'FAILURE'
+        //                     }
+        //                 }
+        //             },
+
+        //             inputVar_test: {
+                        
+        //                 script {
+        //                     try {
+        //                         readJSON file: 'project/2_DevLab/experiment_rfor/inputVar.json'
+        //                     } catch (Exception e) {
+        //                         echo "Caught: ${e} JSON not valid!"
+        //                         currentBuild.result = 'FAILURE'
+        //                     }
+        //                 }
+        //             },
+
+        //             outputVar_test: {
+                        
+        //                 script {
+        //                     try {
+        //                         readJSON file: 'project/2_DevLab/experiment_rfor/outputVar.json'
+        //                     } catch (Exception e) {
+        //                         echo "Caught: ${e} JSON not valid!"
+        //                         currentBuild.result = 'FAILURE'
+        //                     }
+        //                 }
+        //             }
+
+        //         )
+        //     }
+
+        //     post {
+
+        //         success {
+        //                 echo 'The required JSON files are correct!'
+        //             }
+
+        //         failure {
+        //                 echo 'JSON files failed the quality test, please see review them.'
+        //             }
+        //     }
         // }
 
         stage('MetaData Quality Test') {
 
-            // Nicetohave: Add some output message when it's ok and logs
-            // Nicetohave: rewrite parallel
+            parallel {
 
-            agent any
+                stage('Validate inputVar.json file') {
 
-            steps{
-
-                parallel(
-
-                    fileMetadata_test: {
-
-                        script {
-                            try {
-                                readJSON file: 'project/2_DevLab/experiment_rfor/fileMetadata.json'
-                            } catch (Exception e) {
-                                echo "Caught: ${e} JSON not valid!"
-                                currentBuild.result = 'FAILURE'
-                            }
-                        }
-                    },
-
-                    inputVar_test: {
-                        
-                        script {
-                            try {
-                                readJSON file: 'project/2_DevLab/experiment_rfor/inputVar.json'
-                            } catch (Exception e) {
-                                echo "Caught: ${e} JSON not valid!"
-                                currentBuild.result = 'FAILURE'
-                            }
-                        }
-                    },
-
-                    outputVar_test: {
-                        
-                        script {
-                            try {
-                                readJSON file: 'project/2_DevLab/experiment_rfor/outputVar.json'
-                            } catch (Exception e) {
-                                echo "Caught: ${e} JSON not valid!"
-                                currentBuild.result = 'FAILURE'
-                            }
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
                         }
                     }
 
-                )
+                    steps {
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/inputVar.json"
+                    }
+                }
+
+                stage('Validate outputVar.json file') {
+
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
+
+                    steps {
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/outputVar.json"
+                    }
+
+                }
             }
 
             post {
 
                 success {
-                        echo 'The required JSON files are correct!'
+                        echo 'Score and Train code files successfully validated!'
                     }
 
                 failure {
-                        echo 'JSON files failed the quality test, please see review them.'
+                        echo 'Code failed the Validation test, please see logs.'
                     }
             }
         }
-
-        // stage('SAS Model Manager Repository service') {
+            // stage('SAS Model Manager Repository service') {
         // }
     }
 }
