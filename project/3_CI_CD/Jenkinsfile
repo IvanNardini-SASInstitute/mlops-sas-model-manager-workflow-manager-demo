@@ -90,82 +90,8 @@ pipeline {
             }
         }
 
-        // stage('Unit Test') {
+        // stage('Unit test') {
 
-        //     // Build the container used from SAS
-        //     // Nice to have: download it from SAS registry
-
-        //     agent {
-                
-        //         docker {
-        //             image 'in92/devops_pylint:v1.3' 
-        //                  }
-        //             }
-
-            
-        // }
-
-        // stage('MetaData Quality Test') {
-
-        //     // Nicetohave: Add some output message when it's ok and logs
-        //     // Nicetohave: rewrite parallel
-        //     // Nicetohave: python container
-
-        //     agent any
-
-        //     steps{
-
-        //         parallel(
-
-        //             fileMetadata_test: {
-
-        //                 script {
-        //                     try {
-        //                         readJSON file: 'project/2_DevLab/experiment_rfor/fileMetadata.json'
-        //                     } catch (Exception e) {
-        //                         echo "Caught: ${e} JSON not valid!"
-        //                         currentBuild.result = 'FAILURE'
-        //                     }
-        //                 }
-        //             },
-
-        //             inputVar_test: {
-                        
-        //                 script {
-        //                     try {
-        //                         readJSON file: 'project/2_DevLab/experiment_rfor/inputVar.json'
-        //                     } catch (Exception e) {
-        //                         echo "Caught: ${e} JSON not valid!"
-        //                         currentBuild.result = 'FAILURE'
-        //                     }
-        //                 }
-        //             },
-
-        //             outputVar_test: {
-                        
-        //                 script {
-        //                     try {
-        //                         readJSON file: 'project/2_DevLab/experiment_rfor/outputVar.json'
-        //                     } catch (Exception e) {
-        //                         echo "Caught: ${e} JSON not valid!"
-        //                         currentBuild.result = 'FAILURE'
-        //                     }
-        //                 }
-        //             }
-
-        //         )
-        //     }
-
-        //     post {
-
-        //         success {
-        //                 echo 'The required JSON files are correct!'
-        //             }
-
-        //         failure {
-        //                 echo 'JSON files failed the quality test, please see review them.'
-        //             }
-        //     }
         // }
 
         stage('Model MetaData Quality Test') {

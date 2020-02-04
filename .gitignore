@@ -17,6 +17,8 @@ project/3_CI_CD/code_quality_test/bad_scenario_demo
 
 project/3_CI_CD/code_quality_test/good_scenario_demo
 
+project/3_CI_CD/unit_test/base-image-cli
+
 #docs
 
 docs/
