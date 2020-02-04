@@ -35,7 +35,14 @@
     "length": 8
   },
   {
-    "name": "JOB",
+    "name": "DebtCon",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "HomeImp",
     "role": "input",
     "type": "decimal",
     "level": "interval",
@@ -56,6 +63,13 @@
     "length": 8
   },
   {
+    "name": "Mgr",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
     "name": "NINQ",
     "role": "input",
     "type": "decimal",
@@ -63,7 +77,35 @@
     "length": 8
   },
   {
-    "name": "REASON",
+    "name": "Office",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "Other",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "ProfExe",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "Sales",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "Self",
     "role": "input",
     "type": "decimal",
     "level": "interval",

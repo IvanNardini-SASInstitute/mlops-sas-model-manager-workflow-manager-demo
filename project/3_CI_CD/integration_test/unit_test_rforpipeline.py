@@ -6,7 +6,7 @@ import pandas as pd
 import joblib
 import json
 
-import unittest
+import unitest
 
 # Find the first file that matches the pattern.
 
@@ -108,57 +108,65 @@ def main():
     # Search for the first PKL file in the directory if argument is not specified.
     if model_file is None:
         for file in os.listdir("."):
-            if file.endswith(".pkl"):
+            if file.endswith(".pickle"):
                 model_file = file
                 break
 
     result = run(model_file, input_file, output_file)
     return 0
 
-class ScoringTest(unittest.TestCase):
+# class ScoringTest(unittest.TestCase):
 
-    def setUp(self):
-        self.model = sys.argv[1]
-        self.input = sys.argv[2]
-        self.output = sys.argv[3]
+#     def setUp(self):
+#         # Model pickle
+#         self.model = sys.argv[1]
+#         # Input CSV
+#         self.inputCSV = sys.argv[2]
+#         # Output CSV
+#         self.outputCSV = sys.argv[3]
+    
+#     def runTest(self):
+#         self.assertEqual()
 
-    # #check 2
-        # self.assertEqual(list(run(self.model, self.input, self.output).keys()), 
-        # ["BAD", "LOAN", "MORTDUE", "VALUE", "REASON", "JOB", "YOJ",
-        # "DEROG", "DELINQ", "CLAGE", "NINQ", "CLNO", "DEBTINC", "P_BAD0", "P_BAD1"])
-
-
-    def runTest_dictionary(self):
-
-        '''
-        Unit test #1 for the type : dictionary
-        '''
-
-        self.assertIsInstance(run(self.model, self.input, self.output), dict)
-
-    def runTest_content(self):
-
-        '''
-        Unit test #2 for the content: Not Empty
-        '''
-
-        self.assertFalse(run(self.model, self.input, self.output).isEmpty())
-
-    def runTest_score(self):
-
-        '''
-        Unit test #3 for the score: Dicts Equality
-        '''
-        
-        outdict = {'BAD': {0: 1}, 'LOAN': {0: 1100}, 'MORTDUE': {0: 25860}, 'VALUE': {0: 39025}, 'REASON': {0: 'HomeImp'},
-                    'JOB': {0: 'Other'}, 'YOJ': {0: 10.5}, 'DEROG': {0: 0}, 'DELINQ': {0: 0}, 'CLAGE': {0: 94.366666667}, 'NINQ': {0: 1},
-                    'CLNO': {0: 9}, 'DEBTINC': {0: 0.0}, 'P_BAD0': {0: 1.0}, 'P_BAD1': {0: 0.0}}
-
-        self.assertDictEqual(run(self.model, self.input, self.output), outdict)
-        
 
 if __name__ == "__main__":
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(ScoringTest)
-    unittest.TextTestRunner().run(suite)
     sys.exit(main())
 
+
+# class Test(unittest.TestCase):
+#     def scoretest(self):
+#         self.assertEqual(computeScore(1100,25680,39025,10.5,0,0,94.36667,1,9,34,0,1,1)
+# , (0.997854340629609, 0.0021456593703910176))
+
+# if __name__ == '__main__':
+#     unittest.main()
+
+# def computeScore(LOAN, MORTDUE, VALUE, YOJ, DEROG, DELINQ, CLAGE, NINQ, CLNO, DEBTINC, Office, Other, HomeImp):
+#     "Output: P_BAD1, P_BAD0"
+
+#     modelFile = os.getcwd() + 'model/gboost_obj_3_6_1.pkl'
+#     model = open(modelFile, 'rb')
+#     dtree = pickle.load(model)
+#     model.close()
+
+#     input_list=[LOAN, MORTDUE, VALUE, YOJ, DEROG, DELINQ, CLAGE, NINQ, CLNO, DEBTINC, Office, Other, HomeImp]
+
+#     # Just to make sure there's no None value in the data
+#     # convert any of None to 0 if any
+#     converted = [0 if v is None else v for v in input_list]
+
+#     prob = dtree.predict_proba([converted])
+
+#     P_BAD0 = prob[0,0]
+#     P_BAD1 = prob[0,1]
+#     #print("Probability of defaulting is " + str(P_BAD1) + ", while not defaulting is " + str(P_BAD0))
+
+#     return P_BAD1, P_BAD0
+
+# class Test(unittest.TestCase):
+#     def test(self):
+#         self.assertEqual(computeScore(1100,25680,39025,10.5,0,0,94.36667,1,9,34,0,1,1)
+# , (0.997854340629609, 0.0021456593703910176))
+
+# if __name__ == '__main__':
+#     unittest.main()
