@@ -127,7 +127,7 @@ class ScoringTest(unittest.TestCase):
         '''
         Unit test #1 for the type : dictionary
         '''
-        print(".Running Test to check if the function generate a dictionary...")
+        # print(".Running Test to check if the function generate a dictionary...")
         self.assertIsInstance(run(self.model, self.input, self.output), dict)
 
     def runTest_content(self):
@@ -135,7 +135,7 @@ class ScoringTest(unittest.TestCase):
         '''
         Unit test #2 for the content: Not Empty
         '''
-        print("Running Test to check if the function generate a non-empty dictionary...")
+        # print("Running Test to check if the function generate a non-empty dictionary...")
         self.assertTrue(bool(run(self.model, self.input, self.output)))
 
     def runTest_score(self):
@@ -148,7 +148,7 @@ class ScoringTest(unittest.TestCase):
                     'JOB': {0: 'Other'}, 'YOJ': {0: 10.5}, 'DEROG': {0: 0}, 'DELINQ': {0: 0}, 'CLAGE': {0: 94.3666666666667}, 'NINQ': {0: 1},
                     'CLNO': {0: 9}, 'DEBTINC': {0: 0.0}, 'P_BAD0': {0: 1.0}, 'P_BAD1': {0: 0.0}}
 
-        print("Running Test to check if the function score data correctly...")
+        # print("Running Test to check if the function score data correctly...")
         self.assertDictEqual(run(self.model, self.input, self.output), outdict)
         
 
@@ -157,9 +157,20 @@ if __name__ == "__main__":
     suite.addTest(ScoringTest('runTest_dictionary'))
     suite.addTest(ScoringTest('runTest_content'))
     suite.addTest(ScoringTest('runTest_score'))
-    unittest.TextTestRunner().run(suite)
-    # with open("./unitout.txt", 'w') at outext:
-    #     outext.write(unittest.TextTestRunner().run(suite))
+    # unittest.TextTestRunner().run(suite)
+    with open("./unitout.txt", 'w') as outext:
+        outext.writelines(unittest.TextTestRunner().run(suite))
+        outtext.close()
+    try:
+        outfile = open("./unitout.txt", 'r')
+        for line in outfile.readlines():
+            if 'FAILED' in line:
+                msg = "Unit test failed!"
+                return 1, print(msg)
+            else:
+                return 0
+    except ValueError:
+        print("Something wrong with Unit Test. Please check the pipeline")
 
         
 
