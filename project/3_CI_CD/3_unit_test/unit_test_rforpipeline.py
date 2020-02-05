@@ -160,17 +160,18 @@ if __name__ == "__main__":
     # unittest.TextTestRunner().run(suite)
     with open("./unitout.txt", 'w') as outext:
         out = unittest.TextTestRunner().run(suite)
-        outext.writelines(out)
-        outext.close()
-    try:
-        def output():
-            outfile = open("./unitout.txt", 'r')
-            for line in outfile.readlines():
-                if 'FAILED' in line:
-                    msg = "Unit test failed!"
-                    return 1, print(msg)
-                else:
-                    return 0
-        output()
-    except ValueError:
-        print("Something wrong with Unit Test. Please check the pipeline")
+        print(out)
+    #     outext.write(out)
+    #     outext.close()
+    # try:
+    #     def output():
+    #         outfile = open("./unitout.txt", 'r')
+    #         for line in outfile.readlines():
+    #             if 'FAILED' in line:
+    #                 msg = "Unit test failed!"
+    #                 return 1, print(msg)
+    #             else:
+    #                 return 0
+    #     output()
+    # except ValueError:
+    #     print("Something wrong with Unit Test. Please check the pipeline")
