@@ -165,5 +165,4 @@ if __name__ == "__main__":
         else:
             return 0
 
-    outcheck(out)
-    sys.exit(main())
+    sys.exit(outcheck(out))
