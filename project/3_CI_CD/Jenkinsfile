@@ -16,7 +16,7 @@ pipeline {
                         }
 
                         steps{
-                            sh 'pylint --disable=C project/2_DevLab/experiment_rfor/score.py'
+                            sh 'pylint --disable=C,R,W project/2_DevLab/experiment_rfor/score.py'
                         }
                     }
 
@@ -92,22 +92,28 @@ pipeline {
 
         stage('Unit test') {
 
-            stages {
-
-                stage('Unit Test') {
-
-                    agent {
-                        docker {
-                            image 'in92/devops_pyunit:v1.0' 
-                         }
+            agent {
+                docker {
+                    image 'in92/devops_pyunit:v1.0' 
                     }
+            }
 
-                    steps {
+            steps {
 
                         sh 'python unit_test_rforpipeline.py ./experiment_rfor/rfor_pipeline.pickle test.csv result.csv'
                     }
                 }
             }
+
+            post {
+
+                success {
+                        echo 'Score code file successfully passed the Unit Test!'
+                    }
+
+                failure {
+                        echo 'Code failed the Unit test, please see logs.'
+                    }
 
         }
 
