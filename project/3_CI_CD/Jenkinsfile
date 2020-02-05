@@ -143,7 +143,7 @@ pipeline {
                     }
 
                     steps {
-                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/3_CI_CD/data_quality_test/bad_scenario_demo/fileMetadata.json"
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/fileMetadata.json"
                     }
 
                 }
