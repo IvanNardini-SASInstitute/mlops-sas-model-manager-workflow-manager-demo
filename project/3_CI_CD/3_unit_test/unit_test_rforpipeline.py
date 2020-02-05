@@ -165,4 +165,4 @@ if __name__ == "__main__":
         else:
             return 1
 
-    print(outcheck(out))
+    outcheck(out)
