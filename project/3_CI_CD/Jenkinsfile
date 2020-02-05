@@ -90,7 +90,7 @@ pipeline {
             }
         }
 
-        stage('Unit test') {
+        stage('Unit Test') {
 
             agent {
                 docker {
@@ -114,6 +114,10 @@ pipeline {
             }
 
         }
+
+        // stage('Integration test') {
+
+        // }
 
         stage('Model MetaData Quality Test') {
 
