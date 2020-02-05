@@ -99,23 +99,8 @@ pipeline {
             }
 
             steps {
-
-                        sh 'python unit_test_rforpipeline.py ./experiment_rfor/rfor_pipeline.pickle test.csv result.csv'
-                    }
-                }
+                sh 'python unit_test_rforpipeline.py ./experiment_rfor/rfor_pipeline.pickle test.csv result.csv'
             }
-
-            post {
-
-                success {
-                        echo 'Score code file successfully passed the Unit Test!'
-                    }
-
-                failure {
-                        echo 'Code failed the Unit test, please see logs.'
-                    }
-            }
-
         }
 
         stage('Model MetaData Quality Test') {
