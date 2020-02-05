@@ -122,6 +122,7 @@ pipeline {
                 stage('Run Scoring container'){
 
                     agent any
+                    
                     steps{
                         script{
                             docker.image('in92/devops_score_sidecar:v1.0').withRun('-p 8188:8080') {container ->
