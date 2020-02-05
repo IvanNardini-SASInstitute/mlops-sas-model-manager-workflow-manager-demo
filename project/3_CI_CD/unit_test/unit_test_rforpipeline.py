@@ -84,8 +84,8 @@ def run(model_file, input_file, output_file):
     outputDf = pd.merge(inputDf, outputDf, how='inner',
                         left_index=True, right_index=True)
 
-    print('printing first few lines...')
-    print(outputDf.head())
+    # print('printing first few lines...')
+    # print(outputDf.head())
     outputDf.to_csv(output_file, sep=',', index=False)
     return outputDf.to_dict()
 
@@ -108,7 +108,7 @@ def main():
     # Search for the first PKL file in the directory if argument is not specified.
     if model_file is None:
         for file in os.listdir("."):
-            if file.endswith(".pkl"):
+            if file.endswith(".pickle"):
                 model_file = file
                 break
 
@@ -127,13 +127,12 @@ class ScoringTest(unittest.TestCase):
         # ["BAD", "LOAN", "MORTDUE", "VALUE", "REASON", "JOB", "YOJ",
         # "DEROG", "DELINQ", "CLAGE", "NINQ", "CLNO", "DEBTINC", "P_BAD0", "P_BAD1"])
 
-
     def runTest_dictionary(self):
 
         '''
         Unit test #1 for the type : dictionary
         '''
-
+        print(".Running Test to check if the function generate a dictionary...")
         self.assertIsInstance(run(self.model, self.input, self.output), dict)
 
     def runTest_content(self):
@@ -141,8 +140,8 @@ class ScoringTest(unittest.TestCase):
         '''
         Unit test #2 for the content: Not Empty
         '''
-
-        self.assertFalse(run(self.model, self.input, self.output).isEmpty())
+        print("Running Test to check if the function generate a non-empty dictionary...")
+        self.assertTrue(bool(run(self.model, self.input, self.output)))
 
     def runTest_score(self):
 
@@ -151,14 +150,22 @@ class ScoringTest(unittest.TestCase):
         '''
         
         outdict = {'BAD': {0: 1}, 'LOAN': {0: 1100}, 'MORTDUE': {0: 25860}, 'VALUE': {0: 39025}, 'REASON': {0: 'HomeImp'},
-                    'JOB': {0: 'Other'}, 'YOJ': {0: 10.5}, 'DEROG': {0: 0}, 'DELINQ': {0: 0}, 'CLAGE': {0: 94.366666667}, 'NINQ': {0: 1},
-                    'CLNO': {0: 9}, 'DEBTINC': {0: 0.0}, 'P_BAD0': {0: 1.0}, 'P_BAD1': {0: 0.0}}
+                    'JOB': {0: 'Other'}, 'YOJ': {0: 10.5}, 'DEROG': {0: 0}, 'DELINQ': {0: 0}, 'CLAGE': {0: 94.3666666666667}, 'NINQ': {0: 1},
+                    'CLNO': {0: 9}, 'DEBTINC': {0: 0.0}, 'P_BAD0': {0: 0.9}, 'P_BAD1': {0: 0.1}}
 
+        print("Running Test to check if the function score data correctly...")
         self.assertDictEqual(run(self.model, self.input, self.output), outdict)
         
 
 if __name__ == "__main__":
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(ScoringTest)
+    # unittest.main()
+    # unittest.TextTestRunner().run(ScoringTest())
+    # suite = unittest.defaultTestLoader.loadTestsFromTestCase(ScoringTest)
+    # unittest.TextTestRunner().run(suite)
+    suite = unittest.TestSuite()
+    suite.addTest(ScoringTest('runTest_dictionary'))
+    suite.addTest(ScoringTest('runTest_content'))
+    suite.addTest(ScoringTest('runTest_score'))
     unittest.TextTestRunner().run(suite)
-    sys.exit(main())
+    # sys.exit(main())
 
