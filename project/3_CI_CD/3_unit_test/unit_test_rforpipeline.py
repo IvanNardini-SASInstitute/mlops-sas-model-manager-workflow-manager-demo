@@ -122,11 +122,6 @@ class ScoringTest(unittest.TestCase):
         self.input = sys.argv[2]
         self.output = sys.argv[3]
 
-    # #check 2
-        # self.assertEqual(list(run(self.model, self.input, self.output).keys()), 
-        # ["BAD", "LOAN", "MORTDUE", "VALUE", "REASON", "JOB", "YOJ",
-        # "DEROG", "DELINQ", "CLAGE", "NINQ", "CLNO", "DEBTINC", "P_BAD0", "P_BAD1"])
-
     def runTest_dictionary(self):
 
         '''
@@ -158,14 +153,9 @@ class ScoringTest(unittest.TestCase):
         
 
 if __name__ == "__main__":
-    # unittest.main()
-    # unittest.TextTestRunner().run(ScoringTest())
-    # suite = unittest.defaultTestLoader.loadTestsFromTestCase(ScoringTest)
-    # unittest.TextTestRunner().run(suite)
     suite = unittest.TestSuite()
     suite.addTest(ScoringTest('runTest_dictionary'))
     suite.addTest(ScoringTest('runTest_content'))
     suite.addTest(ScoringTest('runTest_score'))
     unittest.TextTestRunner().run(suite)
-    # sys.exit(main())
 

@@ -1,3 +1,12 @@
+
+# If the pickle file has not specified in command-line arguments, the script
+# looks for the first pickle file in the current directory, and the script quits, if the file is not found.
+
+# The scoring script reads the input variables from the inputVar.json file, and the output variables
+# from the outputVar.json file.
+
+# The scoring script reads the input data from input CSV file and stores the output data in the CSV file.
+
 import argparse
 import os
 import os.path
@@ -5,8 +14,6 @@ import sys
 import pandas as pd
 import joblib
 import json
-
-import unitest
 
 # Find the first file that matches the pattern.
 
@@ -115,58 +122,6 @@ def main():
     result = run(model_file, input_file, output_file)
     return 0
 
-# class ScoringTest(unittest.TestCase):
-
-#     def setUp(self):
-#         # Model pickle
-#         self.model = sys.argv[1]
-#         # Input CSV
-#         self.inputCSV = sys.argv[2]
-#         # Output CSV
-#         self.outputCSV = sys.argv[3]
-    
-#     def runTest(self):
-#         self.assertEqual()
-
 
 if __name__ == "__main__":
     sys.exit(main())
-
-
-# class Test(unittest.TestCase):
-#     def scoretest(self):
-#         self.assertEqual(computeScore(1100,25680,39025,10.5,0,0,94.36667,1,9,34,0,1,1)
-# , (0.997854340629609, 0.0021456593703910176))
-
-# if __name__ == '__main__':
-#     unittest.main()
-
-# def computeScore(LOAN, MORTDUE, VALUE, YOJ, DEROG, DELINQ, CLAGE, NINQ, CLNO, DEBTINC, Office, Other, HomeImp):
-#     "Output: P_BAD1, P_BAD0"
-
-#     modelFile = os.getcwd() + 'model/gboost_obj_3_6_1.pkl'
-#     model = open(modelFile, 'rb')
-#     dtree = pickle.load(model)
-#     model.close()
-
-#     input_list=[LOAN, MORTDUE, VALUE, YOJ, DEROG, DELINQ, CLAGE, NINQ, CLNO, DEBTINC, Office, Other, HomeImp]
-
-#     # Just to make sure there's no None value in the data
-#     # convert any of None to 0 if any
-#     converted = [0 if v is None else v for v in input_list]
-
-#     prob = dtree.predict_proba([converted])
-
-#     P_BAD0 = prob[0,0]
-#     P_BAD1 = prob[0,1]
-#     #print("Probability of defaulting is " + str(P_BAD1) + ", while not defaulting is " + str(P_BAD0))
-
-#     return P_BAD1, P_BAD0
-
-# class Test(unittest.TestCase):
-#     def test(self):
-#         self.assertEqual(computeScore(1100,25680,39025,10.5,0,0,94.36667,1,9,34,0,1,1)
-# , (0.997854340629609, 0.0021456593703910176))
-
-# if __name__ == '__main__':
-#     unittest.main()

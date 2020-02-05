@@ -90,9 +90,26 @@ pipeline {
             }
         }
 
-        // stage('Unit test') {
+        stage('Unit test') {
 
-        // }
+            stages {
+
+                stage('Unit Test') {
+
+                    agent {
+                        docker {
+                            image 'in92/devops_pylint:v1.3' 
+                         }
+                    }
+
+                    steps {
+
+                        sh 'python unit_test_rforpipeline.py ./experiment_rfor/rfor_pipeline.pickle test.csv result.csv'
+                    }
+                }
+            }
+
+        }
 
         stage('Model MetaData Quality Test') {
 
