@@ -159,6 +159,6 @@ if __name__ == "__main__":
     suite.addTest(ScoringTest('runTest_score'))
     # out = unittest.TextTestRunner().run(suite)
     def out():
-        out = unittest.TextTestRunner(verbosity=2).run(suite)
-        return 1 if out.errors or out.failures else 0
+        out = unittest.TextTestRunner(verbosity=3).run(suite)
+        return 1 if out.errors > 1 or out.failures > 1 else 0
     out()
