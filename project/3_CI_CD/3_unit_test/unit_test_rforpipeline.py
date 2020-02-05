@@ -146,7 +146,7 @@ class ScoringTest(unittest.TestCase):
         
         outdict = {'BAD': {0: 1}, 'LOAN': {0: 1100}, 'MORTDUE': {0: 25860}, 'VALUE': {0: 39025}, 'REASON': {0: 'HomeImp'},
                     'JOB': {0: 'Other'}, 'YOJ': {0: 10.5}, 'DEROG': {0: 0}, 'DELINQ': {0: 0}, 'CLAGE': {0: 94.3666666666667}, 'NINQ': {0: 1},
-                    'CLNO': {0: 9}, 'DEBTINC': {0: 0.0}, 'P_BAD0': {0: 1.1}, 'P_BAD1': {0: 0.0}}
+                    'CLNO': {0: 9}, 'DEBTINC': {0: 0.0}, 'P_BAD0': {0: 1.0}, 'P_BAD1': {0: 0.0}}
 
         # print("Running Test to check if the function score data correctly...")
         self.assertDictEqual(run(self.model, self.input, self.output), outdict)
