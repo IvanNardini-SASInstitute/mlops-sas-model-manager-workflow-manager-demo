@@ -98,7 +98,7 @@ pipeline {
 
                     agent {
                         docker {
-                            image 'in92/devops_pylint:v1.3' 
+                            image 'in92/devops_pyunit:v1.0' 
                          }
                     }
 
