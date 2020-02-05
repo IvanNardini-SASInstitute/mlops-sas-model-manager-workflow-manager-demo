@@ -157,7 +157,11 @@ if __name__ == "__main__":
     suite.addTest(ScoringTest('runTest_dictionary'))
     suite.addTest(ScoringTest('runTest_content'))
     suite.addTest(ScoringTest('runTest_score'))
-    out = unittest.TextTestRunner(verbosity=3).run(suite)
+    out = unittest.TextTestRunner(sys.stdout, verbosity=3).run(suite)
     def outcheck(outls):
-        return 1 if (not outls.errors) or (not outls.failures) else 0
+        if (not outls.errors) or (not outls.failures):
+            return 1
+        else:
+            return 0
+            
     outcheck(out)
