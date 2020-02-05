@@ -146,7 +146,7 @@ class ScoringTest(unittest.TestCase):
         
         outdict = {'BAD': {0: 1}, 'LOAN': {0: 1100}, 'MORTDUE': {0: 25860}, 'VALUE': {0: 39025}, 'REASON': {0: 'HomeImp'},
                     'JOB': {0: 'Other'}, 'YOJ': {0: 10.5}, 'DEROG': {0: 0}, 'DELINQ': {0: 0}, 'CLAGE': {0: 94.3666666666667}, 'NINQ': {0: 1},
-                    'CLNO': {0: 9}, 'DEBTINC': {0: 0.0}, 'P_BAD0': {0: 1.1}, 'P_BAD1': {0: 0.0}}
+                    'CLNO': {0: 9}, 'DEBTINC': {0: 0.0}, 'P_BAD0': {0: 1.2}, 'P_BAD1': {0: 0.0}}
 
         # print("Running Test to check if the function score data correctly...")
         self.assertDictEqual(run(self.model, self.input, self.output), outdict)
@@ -157,10 +157,12 @@ if __name__ == "__main__":
     suite.addTest(ScoringTest('runTest_dictionary'))
     suite.addTest(ScoringTest('runTest_content'))
     suite.addTest(ScoringTest('runTest_score'))
-    out = unittest.TextTestRunner().run(suite)
-    print(out.failures)
-    print(out.errors)
-    # def out():
-    #     out = unittest.TextTestRunner(verbosity=3).run(suite)
-    #     return 1 if out.errors >= 1 or out.failures > 1 else 0
-    # out()
+    out = unittest.TextTestRunner(sys.stdout, verbosity=3).run(suite)
+
+    def outcheck(outls):
+        if len(outls.errors) >= 1 or len(outls.failures) >= 1:
+            return 1
+        else:
+            return 0
+
+    sys.exit(outcheck(out))

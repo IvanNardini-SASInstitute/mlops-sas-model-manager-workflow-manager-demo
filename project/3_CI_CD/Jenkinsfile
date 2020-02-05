@@ -99,9 +99,20 @@ pipeline {
             }
 
             steps {
-                // sh 'py.test --junitxml results.xml project/3_CI_CD/3_unit_test/unit_test_rforpipeline.py project/3_CI_CD/3_unit_test/experiment_rfor/rfor_pipeline.pickle project/3_CI_CD/3_unit_test/test.csv result.csv'
                 sh 'python project/3_CI_CD/3_unit_test/unit_test_rforpipeline.py project/3_CI_CD/3_unit_test/rfor_pipeline.pickle project/3_CI_CD/3_unit_test/test.csv result.csv'
             }
+
+            post {
+
+                success {
+                        echo 'Score code file successfully passed Unit Test!'
+                    }
+
+                failure {
+                        echo 'Code failed the Unit test, please see logs.'
+                    }
+            }
+
         }
 
         stage('Model MetaData Quality Test') {
