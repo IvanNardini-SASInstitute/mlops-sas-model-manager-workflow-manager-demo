@@ -124,7 +124,6 @@ pipeline {
                     agent { label 'docker' }
 
                     steps{
-
                         script{
                             docker.image('in92/devops_score_sidecar:v1.0').withRun('-p 8188:8080') {container ->
                                 docker.image('in92/devops_score_sidecar:v1.0').inside("--link ${container.id}:test_score") {
