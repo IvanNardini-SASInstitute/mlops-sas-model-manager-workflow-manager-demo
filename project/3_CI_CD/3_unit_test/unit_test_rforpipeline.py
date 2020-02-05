@@ -159,7 +159,8 @@ if __name__ == "__main__":
     suite.addTest(ScoringTest('runTest_score'))
     # unittest.TextTestRunner().run(suite)
     with open("./unitout.txt", 'w') as outext:
-        outext.writelines(unittest.TextTestRunner().run(suite))
+        out = unittest.TextTestRunner().run(suite)
+        outext.writelines(out)
         outext.close()
     try:
         def output():
