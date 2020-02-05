@@ -115,9 +115,17 @@ pipeline {
 
         }
 
-        // stage('Integration test') {
+        stage('Integration test') {
 
-        // }
+            docker.image('in92/devops_score_sidecar:v1.0').withRun('-p 8188:8080') { c ->
+                docker.image('in92/devops_test_exec:v1.0').inside("--link ${c.id}:test_score") {
+                    sh 'tail -f /dev/null'
+                }
+            }
+        }
+
+
+        }
 
         stage('Model MetaData Quality Test') {
 
