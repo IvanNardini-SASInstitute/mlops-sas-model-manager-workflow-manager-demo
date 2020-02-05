@@ -157,21 +157,8 @@ if __name__ == "__main__":
     suite.addTest(ScoringTest('runTest_dictionary'))
     suite.addTest(ScoringTest('runTest_content'))
     suite.addTest(ScoringTest('runTest_score'))
-    # unittest.TextTestRunner().run(suite)
-    with open("./unitout.txt", 'w') as outext:
-        out = unittest.TextTestRunner().run(suite)
-        print(out)
-    #     outext.write(out)
-    #     outext.close()
-    # try:
-    #     def output():
-    #         outfile = open("./unitout.txt", 'r')
-    #         for line in outfile.readlines():
-    #             if 'FAILED' in line:
-    #                 msg = "Unit test failed!"
-    #                 return 1, print(msg)
-    #             else:
-    #                 return 0
-    #     output()
-    # except ValueError:
-    #     print("Something wrong with Unit Test. Please check the pipeline")
+    # out = unittest.TextTestRunner().run(suite)
+    def out():
+        out = unittest.TextTestRunner(verbosity=2).run(suite)
+        return 1 if out.errors or out.failures else 0
+    out()
