@@ -161,8 +161,8 @@ if __name__ == "__main__":
 
     def outcheck(outls):
         if len(outls.errors) >= 1 or len(outls.failures) >= 1:
-            return 1
-        else:
             return 0
+        else:
+            return 1
 
     print(outcheck(out))
