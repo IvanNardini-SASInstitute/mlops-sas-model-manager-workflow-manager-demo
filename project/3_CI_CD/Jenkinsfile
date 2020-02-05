@@ -121,7 +121,7 @@ pipeline {
 
                 stage('Run Scoring container'){
 
-                    agent { label 'docker' }
+                    agent { docker }
 
                     steps{
 
@@ -132,7 +132,7 @@ pipeline {
                                 }
                             }
                         }
-                        
+
                     }
                 }
             }
