@@ -157,8 +157,7 @@ if __name__ == "__main__":
     suite.addTest(ScoringTest('runTest_dictionary'))
     suite.addTest(ScoringTest('runTest_content'))
     suite.addTest(ScoringTest('runTest_score'))
-    # out = unittest.TextTestRunner().run(suite)
-    def out():
-        outlist = unittest.TextTestRunner(verbosity=3).run(suite)
-        return 1 if (not outlist.errors) or (not outlist.failures) else 0
-    out()
+    out = unittest.TextTestRunner(verbosity=3).run(suite)
+    def outcheck(outls):
+        return 1 if (not outls.errors) or (not outls.failures) else 0
+    outcheck(out)
