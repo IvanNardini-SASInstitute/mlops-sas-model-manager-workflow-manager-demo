@@ -159,9 +159,9 @@ if __name__ == "__main__":
     suite.addTest(ScoringTest('runTest_score'))
     out = unittest.TextTestRunner(sys.stdout, verbosity=3).run(suite)
     def outcheck(outls):
-        if (not outls.errors) or (not outls.failures):
+        if len(outls.errors) > 1 or len(outls.failures) > 1:
             return 1
         else:
             return 0
-            
+
     outcheck(out)
