@@ -114,6 +114,7 @@ pipeline {
                 failure {
                         echo 'Code failed the Unit test, please see logs.'
                     }
+            }
 
         }
 
