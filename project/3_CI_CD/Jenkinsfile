@@ -121,7 +121,7 @@ pipeline {
 
                 stage('Run Scoring container'){
 
-                    any
+                    agent any
                     // agent {
                     //     docker { 
                     //         image 'in92/devops_test_exec:v1.0' 
