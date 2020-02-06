@@ -18,5 +18,5 @@ WORKDIR /pybox/app
 COPY app    /pybox/app
 COPY model  /pybox/model
 
-EXPOSE 8080:8080
+EXPOSE 9999:9999
 ENTRYPOINT ["/bin/bash", "startServer.sh"]  

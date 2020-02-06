@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-exec gunicorn --bind 0.0.0.0:8080 server:app \
+exec gunicorn --bind 0.0.0.0:9999 server:app \
     --log-level=debug \
     --log-file=/var/log/gunicorn.log \
     --access-logfile=/var/log/gunicorn-access.log \

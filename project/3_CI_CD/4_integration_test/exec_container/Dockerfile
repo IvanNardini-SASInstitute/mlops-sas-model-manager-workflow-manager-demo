@@ -2,8 +2,8 @@ FROM alpine:latest
 
 RUN apk add --no-cache --update curl
 
-WORKDIR /home
+WORKDIR /home/test
 
-EXPOSE 8888
+EXPOSE 9998
 
-COPY ./test.csv /home
+COPY ./test.csv /home/test
