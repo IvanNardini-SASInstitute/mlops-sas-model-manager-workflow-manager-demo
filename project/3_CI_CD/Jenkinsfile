@@ -125,7 +125,7 @@ pipeline {
                     agent {
                         docker { 
                             image 'in92/devops_test_exec:v1.0' 
-                            args '--entrypoint=tail -f /dev/null' 
+                            args '--entrypoint=tail /dev/null' 
                         }
                     }
 
