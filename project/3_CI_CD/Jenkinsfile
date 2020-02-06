@@ -125,8 +125,8 @@ pipeline {
 
                     steps{
                         script{
-                            docker.image('in92/devops_score_sidecar:v1.1').withRun("--name scoretest1 -p 9999:9999") {container ->
-                                docker.image('in92/devops_score_sidecar:v1.1').inside("--entrypoint='bin/bash startServer.sh' --link ${container.id}:test_score") {
+                            docker.image('in92/devops_score_sidecar:v1.2').withRun("--name scoretest2 -p 9999:9999") {container ->
+                                docker.image('in92/devops_score_sidecar:v1.2').inside("--entrypoint='bin/bash startServer.sh' --link ${container.id}:test_score") {
                                 }
                                 docker.image('in92/devops_test_exec:v1.0').inside("--link ${container.id}:test_score") {
                                     sh 'curl -X POST -F file=@test.csv test_score:9999/executions'

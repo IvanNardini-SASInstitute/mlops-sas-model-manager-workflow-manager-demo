@@ -19,4 +19,4 @@ COPY app    /pybox/app
 COPY model  /pybox/model
 
 EXPOSE 9999:9999
-ENTRYPOINT ["/bin/bash", "startServer.sh"]  
+# ENTRYPOINT ["/bin/bash", "startServer.sh"]  
