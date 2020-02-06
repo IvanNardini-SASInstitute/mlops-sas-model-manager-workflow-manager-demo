@@ -121,7 +121,8 @@ pipeline {
 
                 stage('Run Scoring container'){
 
-                    agent any
+                    agent docker { image 'in92/devops_test_exec:v1.0' args '--entrypoint=tail -f /dev/null' }
+                    // any
 
                     steps{
                         script{
