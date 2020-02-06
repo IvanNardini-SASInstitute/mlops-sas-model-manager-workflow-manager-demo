@@ -121,13 +121,13 @@ pipeline {
 
                 stage('Run Scoring container'){
 
-                    // any
-                    agent {
-                        docker { 
-                            image 'in92/devops_test_exec:v1.0' 
-                            // args '--entrypoint=tail -f /dev/null' 
-                        }
-                    }
+                    any
+                    // agent {
+                    //     docker { 
+                    //         image 'in92/devops_test_exec:v1.0' 
+                    //         // args '--entrypoint=tail -f /dev/null' 
+                    //     }
+                    // }
 
                     steps{
                         script{
