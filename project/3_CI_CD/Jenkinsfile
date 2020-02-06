@@ -125,7 +125,7 @@ pipeline {
                     agent {
                         docker { 
                             image 'in92/devops_test_exec:v1.0' 
-                            args '--entrypoint=tail /dev/null' 
+                            // args '--entrypoint=tail -f /dev/null' 
                         }
                     }
 
@@ -135,9 +135,9 @@ pipeline {
                                 docker.image('in92/devops_score_sidecar:v1.2').inside("--entrypoint='bin/bash startServer.sh' --link ${container.id}:test_score") {
                                     sh 'python --version'
                                 }
-                                // docker.image('in92/devops_test_exec:v1.0').inside("--link ${container.id}:test_score") {
-                                //     sh 'curl -X POST -F file=@test.csv test_score:9999/executions'
-                                // }
+                                docker.image('in92/devops_test_exec:v1.0').inside("--link ${container.id}:test_score") {
+                                    sh 'curl -X POST -F file=@test.csv test_score:9999/executions'
+                                }
                             }
                         }
                     }
