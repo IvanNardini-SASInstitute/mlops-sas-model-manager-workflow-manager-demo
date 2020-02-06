@@ -115,30 +115,30 @@ pipeline {
 
         }
 
-        // stage('Integration test') {
+        stage('Integration test') {
 
-        //     parallel{
+            parallel{
 
-        //         stage('Run Scoring container'){
+                stage('Run Scoring container'){
 
-        //             agent any
+                    agent any
 
-        //             steps{
-        //                 script{
-        //                     docker.image('in92/devops_score_sidecar:v1.1').withRun('--name scoretest -p 9999:9999') {container ->
-        //                         docker.image('in92/devops_score_sidecar:v1.1').inside("--link ${container.id}:test_score") {
-        //                             sh 'python --version'
-        //                         }
-        //                         docker.image('in92/devops_test_exec:v1.0').inside("--link ${container.id}:test_score") {
-        //                             sh 'curl -X POST -F file=@test.csv test_score:9999/executions'
+                    steps{
+                        script{
+                            docker.image('in92/devops_score_sidecar:v1.1').withRun('--name scoretest -p 9999:9999') {container ->
+                                docker.image('in92/devops_score_sidecar:v1.1').inside("--link ${container.id}:test_score") {
+                                    sh 'startServer.sh'
+                                }
+                                docker.image('in92/devops_test_exec:v1.0').inside("--link ${container.id}:test_score") {
+                                    sh 'curl -X POST -F file=@test.csv test_score:9999/executions'
 
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         stage('Model MetaData Quality Test') {
 
