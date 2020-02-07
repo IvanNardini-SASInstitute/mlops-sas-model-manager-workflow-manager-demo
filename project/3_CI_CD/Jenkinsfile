@@ -119,20 +119,20 @@ pipeline {
 
             parallel{
 
-                stage("Obtain images") {
+                // stage("Obtain images") {
 
-                    agent any
+                //     agent any
 
-                    steps {
-                        script {
+                //     steps {
+                //         script {
 
-                            def sidecar_score = docker.image('in92/devops_score_sidecar:v1.3')
-                            def test_exec = docker.image('in92/devops_test_exec:v1.1')
-                            sidecar_score.pull()
-                            test_exec.pull()
-                        }
-                    }
-                }
+                //             def sidecar_score = docker.image('in92/devops_score_sidecar:v1.3')
+                //             def test_exec = docker.image('in92/devops_test_exec:v1.1')
+                //             sidecar_score.pull()
+                //             test_exec.pull()
+                //         }
+                //     }
+                // }
 
                 stage("Run tests") {
 
@@ -141,7 +141,7 @@ pipeline {
                     steps {
                         script {
 
-                            docker.image('in92/devops_score_sidecar:v1.3') { test ->
+                            docker.image('in92/devops_score_sidecar:v1.3').withRun('-p 9999:9999') { test ->
                                 docker.image('in92/devops_score_sidecar:v1.3').inside("--link ${test.id}:test_score") {
                                     sh 'pwd'
                                 }
