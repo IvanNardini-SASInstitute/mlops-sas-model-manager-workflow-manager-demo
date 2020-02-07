@@ -147,11 +147,12 @@ pipeline {
                                     // sh 'while ! ping -htest --silent; do sleep 1; done'
                                 }
                             
-                            docker.image('in92/devops_test_exec:v1.2').inside("-u 0 --workdir=/home/test -v $(which docker):/usr/bin/docker --link ${test.id}:test_score") {
+                            // -v \$(which docker):/usr/bin/docker
+                            docker.image('in92/devops_test_exec:v1.2').inside("-u 0 --workdir=/home/test --link ${test.id}:test_score") {
 
                                     env.TOKEN = sh(script:"curl -s test_score:9999/", returnStdout: true).trim()
                                     sh(returnStdout: true, script: "if [ ${env.TOKEN} == 'pong' ]; then echo 'Instance is up...'; else echo 'Something is wrong with container instance'; exit 1; fi")
-                                    env.IP = sh(returnStdout: true, script:"docker inspect --format '{{ .NetworkSettings.Networks.Gateway }} test_score'")
+                                    env.IP = sh(returnStdout: true, script:"\$(docker inspect --format '{{ .NetworkSettings.Networks.Gateway }} test_score')")
                                     sh("echo ${env.IP}")
                                     // env.EXECUTION_ID = sh(returnStdout: true, script:"curl -s --form file=@test.csv --form press=OK test_score:9999/executions | jq -r '.id'").trim()
                                     // sh("echo ${env.EXECUTION_ID}")
