@@ -125,12 +125,11 @@ pipeline {
 
                     steps {
                         script {
-                            withDockerRegistry([credentialsId: 'in92']) {
+                            withDockerRegistry([credentialsId: 'in92:Tau92@docker']) {
                                 def sidecar_score = docker.image('in92/devops_score_sidecar:v1.3')
                                 def test_exec = docker.image('in92/devops_test_exec:v1.1')
                                 sidecar_score.pull()
                                 test_exec.pull()
-                            }
                         }
                     }
                 }
