@@ -151,15 +151,16 @@ pipeline {
 
                                     env.TOKEN = sh(script:"curl -s test_score:9999/", returnStdout: true).trim()
 
-                                    sh(returnStdout: true; script:'''#!/bin/bash
-                                                                    if [ ${env.TOKEN} == 'pong' ]
-                                                                    then
-                                                                        echo 'Instance is up...'
-                                                                    else
-                                                                        echo 'Something is wrong with container instance'
-                                                                        exit
-                                                                    fi
-                                                                    '''.stripIndent())
+                                    sh(returnStdout: true,  
+                                        script:'''#!/bin/bash
+                                                if [ ${env.TOKEN} == 'pong' ]
+                                                then
+                                                    echo 'Instance is up...'
+                                                else
+                                                    echo 'Something is wrong with container instance'
+                                                    exit
+                                                fi
+                                                '''.stripIndent())
 
                                     // env.EXECUTION_ID = sh()
                                     // sh "${env.TOKEN} = curl -s test_score:9999/"
