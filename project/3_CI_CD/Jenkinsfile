@@ -115,8 +115,29 @@ pipeline {
 
         }
 
-        // stage('Integration test') {
-        // }
+        stage('Integration test') {
+
+            parallel{
+                stage("Run tests") {
+                    agent any
+
+                    steps {
+                        script {
+
+                            docker.image('in92/devops_score_sidecar:v1.3') { test ->
+                                docker.image('in92/devops_score_sidecar:v1.3').inside("--link ${test.id}:test_score") {
+                                    sh 'pwd'
+                                }
+                            
+                            docker.image('in92/devops_test_exec:v1.1').inside("--link ${test.id}:test_score") {
+                                    sh 'pwd; curl -X POST -F file=@test.csv test_score:9999/executions'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         stage('Model MetaData Quality Test') {
 
