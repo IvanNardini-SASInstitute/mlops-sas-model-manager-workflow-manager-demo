@@ -153,7 +153,7 @@ pipeline {
                                     env.TOKEN = sh(script:"curl -s test_score:9999/", returnStdout: true).trim()
                                     sh(returnStdout: true, script: "if [ ${env.TOKEN} == 'pong' ]; then echo 'Instance is up...'; else echo 'Something is wrong with container instance'; exit 1; fi")
                                     // def ip = docker.inspect("-f \'{{ .NetworkSettings.Networks.Gateway }}' test_score")
-                                    def ip = "\$(docker inspect -f '{{ .NetworkSettings.Networks.Gateway }}' test_score)"
+                                    def ip = "\$(docker inspect -f '{{ .NetworkSettings.Networks.Gateway }}' in92/devops_score_sidecar:v1.3)"
                                     // env.IP = sh(returnStdout: true, script:"docker inspect --format=\"{{ .NetworkSettings.Networks.Gateway }}\" test_score").trim()
                                     sh "${ip}"
                                     // sh("echo ${ip}")
