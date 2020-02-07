@@ -138,10 +138,10 @@ pipeline {
 
                     agent any
 
-                    environment {
-                            TOKEN = ''
-                            EXECUTION_ID = ''
-                        }
+                    // environment {
+                    //         TOKEN = ''
+                    //         EXECUTION_ID = ''
+                    //     }
 
                     steps {
 
