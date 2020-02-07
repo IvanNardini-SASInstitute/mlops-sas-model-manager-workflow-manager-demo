@@ -143,12 +143,10 @@ pipeline {
 
                             docker.image('in92/devops_score_sidecar:v1.3').withRun('-p 9999:9999') { test ->
                                 docker.image('in92/devops_score_sidecar:v1.3').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
-                                    sh 'pwd'
                                 }
                             
                             docker.image('in92/devops_test_exec:v1.1').inside("--link ${test.id}:test_score") {
-                                    sh 'pwd'
-                                    // ; curl -X POST -F file=@test.csv test_score:9999/executions
+                                    sh "curl -X POST -F file=@test.csv test_score:9999/executions"
                                 }
                             }
                         }
