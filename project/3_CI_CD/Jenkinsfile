@@ -116,40 +116,6 @@ pipeline {
         }
 
         stage('Integration test') {
-
-            parallel {
-
-                // options {disableConcurrentBuilds()}
-
-                        // stage("Obtain images") {
-                        //     steps {
-                        //         script {
-                        //             writeFile(file: './tests/env.yaml', text: "environment:\n  # dev or stage\n  type: dev\n  lang: en\n")
-                        //             withDockerRegistry([credentialsId: 'my-hub', url: 'https://myhub.hub']) {
-                        //                 def selena = docker.image('myhub.hub/selenium-dev:latest')
-                        //                 def uirun = docker.image('myhub.hub/ui-shell-runner:latest')
-                        //                 selena.pull()
-                        //                 uirun.pull()
-                        //             }
-                stage("Run tests") {
-
-                    agent any
-
-                    steps {
-                        script { 
-                            docker.image('in92/devops_score_sidecar:v1.3') { test ->
-                                docker.image('in92/devops_score_sidecar:v1.3').inside("--link ${test.id}:test_score") {
-                                    sh 'pwd'
-                                }
-
-                                docker.image('myhub.hub/ui-shell-runner:latest').inside("--link ${test.id}:test_score") {
-                                    sh 'pwd; curl -X POST -F file=@test.csv test_score:9999/executions'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         stage('Model MetaData Quality Test') {
@@ -209,7 +175,6 @@ pipeline {
                     }
             }
         }
-            
             // stage('SAS Model Manager Repository service') {
         // }
     }
