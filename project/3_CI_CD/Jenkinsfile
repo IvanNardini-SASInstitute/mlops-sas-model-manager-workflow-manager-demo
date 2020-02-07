@@ -130,20 +130,14 @@ pipeline {
                     // }
 
                     steps{
-                        script{
-                            docker.image('in92/devops_score_sidecar:v1.3').withRun("-p 9999:9999") {container ->
-                                // sh 'chmod 777 ./pybox/app/startServer.sh'
-                                // sh './pybox/app/startServer.sh'
-                                sh 'python --version'
-                                
-                                
-                                // docker.image('in92/devops_score_sidecar:v1.3').inside("--entrypoint='bin/bash startServer.sh' --link ${container.id}:test_score") {
+                        script{                                
+                                docker.image('in92/devops_score_sidecar:v1.3').withRun("--entrypoint='bin/bash startServer.sh'") { container ->
+                                    docker.image('in92/devops_score_sidecar:v1.3').inside("--link ${container.id}:test_score") {
+                                }
 
-                                //     sh 'python --version'
-                                // }
-                                // docker.image('in92/devops_test_exec:v1.1').inside("--link ${container.id}:test_score") {
-                                //     sh 'curl -X POST -F file=@test.csv test_score:9999/executions'
-                                // }
+                                docker.image('in92/devops_test_exec:v1.1').inside("--link ${container.id}:test_score") {
+                                    sh 'curl -X POST -F file=@test.csv test_score:9999/executions'
+                                }
                             }
                         }
                     }
