@@ -118,24 +118,42 @@ pipeline {
         stage('Integration test') {
 
             parallel{
-                stage("Run tests") {
+
+                stage("Obtain images") {
+
                     agent any
 
                     steps {
                         script {
-
-                            docker.image('in92/devops_score_sidecar:v1.3') { test ->
-                                docker.image('in92/devops_score_sidecar:v1.3').inside("--link ${test.id}:test_score") {
-                                    sh 'pwd'
-                                }
-                            
-                            docker.image('in92/devops_test_exec:v1.1').inside("--link ${test.id}:test_score") {
-                                    sh 'pwd; curl -X POST -F file=@test.csv test_score:9999/executions'
-                                }
+                            withDockerRegistry([credentialsId: 'in92', url: 'https://hub.docker.com/']) {
+                                def sidecar_score = docker.image('in92/devops_score_sidecar:v1.3')
+                                def test_exec = docker.image('in92/devops_test_exec:v1.1')
+                                sidecar_score.pull()
+                                test_exec.pull()
                             }
                         }
                     }
                 }
+
+                // stage("Run tests") {
+
+                //     agent any
+
+                //     steps {
+                //         script {
+
+                //             docker.image('in92/devops_score_sidecar:v1.3') { test ->
+                //                 docker.image('in92/devops_score_sidecar:v1.3').inside("--link ${test.id}:test_score") {
+                //                     sh 'pwd'
+                //                 }
+                            
+                //             docker.image('in92/devops_test_exec:v1.1').inside("--link ${test.id}:test_score") {
+                //                     sh 'pwd; curl -X POST -F file=@test.csv test_score:9999/executions'
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
             }
         }
 
