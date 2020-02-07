@@ -117,32 +117,41 @@ pipeline {
 
         stage('Integration test') {
 
-            parallel{
+            agent any
 
-                stage('Run Scoring container'){
+            options {
+                        disableConcurrentBuilds()
+                    }
 
-                    agent any
-                    // agent {
-                    //     docker { 
-                    //         image 'in92/devops_test_exec:v1.0' 
-                    //         // args '--entrypoint=tail -f /dev/null' 
-                    //     }
-                    // }
+            parallel {
+                        // stage("Obtain images") {
+                        //     steps {
+                        //         script {
+                        //             writeFile(file: './tests/env.yaml', text: "environment:\n  # dev or stage\n  type: dev\n  lang: en\n")
+                        //             withDockerRegistry([credentialsId: 'my-hub', url: 'https://myhub.hub']) {
+                        //                 def selena = docker.image('myhub.hub/selenium-dev:latest')
+                        //                 def uirun = docker.image('myhub.hub/ui-shell-runner:latest')
+                        //                 selena.pull()
+                        //                 uirun.pull()
+                        //             }
 
-                    steps{
-                        script{                                
-                                docker.image('in92/devops_score_sidecar:v1.3') { container ->
-                                    docker.image('in92/devops_score_sidecar:v1.3').inside("--link ${container.id}:test_score") {
-                                }
+                    stage("Run tests") {
 
-                                docker.image('in92/devops_test_exec:v1.1').inside("--link ${container.id}:test_score") {
-                                    sh 'curl -X POST -F file=@test.csv test_score:9999/executions'
+                        steps {
+                            script { 
+                                docker.image('in92/devops_score_sidecar:v1.3') { test ->
+                                    docker.image('in92/devops_score_sidecar:v1.3').inside("--link ${test.id}:test_score") {
+                                        sh 'pwd'
+                                    }
+
+                                    docker.image('myhub.hub/ui-shell-runner:latest').inside("--link ${test.id}:test_score") {
+                                        sh 'pwd; curl -X POST -F file=@test.csv test_score:9999/executions'
+                                    }
                                 }
                             }
                         }
-                    }
+                     }
                 }
-            }
         }
 
         stage('Model MetaData Quality Test') {
