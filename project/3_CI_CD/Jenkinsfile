@@ -152,7 +152,7 @@ pipeline {
                                     env.TOKEN = sh(script:"curl -s test_score:9999/", returnStdout: true).trim()
                                     sh(returnStdout: true, script: "if [ ${env.TOKEN} == 'pong' ]; then echo 'Instance is up...'; else echo 'Something is wrong with container instance'; exit 1; fi")
                                     env.EXECUTION_ID = sh(script:"curl -s --form file=/home/test.csv --form press=OK localhost:8188/executions | jq -r '.id'", returnStdout: true).trim()
-                                    // -z '${env.EXECUTION_ID}'
+                                    sh echo "${env.EXECUTION_ID}"
                                     sh(returnStdout: true, script: "if [ ${env.EXECUTION_ID} != ' ']; then curl -s -o /home/result.csv localhost:8188/query/${env.EXECUTION_ID}; cat result.csv; else echo 'Something is wrong with container instance'; exit 1; fi")
                                 }
                             }
