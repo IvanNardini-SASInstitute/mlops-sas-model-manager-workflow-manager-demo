@@ -152,7 +152,7 @@ pipeline {
                                     env.TOKEN = sh(script:"curl -s test_score:9999/", returnStdout: true).trim()
 
                                     sh(returnStdout: true,  
-                                        script:'''#!/bin/bash
+                                        script:'''
                                                 if [ ${env.TOKEN} == 'pong' ]
                                                 then
                                                     echo 'Instance is up...'
