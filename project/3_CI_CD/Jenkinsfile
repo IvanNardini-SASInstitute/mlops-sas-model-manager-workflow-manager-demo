@@ -131,7 +131,7 @@ pipeline {
 
                     steps{
                         script{                                
-                                docker.image('in92/devops_score_sidecar:v1.3').withRun("--entrypoint='startServer.sh'") { container ->
+                                docker.image('in92/devops_score_sidecar:v1.3') { container ->
                                     docker.image('in92/devops_score_sidecar:v1.3').inside("--link ${container.id}:test_score") {
                                 }
 
