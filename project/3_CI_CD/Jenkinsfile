@@ -119,9 +119,7 @@ pipeline {
 
             parallel {
 
-                agent any
-
-                options {disableConcurrentBuilds()}
+                // options {disableConcurrentBuilds()}
 
                         // stage("Obtain images") {
                         //     steps {
@@ -135,6 +133,9 @@ pipeline {
                         //             }
 
                 stage("Run tests") {
+                    
+                    agent any
+
                     steps {
                         script { 
                             docker.image('in92/devops_score_sidecar:v1.3') { test ->
