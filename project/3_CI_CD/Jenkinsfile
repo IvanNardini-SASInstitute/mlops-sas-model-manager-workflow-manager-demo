@@ -131,9 +131,8 @@ pipeline {
                         //                 selena.pull()
                         //                 uirun.pull()
                         //             }
-
                 stage("Run tests") {
-                    
+
                     agent any
 
                     steps {
