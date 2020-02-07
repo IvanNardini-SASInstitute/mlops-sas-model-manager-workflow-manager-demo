@@ -132,8 +132,8 @@ pipeline {
                     steps{
                         script{
                             docker.image('in92/devops_score_sidecar:v1.2').withRun("-p 9999:9999") {container ->
-                                sh 'chmod 777 ./pybox/app/startServer.sh'
-                                sh './pybox/app/startServer.sh'
+                                // sh 'chmod 777 ./pybox/app/startServer.sh'
+                                // sh './pybox/app/startServer.sh'
                                 sh 'python --version'
                                 
                                 
