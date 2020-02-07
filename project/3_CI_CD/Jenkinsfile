@@ -125,7 +125,7 @@ pipeline {
 
                     steps {
                         script {
-                            withDockerRegistry([credentialsId: 'in92', url: 'https://hub.docker.com/']) {
+                            withDockerRegistry() {
                                 def sidecar_score = docker.image('in92/devops_score_sidecar:v1.3')
                                 def test_exec = docker.image('in92/devops_test_exec:v1.1')
                                 sidecar_score.pull()
