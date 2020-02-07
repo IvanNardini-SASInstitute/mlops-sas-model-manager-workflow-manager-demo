@@ -138,6 +138,11 @@ pipeline {
 
                     agent any
 
+                    enviroment {
+                        TOKEN = ''
+                        EXECUTION_ID = ''
+                    }
+
                     steps {
                         script {
 
@@ -147,7 +152,9 @@ pipeline {
                                 }
                             
                             docker.image('in92/devops_test_exec:v1.1').inside("--workdir=/home --link ${test.id}:test_score") {
-                                    sh "curl -X POST -F file=/home/test.csv test_score:9999/executions"
+                                    sh "${TOKEN} = curl -s test_score:9999/"
+                                    sh "if [${TOKEN}] == 'pong' then echo 'Instance is up...' else echo 'Something is wrong with container instance' exit 0"
+                                    // sh "curl -s --form file=@test.csv --form press=OK test_score:9999/executions | jq -r '.id'"
                                 }
                             }
                         }
