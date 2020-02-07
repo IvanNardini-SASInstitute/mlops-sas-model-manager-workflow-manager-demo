@@ -147,7 +147,7 @@ pipeline {
                                 }
                             
                             docker.image('in92/devops_test_exec:v1.1').inside("--workdir=/home --link ${test.id}:test_score") {
-                                    sh "curl -X POST -F file=@test.csv test_score:9999/executions"
+                                    sh "curl -X POST -F file=/home/test.csv test_score:9999/executions"
                                 }
                             }
                         }
