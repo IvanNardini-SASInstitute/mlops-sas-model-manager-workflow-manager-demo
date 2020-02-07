@@ -115,8 +115,8 @@ pipeline {
 
         }
 
-        stage('Integration test') {
-        }
+        // stage('Integration test') {
+        // }
 
         stage('Model MetaData Quality Test') {
 
