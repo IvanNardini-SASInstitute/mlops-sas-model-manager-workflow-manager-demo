@@ -130,6 +130,7 @@ pipeline {
                                 def test_exec = docker.image('in92/devops_test_exec:v1.1')
                                 sidecar_score.pull()
                                 test_exec.pull()
+                            }
                         }
                     }
                 }
