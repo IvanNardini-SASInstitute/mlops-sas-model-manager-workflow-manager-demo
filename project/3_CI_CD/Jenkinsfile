@@ -117,13 +117,12 @@ pipeline {
 
         stage('Integration test') {
 
-            agent any
-
-            options {
-                        disableConcurrentBuilds()
-                    }
-
             parallel {
+
+                agent any
+
+                options {disableConcurrentBuilds()}
+
                         // stage("Obtain images") {
                         //     steps {
                         //         script {
@@ -135,23 +134,22 @@ pipeline {
                         //                 uirun.pull()
                         //             }
 
-                    stage("Run tests") {
+                stage("Run tests") {
+                    steps {
+                        script { 
+                            docker.image('in92/devops_score_sidecar:v1.3') { test ->
+                                docker.image('in92/devops_score_sidecar:v1.3').inside("--link ${test.id}:test_score") {
+                                    sh 'pwd'
+                                }
 
-                        steps {
-                            script { 
-                                docker.image('in92/devops_score_sidecar:v1.3') { test ->
-                                    docker.image('in92/devops_score_sidecar:v1.3').inside("--link ${test.id}:test_score") {
-                                        sh 'pwd'
-                                    }
-
-                                    docker.image('myhub.hub/ui-shell-runner:latest').inside("--link ${test.id}:test_score") {
-                                        sh 'pwd; curl -X POST -F file=@test.csv test_score:9999/executions'
-                                    }
+                                docker.image('myhub.hub/ui-shell-runner:latest').inside("--link ${test.id}:test_score") {
+                                    sh 'pwd; curl -X POST -F file=@test.csv test_score:9999/executions'
                                 }
                             }
                         }
-                     }
+                    }
                 }
+            }
         }
 
         stage('Model MetaData Quality Test') {
