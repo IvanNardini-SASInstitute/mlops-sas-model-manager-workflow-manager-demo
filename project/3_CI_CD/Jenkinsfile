@@ -143,9 +143,10 @@ pipeline {
 
                             docker.image('in92/devops_score_sidecar:v1.3').withRun('-p 9999:9999') { test ->
                                 docker.image('in92/devops_score_sidecar:v1.3').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
+                                    // sh 'while ! ping -htest --silent; do sleep 1; done'
                                 }
                             
-                            docker.image('in92/devops_test_exec:v1.1').inside("--link ${test.id}:test_score") {
+                            docker.image('in92/devops_test_exec:v1.1').inside("--workdir=/home --link ${test.id}:test_score") {
                                     sh "curl -X POST -F file=@test.csv test_score:9999/executions"
                                 }
                             }
