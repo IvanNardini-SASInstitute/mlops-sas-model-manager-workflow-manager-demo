@@ -138,12 +138,13 @@ pipeline {
 
                     agent any
 
-                    enviroment {
-                        TOKEN = ''
-                        EXECUTION_ID = ''
-                    }
-
                     steps {
+
+                        enviroment {
+                            TOKEN = ''
+                            EXECUTION_ID = ''
+                        }
+                        
                         script {
 
                             docker.image('in92/devops_score_sidecar:v1.3').withRun('-p 9999:9999') { test ->
