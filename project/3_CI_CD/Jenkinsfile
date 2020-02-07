@@ -148,7 +148,7 @@ pipeline {
                                 }
                             
                             // -v \$(which docker):/usr/bin/docker
-                            docker.image('in92/devops_test_exec:v1.2').inside("-u 0 -v \$(which docker):/usr/bin/docker --workdir=/home/test --link ${test.id}:test_score") {
+                            docker.image('in92/devops_test_exec:v1.2').inside("-u 0 -v ${which docker}:/usr/bin/docker --workdir=/home/test --link ${test.id}:test_score") {
 
                                     env.TOKEN = sh(script:"curl -s test_score:9999/", returnStdout: true).trim()
                                     sh(returnStdout: true, script: "if [ ${env.TOKEN} == 'pong' ]; then echo 'Instance is up...'; else echo 'Something is wrong with container instance'; exit 1; fi")
