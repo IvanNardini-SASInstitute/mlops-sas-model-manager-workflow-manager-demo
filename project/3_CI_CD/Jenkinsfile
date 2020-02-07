@@ -147,7 +147,7 @@ pipeline {
                                     // sh 'while ! ping -htest --silent; do sleep 1; done'
                                 }
                             
-                            docker.image('in92/devops_test_exec:v1.1').inside("--workdir=/home --link ${test.id}:test_score") {
+                            docker.image('in92/devops_test_exec:v1.2').inside("--workdir=/home --link ${test.id}:test_score") {
 
                                     env.TOKEN = sh(script:"curl -s test_score:9999/", returnStdout: true).trim()
                                     sh(returnStdout: true, script: "if [ ${env.TOKEN} == 'pong' ]; then echo 'Instance is up...'; else echo 'Something is wrong with container instance'; exit 1; fi")
