@@ -152,17 +152,14 @@ pipeline {
 
                                     env.TOKEN = sh(script:"curl -s test_score:9999/", returnStdout: true).trim()
                                     sh(returnStdout: true, script: "if [ ${env.TOKEN} == 'pong' ]; then echo 'Instance is up...'; else echo 'Something is wrong with container instance'; exit 1; fi")
-                                    // sh(returnStdout: true, script: "docker inspect -f '{{ .NetworkSettings.Networks.Gateway }}' in92/devops_score_sidecar:v1.3").trim()
-                                    // def ip = docker.inspect("-f \'{{ .NetworkSettings.Networks.Gateway }}' test_score")
-                                    // def ip = "\$(docker inspect -f '{{ .NetworkSettings.Networks.Gateway }}' in92/devops_score_sidecar:v1.3)"
-                                    // env.IP = sh(returnStdout: true, script:"docker inspect --format=\"{{ .NetworkSettings.Networks.Gateway }}\" test_score").trim()
-                                    // sh "${ip}"
-                                    // sh("echo ${ip}")
                                     env.EXECUTION_ID = sh(returnStdout: true, script:"curl -s --form file=@project/3_CI_CD/4_integration_test/exec_container/test.csv --form press=OK test_score:9999/executions | jq -r '.id'").trim()
                                     sh("echo ${env.EXECUTION_ID}")
-                                    // sh(returnStdout: true, script: "curl -s -o project/3_CI_CD/4_integration_test/exec_container/result.csv test_score:9999/query/${env.EXECUTION_ID}; head -n 3 result.csv")
                                     sh(returnStdout: true, script: "if [ ! -z ${env.EXECUTION_ID} ]; then curl -s -o project/3_CI_CD/4_integration_test/exec_container/result.csv test_score:9999/query/${env.EXECUTION_ID}; else echo 'Something is wrong with container instance'; exit 1; fi")
-                                    sh("head -n 3 project/3_CI_CD/4_integration_test/exec_container/result.csv")
+                                    sh(returnStdout: true, script: "curl -s -o project/3_CI_CD/4_integration_test/exec_container/result.log test_score:9999/query/${env.EXECUTION_ID}/log")
+                                    sh(returnStdout: true, script: "curl -s -o project/3_CI_CD/4_integration_test/exec_container/system.log test_score:9999/system/log")
+                                    sh("cat project/3_CI_CD/4_integration_test/exec_container/result.csv")
+                                    sh("cat project/3_CI_CD/4_integration_test/exec_container/result.log")
+                                    sh("tail -5 project/3_CI_CD/4_integration_test/exec_container/system.log")
                                 }
                             }
                         }
