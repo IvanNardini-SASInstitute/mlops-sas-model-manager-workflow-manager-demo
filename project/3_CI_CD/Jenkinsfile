@@ -142,8 +142,8 @@ pipeline {
 
                         script {
 
-                            docker.image('in92/devops_score_sidecar:v1.4').withRun('-p 9999:9999') { test ->
-                                docker.image('in92/devops_score_sidecar:v1.4').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
+                            docker.image('in92/devops_score_sidecar:v1.5').withRun('-p 9999:9999') { test ->
+                                docker.image('in92/devops_score_sidecar:v1.5').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
                                 }
                             
                             // -u root -v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v /home/jenkins_home:/var/jenkins_home
