@@ -142,7 +142,9 @@ pipeline {
 
                         script {
 
-                            docker.image('in92/devops_score_sidecar:v1.3').withRun('-p 9999:9999') { test ->
+                            // 9999:9999 I change just because the Jenkins machine 
+
+                            docker.image('in92/devops_score_sidecar:v1.3').withRun('-p 9000:9999') { test ->
                                 docker.image('in92/devops_score_sidecar:v1.3').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
                                     // sh 'while ! ping -htest --silent; do sleep 1; done'
                                 }
