@@ -159,9 +159,9 @@ pipeline {
 
 
                                     // def ip = docker.inspect("-f \'{{ .NetworkSettings.Networks.Gateway }}' test_score")
-                                    def ip = "\$(docker inspect -f '{{ .NetworkSettings.Networks.Gateway }}' in92/devops_score_sidecar:v1.3)"
+                                    // def ip = "\$(docker inspect -f '{{ .NetworkSettings.Networks.Gateway }}' in92/devops_score_sidecar:v1.3)"
                                     // env.IP = sh(returnStdout: true, script:"docker inspect --format=\"{{ .NetworkSettings.Networks.Gateway }}\" test_score").trim()
-                                    sh "${ip}"
+                                    // sh "${ip}"
                                     // sh("echo ${ip}")
 
                                     
