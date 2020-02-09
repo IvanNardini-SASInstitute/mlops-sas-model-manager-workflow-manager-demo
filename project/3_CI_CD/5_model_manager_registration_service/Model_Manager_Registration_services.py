@@ -41,6 +41,7 @@ class Model_Manager_Registration_services():
         self.modelrepository = self.params.get('MODELMANAGER', 'modelrepository')
         self.modelfolder_name = self.params.get('MODELMANAGER', 'modelfolder')
         self.modelproject_name = self.params.get('MODELMANAGER', 'modelproject')
+        self.model_dir = self.params.get('MODELMANAGER', 'modeldir')
 
     def get_token_service(self):
         
@@ -284,12 +285,62 @@ class Model_Manager_Registration_services():
         except ValueError:
             print('Something wrong with Model Repository service! Please check logs')
             sys.exit(1)
+
+    def model_registration_service(self):
+
+        print('-' * 30)
+        print("Starting Model Registration Service...")
+        print('-' * 30)
+        print('')
+
+        try:
+
+            for content in os.listdir(self.model_dir):
+                if content.endswith(".zip"):
+                    self.contentname = content
+                    self.modelname = content[:-4]
+                    self.model_path = self.model_dir + content
+                else:
+                    print("Can't find model zip file in the repository!")
+                    sys.exit(1)
+
             
+            
+
+
+
+        except ValueError:
+            print('puppa')
+
+            # mfile = open(self.model_path, 'rb')
+  
+            # modelName = modelname + " %d" % randid
+            # print("Custom model name = " + modelName)
+            
+            # headersModel = {
+            #     'Authorization':'bearer %s' % token
+            # }
+            
+            # files = {'files': (modelName+".zip", mfile, 'multipart/form-data')}
+            
+            # reply = req.post(mmService + "/modelRepository/models?name=" + modelName + "&type=ZIP&projectId=" + projid +"&versionOption=Latest", 
+            #                         files=files, headers=headersModel)
+            # myModel = json.loads(reply.content.decode('utf-8'))
+            # mfile.close()
+            
+            # modelID = myModel['items'][0]['id']
+            # print("Custom model ID = " + modelID)
+
+
+
+
+
 
 if __name__ == "__main__":
         
     registration = Model_Manager_Registration_services()
-    registration.get_token_service()
-    registration.model_repository_service()
-    registration.model_folder_service()
-    registration.model_project_service()
+    # registration.get_token_service()
+    # registration.model_repository_service()
+    # registration.model_folder_service()
+    # registration.model_project_service()
+    registration.model_registration_service()
