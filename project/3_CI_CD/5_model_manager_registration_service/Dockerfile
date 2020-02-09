@@ -1,0 +1,13 @@
+FROM python:3
+
+LABEL maintainer="Ivan Nardini <ivan.nardini@sas.com>"
+LABEL description="A basic python:3 image modified for SAS Model Registring Service "
+
+USER root
+
+WORKDIR /pyservice/registration
+
+COPY "." /pyservice/registration
+
+EXPOSE 9997:9997
+
