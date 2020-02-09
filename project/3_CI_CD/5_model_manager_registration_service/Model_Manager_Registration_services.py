@@ -201,6 +201,7 @@ class Model_Manager_Registration_services():
             print('Model Repository service creates {} folder!'.format(payload['name']))
             print('')
             print('{} ID is {}'.format(payload['name'], self.folder_ID))
+            print('')
         
         except ValueError:
             print('Something wrong with Model Repository service! Please check logs')
@@ -240,8 +241,6 @@ class Model_Manager_Registration_services():
                     payload['external_url'] = 'https://github.com/IvanNardini/ModelOps.git'
                     payload['repositoryId'] = self.repositoryID
                     payload['folderId'] = self.folder_ID
-
-                    print(payload)
 
                     req = requests.post(
                             self.server_ip +
@@ -293,54 +292,69 @@ class Model_Manager_Registration_services():
         print('-' * 30)
         print('')
 
+        files = [content for content in os.listdir(self.model_dir) if content.endswith(".zip")]
+
+        if not files:
+            print("Can't find model zip file in the {} repository !".format(self.model_dir))
+            print('')
+            sys.exit(1)
+        else:
+            self.contentname = files[0][:-4]
+            self.modelname = "{}_{}".format(self.contentname, self.randid)
+            self.model_path = self.model_dir + files[0]
+        
         try:
 
-            for content in os.listdir(self.model_dir):
-                if content.endswith(".zip"):
-                    self.contentname = content
-                    self.modelname = content[:-4]
-                    self.model_path = self.model_dir + content
-                else:
-                    print("Can't find model zip file in the repository!")
+            print(' Registring {} model as {}...'.format(self.contentname, self.modelname))
+            print('')
+            
+            modelfile = open(self.model_path, 'rb')
+
+            files_dic = {}
+            files_dic['files'] = ("{}.zip".format(self.modelname), modelfile, 'multipart/form-data')
+
+            req = requests.post(
+            self.server_ip + "/modelRepository/models?name={}&type=ZIP&projectId={}&versionOption=Latest".format(self.modelname, self.projectID),
+            headers={
+                'Authorization': 'bearer {}'.format(self.token)
+            },
+            files=files_dic)
+            
+            resp = json.loads(req.text)
+
+            if req.status_code == 201:
+
+                try:
+
+                    print('The {} model is successfully registered as {} !'.format(self.contentname, self.modelname))
+                    print('')
+                    self.modelID = resp['items'][0]['id']
+                    print('{} ID is {}'.format(self.modelname, self.modelID))
+                    print('')
+
+                except ValueError:
+
+                    print('Model Registration service is not able to register {} model!'.format(self.modelname))
+                    print('')
+                    print('Please check logs')
                     sys.exit(1)
-
             
-            
-
-
+            else:
+                print('Model Registration service is not able to retrive Model Metadata!')
+                print('')
+                print('Please contact the Viya Administrator')
+                sys.exit(1)
 
         except ValueError:
-            print('puppa')
-
-            # mfile = open(self.model_path, 'rb')
-  
-            # modelName = modelname + " %d" % randid
-            # print("Custom model name = " + modelName)
-            
-            # headersModel = {
-            #     'Authorization':'bearer %s' % token
-            # }
-            
-            # files = {'files': (modelName+".zip", mfile, 'multipart/form-data')}
-            
-            # reply = req.post(mmService + "/modelRepository/models?name=" + modelName + "&type=ZIP&projectId=" + projid +"&versionOption=Latest", 
-            #                         files=files, headers=headersModel)
-            # myModel = json.loads(reply.content.decode('utf-8'))
-            # mfile.close()
-            
-            # modelID = myModel['items'][0]['id']
-            # print("Custom model ID = " + modelID)
-
-
-
-
+            print('Something wrong with Model Repository service! Please check logs')
+            sys.exit(1)
 
 
 if __name__ == "__main__":
         
     registration = Model_Manager_Registration_services()
-    # registration.get_token_service()
-    # registration.model_repository_service()
-    # registration.model_folder_service()
-    # registration.model_project_service()
+    registration.get_token_service()
+    registration.model_repository_service()
+    registration.model_folder_service()
+    registration.model_project_service()
     registration.model_registration_service()
