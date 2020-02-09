@@ -1,4 +1,5 @@
-// Jenkinsfile test for Mon and Dad
+// Jenkinsfile
+
 pipeline {
     agent none
     stages {
@@ -226,7 +227,7 @@ pipeline {
             }
         }
 
-        // stage('SAS Model Manager Repository service') {
-        // }
+        stage('SAS Model Manager Repository service') {
+        }
     }
 }
