@@ -226,7 +226,7 @@ pipeline {
             }
         }
 
-        stage('SAS Model Manager Repository service') {
-        }
+        // stage('SAS Model Manager Repository service') {
+        // }
     }
 }
