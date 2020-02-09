@@ -231,7 +231,7 @@ pipeline {
 
             agent {
                 docker {
-                    image 'in92/devops_model_registration:v1.0' 
+                    image 'in92/devops_model_registration:v1.1' 
                     }
             }
 
