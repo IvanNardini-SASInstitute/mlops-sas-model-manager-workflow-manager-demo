@@ -1,7 +1,5 @@
 # Docker container system folder 
 
-ModelOps-master.zip
-
 # vscode setting
 .vscode/
 
@@ -33,3 +31,5 @@ config.txt
 utils/
 openstack.pem
 MLOps_dockers.pem
+ModelOps-master.zip
+minishift.pem
