@@ -1,7 +1,9 @@
+
 import os
 import requests
 # from tqdm import tqdm
 import json
+import random
 import configparser
 import base64
 import uuid
@@ -12,10 +14,10 @@ import sys
 
 # # main class
 
+
 class Model_Manager_Registration_services():
 
     def __init__(self):
-
         '''
         Inizialize a parser for the config file demo.properties
 
@@ -24,6 +26,8 @@ class Model_Manager_Registration_services():
         config : RawConfigParser
             RawConfigParser object parsing the config file
         '''
+
+        self.randid = random.randint(1,100)
 
         #path = os.path.join(os.getcwd(), 'demo.properties')
         scriptpath = os.path.dirname(os.path.realpath(__file__))
@@ -34,15 +38,12 @@ class Model_Manager_Registration_services():
         self.user = self.params.get('CONN', 'username')
         self.pwd = self.params.get('CONN', 'password')
         self.server_ip = self.params.get('CONN', 'server_ip')
-        self.modelrepository = self.params.get('CONN', 'modelrepository')
-
-        # modelname = self.params.get('MODELMANAGER', 'modelname')
-        # amodel = self.params.get('MODELMANAGER', 'modeldeploy')
-        # modelfile = self.params.get('MODELMANAGER', 'modelfile')
-        # modeldeploydir = self.params.get('MODELMANAGER', 'modeldeploydir')
+        self.modelrepository = self.params.get('MODELMANAGER', 'modelrepository')
+        self.modelfolder_name = self.params.get('MODELMANAGER', 'modelfolder')
+        self.modelproject_name = self.params.get('MODELMANAGER', 'modelproject')
 
     def get_token_service(self):
-
+        
         '''
 
         Get the SAS Viya Token based on server_ip, user and pwd
@@ -53,7 +54,7 @@ class Model_Manager_Registration_services():
         token: string
 
         '''
-
+        
         print('-' * 30)
         print("Starting connection...")
         print('-' * 30)
@@ -61,7 +62,7 @@ class Model_Manager_Registration_services():
         authUri = '/SASLogon/oauth/token'
 
         try:
-            r = requests.post(
+            req = requests.post(
                 self.server_ip + authUri,
                 params={
                     'grant_type': 'password',
@@ -73,175 +74,222 @@ class Model_Manager_Registration_services():
                 },
                 verify=False
             )
-            self.token = json.loads(r.text)['access_token']
+
+            resp = json.loads(req.text)
+            self.token = resp['access_token']
 
             print("Acquired REST API token!")
             print('')
-        
+
         except ValueError:
             print('Something wrong with Authentication! Please check logs')
             sys.exit(1)
 
-    def model_repository_services(self):
+    def model_repository_service(self):
+
+        print('-' * 30)
+        print("Starting Model Repository Service...")
+        print('-' * 30)
+        self.modelrepo_name='{}_{}'.format(self.modelrepository, self.randid)
+        print('')
 
         try:
 
-            r = requests.get(
-                self.server + "/modelRepository/modelRepository/repositories?filter=eq(name, {})".format(self.modelrepository),
+            req = requests.get(
+                self.server_ip +
+                "/modelRepository/repositories?filter=eq(name, {})".format(self.modelrepo_name),
                 headers={
                     'content-type': 'application/vnd.sas.models.repository+json',
                     'Authorization': 'bearer {}'.format(self.token)
-                })
+                }
+            )
 
-            if r.status_code == 200:
+            resp = json.loads(req.text)
+
+            if req.status_code == 200 and not resp['items']:
+
+                print('Creating the {} repository...'.format(self.modelrepo_name))
+                print('')
+
                 try:
-                    repochecker = json.loads(r.text)['name']
+
+                    payload={}
+                    payload['name'] = '{}'.format(self.modelrepo_name)
+                    print("The Repository name is " + payload["name"])
+                    print('')
+
+                    req = requests.post(
+                        self.server_ip +
+                        "/modelRepository/repositories",
+                        headers={
+                            'content-type': 'application/vnd.sas.models.repository+json',
+                            'Authorization': 'bearer {}'.format(self.token)
+                        },
+                        data=json.dumps(payload)
+                    )
+
+                    resp = json.loads(req.text)
+
+                    self.repositoryID = resp['id']
+                    self.parentFolderID = resp['folderId']
+
+                    print('Model Repository service creates {} repository!'.format(payload['name']))
+                    print('')
+                    print('{} ID is {}'.format(payload['name'], self.repositoryID))
+                    print('')
                 
-
-
-
-
-
-
-        
-        
-
-
-
-
-
-
-
-
-    # def MMloadastore(self):
-
-    #     '''
-    #     requests for download astore model from MM
-
-    #     '''
-
-        
-
-
-    #         print('-' * 30)
-    #         print("Searching for the model...")
-    #         print('-' * 30)
-
-
-    #         headers = {
-    #             'Accept': 'application/vnd.sas.collection+json',
-    #             'Authorization': "Bearer " + self.token
-    #         }
-
-    #         r = requests.get(
-    #             self.server + '/modelRepository/models?properties=(name,' + modelname + ')',
-    #             headers=headers,
-    #             verify = False
-    #         )
-
-    #         if r.status_code == 200:
-    #             # just for demo, delete try, except and last else
-    #             try:
-    #                 modelchecker = json.loads(r.text)['items'][0]
-    #                 self.modelid = modelchecker['id']
-    #                 print('Model exists! Your model ID is ' + self.modelid)
-    #                 print('')
-    #             except:
-    #                 self.modelid = str(uuid.uuid4())
-    #                 print('Your model ID is ' + self.modelid)
-    #             # else:
-    #             #     print("Error: Request status code is", r.status_code)
-    #             #     return -1
-    #         else:
-    #             self.modelid = str(uuid.uuid4())
-    #             print('Your model ID is ' + self.modelid)
-    #     except:
-    #         print('.')
-
-    #     try:
-    #         headers = {
-    #             "Content-Type": "application/vnd.sas.collection",
-    #             "Authorization": "Bearer " + self.token
-    #         }
-
-    #         r = requests.get(
-    #             self.server + '/modelRepository/models/' + self.modelid + '/contents',
-    #             headers=headers,
-    #             verify=False
-    #         )
-
-    #         if r.status_code == 200:
-    #             # just for demo, delete try execept
-    #             try:
-    #                 contents = json.loads(r.text)['items']
-    #                 items = [(item['name'], item['id']) for item in contents]
-
-    #                 if any(".astore" in item[0] for item in items):
-    #                     astore = [item for item in items if ".astore" in item[0]]
-    #                     self.modelFilename = astore[0][0]
-    #                     print('Your astore file is', self.modelFilename)
-    #                     self.contentId = astore[0][1]
-    #             except:
-    #                 print('Your astore file is', modelfile)
-
-    #             # else:
-    #             #     print("There's no astore file")
-    #             #     print("Deployment failed!")
-    #             #     return -1
-    #         else:
-    #             # print("Error: Request status code is", r.status_code)
-    #             # print("Deployment failed!")
-    #             # return -1
-    #             print('Your astore file is', modelname)
-
-    #     except:
-    #         print('.')
-
-    #     print('-' * 30)
-    #     print("Deploying your model in ESP...")
-    #     print('-' * 30)
-
-    #     #Just for the demo, delete try execpt
-    #     try:
-    #         headers = {
-    #             "Authorization": "Bearer " + self.token,
-    #             "Content-Type": "application/octet-stream"
-    #         }
-    #         rmodel = requests.get(
-    #             self.server + '/modelRepository/models/' + self.modelid + '/contents/' + self.contentId + '/content',
-    #             headers=headers,
-    #             stream=True,
-    #             verify=False
-    #         )
-
-    #         total_size = int(rmodel.headers.get('content-length', 0))
+                except ValueError:
+                    print('Model Repository service is not able to create {} repository!'.format(payload['name']))
+                    print('')
+                    print('Please contact the Viya Administrator')
+                    sys.exit(1)
             
-    #         block_size = 64*1024  # 64 Kb
-    #         progbar = tqdm(total=total_size, unit='iB', unit_scale=True)
+            elif req.status_code == 200 and resp['items'][0]['name'] == str(self.modelrepo_name) :
 
-    #         with open(os.path.join(modeldeploydir,amodel), "wb") as code:
-    #             for data in rmodel.iter_content(block_size):
-    #                 progbar.update(len(data))
-    #                 code.write(data)
+                print('')
+                print('The {} repository exists!'.format(self.modelrepo_name))
 
-    #         progbar.close()
-    #         code.close()
+                self.repositoryID = resp['Id']
+                self.parentFolderID = resp['folderId']
+                print('{} ID is {}').format(self.modelrepo_name, self.repositoryID)
+                print('')
 
-    #         print('Astore file has written in', os.path.join(modeldeploydir,amodel))
+            else:
+                print('Model Repository service is not able to retrive Model Repository Metadata!')
+                print('')
+                print('Please contact the Viya Administrator')
+                sys.exit(1)
 
-    #     except:
-    #         total_size = 64248048
-    #         block_size = 64*1024  # 64 Kb
-    #         progbar = tqdm(total=total_size, unit='iB', unit_scale=True)
-    #         currentblock=0
-    #         while currentblock < total_size:
-    #              progbar.update(block_size)
-    #              currentblock = currentblock + block_size
-    #              time.sleep(0.01)
-    #         progbar.close()
-    #         print('Astore file has written in', os.path.join(modeldeploydir, amodel))
+        except ValueError:
+            print('Something wrong with Model Repository service! Please check logs')
+            sys.exit(1)
 
+    def model_folder_service(self):
+
+        print('-' * 30)
+        print("Starting Model Folder Service...")
+        print('-' * 30)
+        print('')
+
+        parentURI = '/folders/folders/{}'.format(self.parentFolderID)
+        self.modelfold_name='{}_{}'.format(self.modelfolder_name, self.randid)
+        print('')
+
+        print('Creating the {} folder...'.format(self.modelfold_name))
+        print('')
+
+        try:
+
+            payload={}
+            payload['name'] = '{}'.format(self.modelfold_name)
+
+            req = requests.post(
+                    self.server_ip +
+                    "/folders/folders?parentFolderUri={}".format(parentURI),
+                    headers={
+                        'content-type': 'application/json',
+                        'Authorization': 'bearer {}'.format(self.token)
+                    }, 
+                    data=json.dumps(payload)
+                )
+            
+            resp = json.loads(req.text)
+
+            self.folder_ID = resp['id']
+
+            print('Model Repository service creates {} folder!'.format(payload['name']))
+            print('')
+            print('{} ID is {}'.format(payload['name'], self.folder_ID))
+        
+        except ValueError:
+            print('Something wrong with Model Repository service! Please check logs')
+            sys.exit(1)
+
+    def model_project_service(self):
+
+        print('-' * 30)
+        print("Starting Model Project Service...")
+        print('-' * 30)
+        print('')
+        self.modelproj_name='{}_{}'.format(self.modelproject_name, self.randid)
+
+        try:
+
+            req = requests.get(
+                self.server_ip + "/modelRepository/projects?name={}".format(self.modelproj_name),
+                headers={
+                    'content-type': 'application/vnd.sas.models.project+json',
+                    'Authorization': 'bearer {}'.format(self.token)
+                }
+            )
+            
+            resp = json.loads(req.text)
+
+            if req.status_code == 200 and not resp['items']:
+
+                print('Creating the {} project...'.format(self.modelproj_name))
+                print('')
+
+                try:
+
+                    payload = {}
+                    payload['name'] = self.modelproj_name
+                    payload['description'] = 'Marketing Churn project with Containers'
+                    payload['function'] = 'Classification'
+                    payload['external_url'] = 'https://github.com/IvanNardini/ModelOps.git'
+                    payload['repositoryId'] = self.repositoryID
+                    payload['folderId'] = self.folder_ID
+
+                    print(payload)
+
+                    req = requests.post(
+                            self.server_ip +
+                            "/modelRepository/projects",
+                            headers={
+                                'content-type': 'application/vnd.sas.models.project+json',
+                                'Authorization': 'bearer {}'.format(self.token)
+                            },
+                            data=json.dumps(payload)
+                        )
+
+                    resp = json.loads(req.text)
+
+                    self.projectID = resp['id']   
+
+                    print('Model Repository service creates {} repository!'.format(payload['name']))
+                    print('')
+                    print('{} ID is {}'.format(payload['name'], self.projectID))
+                    print('')
+                
+                except ValueError:
+                    print('Model Repository service is not able to create {} project!'.format(payload['name']))
+                    print('')
+                    print('Please contact the Viya Administrator')
+                    sys.exit(1)
+
+            elif req.status_code == 200 and resp['items'][0]['name'] == str(self.modelproject_name):
+
+                print('The {} project exists!'.format(self.modelrepo_name))
+
+                self.projectID = resp['id']
+                print('{} ID is {}').format(payload['name'], self.projectID)
+                print('')
+                
+            else :
+                print('Model Repository service is not able to retrive Model Project Metadata!')
+                print('')
+                print('Please contact the Viya Administrator')
+                sys.exit(1)
+
+        except ValueError:
+            print('Something wrong with Model Repository service! Please check logs')
+            sys.exit(1)
+            
 
 if __name__ == "__main__":
+        
     registration = Model_Manager_Registration_services()
     registration.get_token_service()
+    registration.model_repository_service()
+    registration.model_folder_service()
+    registration.model_project_service()
