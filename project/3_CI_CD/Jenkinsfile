@@ -137,7 +137,7 @@ pipeline {
 
             // parallel{
 
-                stage("Run tests") {
+                // stage("Run tests") {
 
                     agent any
 
@@ -165,7 +165,7 @@ pipeline {
                             }
                         }
                     }
-                }
+                // }
             // }
         }
 
