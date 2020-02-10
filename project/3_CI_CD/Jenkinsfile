@@ -51,10 +51,9 @@ pipeline {
                             }
                         }
                     }
-
                 }
             }
-        }
+        }  
 
         stage('Code Validation Test') {
 
