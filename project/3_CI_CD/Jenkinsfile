@@ -19,6 +19,14 @@ pipeline {
                         steps{
                             sh 'pylint --disable=C,R,W project/2_DevLab/experiment_rfor/score.py'
                         }
+
+                        post {
+                            success {
+                                echo "Score code files successfully passed the Code Quality Test!"
+                            }
+                            failure {
+                                echo "Code failed the quality test, please see logs."
+                            }
                     }
 
                     stage('Train Code Quality Test') {
@@ -91,7 +99,7 @@ pipeline {
             }
         }
 
-        stage('Unit Test') {
+        stage('Unit Test for Score code') {
 
             agent {
                 docker {
@@ -116,24 +124,9 @@ pipeline {
 
         }
 
-        stage('Integration test') {
+        stage('Integration test for Score code') {
 
             parallel{
-
-                // stage("Obtain images") {
-
-                //     agent any
-
-                //     steps {
-                //         script {
-
-                //             def sidecar_score = docker.image('in92/devops_score_sidecar:v1.3')
-                //             def test_exec = docker.image('in92/devops_test_exec:v1.1')
-                //             sidecar_score.pull()
-                //             test_exec.pull()
-                //         }
-                //     }
-                // }
 
                 stage("Run tests") {
 
@@ -227,7 +220,7 @@ pipeline {
             }
         }
 
-        stage('SAS Model Manager Repository service') {
+        stage('SAS Model Manager Repo service') {
 
             agent {
                 docker {
