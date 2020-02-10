@@ -78,11 +78,12 @@ class Model_Manager_Registration_services():
 
             resp = json.loads(req.text)
             self.token = resp['access_token']
+            print(self.token)
 
             print("Acquired REST API token!")
             print('')
 
-        except ValueError:
+        except (RuntimeError, ValueError):
             print('Something wrong with Authentication! Please check logs')
             sys.exit(1)
 
@@ -98,7 +99,7 @@ class Model_Manager_Registration_services():
 
             req = requests.get(
                 self.server_ip +
-                "/modelRepository/repositories?filter=eq(name, {})".format(self.modelrepo_name),
+                "/modelRepository/repositories?name={}".format(self.modelrepo_name),
                 headers={
                     'content-type': 'application/vnd.sas.models.repository+json',
                     'Authorization': 'bearer {}'.format(self.token)
@@ -150,9 +151,9 @@ class Model_Manager_Registration_services():
                 print('')
                 print('The {} repository exists!'.format(self.modelrepo_name))
 
-                self.repositoryID = resp['Id']
-                self.parentFolderID = resp['folderId']
-                print('{} ID is {}').format(self.modelrepo_name, self.repositoryID)
+                self.repositoryID = resp['items'][0]['id']
+                self.parentFolderID = resp['items'][0]['folderId']
+                print('{} ID is {}'.format(self.modelrepo_name, self.repositoryID))
                 print('')
 
             else:
@@ -161,7 +162,7 @@ class Model_Manager_Registration_services():
                 print('Please contact the Viya Administrator')
                 sys.exit(1)
 
-        except ValueError:
+        except (RuntimeError, ValueError):
             print('Something wrong with Model Repository service! Please check logs')
             sys.exit(1)
 
@@ -218,7 +219,7 @@ class Model_Manager_Registration_services():
         try:
 
             req = requests.get(
-                self.server_ip + "/modelRepository/projects?name={}".format(self.modelproj_name),
+                self.server_ip + "/modelRepository/projects?filter=eq(name, '{}')".format(self.modelproj_name),
                 headers={
                     'content-type': 'application/vnd.sas.models.project+json',
                     'Authorization': 'bearer {}'.format(self.token)
@@ -267,12 +268,13 @@ class Model_Manager_Registration_services():
                     print('Please contact the Viya Administrator')
                     sys.exit(1)
 
-            elif req.status_code == 200 and resp['items'][0]['name'] == str(self.modelproject_name):
+            elif req.status_code == 200 and resp['items'][0]['name'] == str(self.modelproj_name):
 
-                print('The {} project exists!'.format(self.modelrepo_name))
+                print('The {} project exists!'.format(self.modelproj_name))
 
-                self.projectID = resp['id']
-                print('{} ID is {}').format(payload['name'], self.projectID)
+                self.projectID = resp['items'][0]['id']
+                print(self.projectID)
+                print("{} ID is {}".format(self.modelproj_name, self.projectID))
                 print('')
                 
             else :
