@@ -78,9 +78,10 @@ class Model_Manager_Registration_services():
 
             resp = json.loads(req.text)
             self.token = resp['access_token']
-            print(self.token)
 
-            print("Acquired REST API token!")
+            print("REST API token acquired!")
+            print('')
+            print("Your Token is {}".format(self.token[:10]))
             print('')
 
         except (RuntimeError, ValueError):
