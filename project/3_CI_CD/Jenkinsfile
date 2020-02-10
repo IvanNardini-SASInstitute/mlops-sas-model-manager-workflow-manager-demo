@@ -22,7 +22,7 @@ pipeline {
 
                         post {
                             success {
-                                echo "Score code files successfully passed the Code Quality Test!"
+                                echo "Score code file successfully passed the Code Quality Test!"
                             }
                             failure {
                                 echo "Code failed the quality test, please see logs."
@@ -41,38 +41,24 @@ pipeline {
                         steps{
                             sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
                         }
+
+                        post {
+                            success {
+                                echo "Score code file successfully passed the Code Quality Test!"
+                            }
+                            failure {
+                                echo "Code failed the quality test, please see logs."
+                            }
+                        }
                     }
 
                 }
-
-            post {
-
-                success {
-                        echo 'Score and Train code files successfully passed the Code Quality Test!'
-                    }
-
-                failure {
-                        echo 'Code failed the quality test, please see logs.'
-                    }
             }
         }
 
         stage('Code Validation Test') {
 
             parallel {
-
-                stage('Validate Train Code') {
-
-                    agent {
-                        docker {
-                            image 'python:3-alpine' 
-                        }
-                    }
-
-                    steps {
-                        sh 'python -m py_compile project/2_DevLab/experiment_rfor/train.py'
-                    }
-                }
 
                 stage('Validate Score Code') {
 
@@ -85,18 +71,42 @@ pipeline {
                     steps {
                         sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
                     }
+
+                    post {
+
+                    success {
+                            echo 'Score code file successfully validated!'
+                        }
+
+                    failure {
+                            echo 'Code failed the Validation test, please see logs.'
+                        }
+                    }
                 }
-            }
 
-            post {
+                stage('Validate Train Code') {
 
-                success {
-                        echo 'Score and Train code files successfully validated!'
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
                     }
 
-                failure {
-                        echo 'Code failed the Validation test, please see logs.'
+                    steps {
+                        sh 'python -m py_compile project/2_DevLab/experiment_rfor/train.py'
                     }
+
+                    post {
+
+                    success {
+                            echo 'Train code file successfully validated!'
+                        }
+
+                    failure {
+                            echo 'Code failed the Validation test, please see logs.'
+                        }
+                    }
+                }
             }
         }
 
