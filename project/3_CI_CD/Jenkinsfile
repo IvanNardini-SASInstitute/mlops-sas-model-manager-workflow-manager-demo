@@ -27,6 +27,7 @@ pipeline {
                             failure {
                                 echo "Code failed the quality test, please see logs."
                             }
+                        }
                     }
 
                     stage('Train Code Quality Test') {
