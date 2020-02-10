@@ -264,13 +264,12 @@ pipeline {
 
             post {
 
-                success {
-                        echo 'Model Image successfully registered!'
-                    }
+            success {
+                    echo 'Model Image successfully registered!'
+                }
 
-                failure {
-                        echo 'Model Repository fails to register the model image, please see logs.'
-                    }
+            failure {
+                    echo 'Model Repository fails to register the model image, please see logs.'
                 }
             }
         }
