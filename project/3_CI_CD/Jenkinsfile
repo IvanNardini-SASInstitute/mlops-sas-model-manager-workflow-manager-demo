@@ -8,47 +8,46 @@ pipeline {
 
             parallel{
 
-                    stage('Score Code Quality Test') {
+                stage('Score Code Quality Test') {
 
-                        agent {
-                            docker {
-                                image 'in92/devops_pylint:v1.3' 
-                            }
-                        }
-
-                        steps{
-                            sh 'pylint --disable=C,R,W project/2_DevLab/experiment_rfor/score.py'
-                        }
-
-                        post {
-                            success {
-                                echo "Score code file successfully passed the Code Quality Test!"
-                            }
-                            failure {
-                                echo "Code failed the quality test, please see logs."
-                            }
+                    agent {
+                        docker {
+                            image 'in92/devops_pylint:v1.3' 
                         }
                     }
 
-                    stage('Train Code Quality Test') {
+                    steps{
+                        sh 'pylint --disable=C,R,W project/2_DevLab/experiment_rfor/score.py'
+                    }
 
-                        agent {
-                            docker {
-                                image 'in92/devops_pylint:v1.3' 
-                            }
+                    post {
+                        success {
+                            echo "Score code file successfully passed the Code Quality Test!"
                         }
-
-                        steps{
-                            sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
+                        failure {
+                            echo "Code failed the quality test, please see logs."
                         }
+                    }
+                }
 
-                        post {
-                            success {
-                                echo "Score code file successfully passed the Code Quality Test!"
-                            }
-                            failure {
-                                echo "Code failed the quality test, please see logs."
-                            }
+                stage('Train Code Quality Test') {
+
+                    agent {
+                        docker {
+                            image 'in92/devops_pylint:v1.3' 
+                        }
+                    }
+
+                    steps{
+                        sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
+                    }
+
+                    post {
+                        success {
+                            echo "Score code file successfully passed the Code Quality Test!"
+                        }
+                        failure {
+                            echo "Code failed the quality test, please see logs."
                         }
                     }
                 }
