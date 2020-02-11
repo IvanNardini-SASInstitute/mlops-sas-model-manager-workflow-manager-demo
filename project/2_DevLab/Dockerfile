@@ -49,8 +49,11 @@ RUN conda update --quiet --yes -n base conda && conda install --quiet --yes \
     'xlrd' \
     && \
     conda clean --all -f -y && \
+    # pip install --upgrade jupyterlab-git && \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
+    # Activate git extension in the environment that runs the notebook server
+    # jupyter serverextension enable --py jupyterlab_git --sys-prefix && \
     # Also activate ipywidgets extension for JupyterLab
     # Check this URL for most recent compatibilities
     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
@@ -89,7 +92,7 @@ USER root
 RUN pip install xgboost
 
 # Install SAS Swat package
-RUN pip install swat
+# RUN pip install swat
 
 USER $NB_UID
 
