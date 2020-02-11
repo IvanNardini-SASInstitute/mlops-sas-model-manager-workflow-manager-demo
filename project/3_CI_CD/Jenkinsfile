@@ -165,6 +165,19 @@ pipeline {
                             }
                         }
                     }
+
+                    post {
+
+                    success {
+                            echo 'Score code file successfully passed Unit Test!'
+                        }
+
+                    failure {
+                            echo 'Code failed the Unit test, please see logs.'
+                        }
+                    }
+                }
+            }
                 // }
             // }
         }
