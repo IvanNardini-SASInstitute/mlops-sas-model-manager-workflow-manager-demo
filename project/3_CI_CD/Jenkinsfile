@@ -1,4 +1,4 @@
-// Jenkinsfile Test Maggioni
+// Jenkinsfile
 
 pipeline {
     agent none
