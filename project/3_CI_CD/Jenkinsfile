@@ -137,7 +137,7 @@ pipeline {
 
             // parallel{
 
-                // stage("Run tests") {
+            //     stage("Run tests") {
 
                     agent any
 
@@ -161,8 +161,10 @@ pipeline {
                                     sh("cat project/3_CI_CD/4_integration_test/exec_container/result.csv")
                                     sh("cat project/3_CI_CD/4_integration_test/exec_container/result.log")
                                     sh("tail -5 project/3_CI_CD/4_integration_test/exec_container/system.log")
+                                }
                             }
                         }
+                    }
 
                     post {
 
@@ -174,9 +176,7 @@ pipeline {
                             echo 'Code failed the Unit test, please see logs.'
                         }
                     }
-                }
-            }
-                // }
+            //     }
             // }
         }
 
