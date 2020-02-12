@@ -57,7 +57,7 @@ services:
         ports:
             - 8888:8888
         volumes:
-            - /home/ubuntu/ModelOps_DEMO_TESTING:/home/jovyan/work/ModelOps_Credit_Scoring
+            - /home/ubuntu/ModelOps_Credit_scoring:/home/jovyan/work/ModelOps_Credit_Scoring
                 # ./2_DevLab/:/home/jovyan/work/2_DevLab
             # /home/ubuntu/ModelOps_DEMO_TESTING:/home/jovyan/work/ModelOps_Credit_Scoring
             #  /home/ubuntu/work:/home/jovyan/work/
