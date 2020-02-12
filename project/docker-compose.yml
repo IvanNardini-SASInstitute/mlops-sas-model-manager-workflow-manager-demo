@@ -57,7 +57,10 @@ services:
         ports:
             - 8888:8888
         volumes:
-            - ./2_DevLab/:/home/jovyan/work
+            - ./2_DevLab/:/home/jovyan/work/2_DevLab
+            # /home/ubuntu/ModelOps_DEMO_TESTING:/home/jovyan/work/ModelOps_Credit_Scoring
+            #  /home/ubuntu/work:/home/jovyan/work/
+            # ./2_DevLab/:/home/jovyan/work
             # - /:/home/jovyan/work
 
     ### CI/CD ENVIRONMENT ###
