@@ -13,6 +13,7 @@ USER root
 
 # ffmpeg for matplotlib anim
 RUN apt-get update && \
+    apt-get install -y git && \
     apt-get install -y --no-install-recommends ffmpeg && \
     rm -rf /var/lib/apt/lists/*
 
@@ -54,7 +55,12 @@ RUN conda update --quiet --yes -n base conda && conda install --quiet --yes \
     # Also activate ipywidgets extension for JupyterLab
     # Check this URL for most recent compatibilities
     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
+    pip install nbgitpuller && \
+    jupyter serverextension enable --py nbgitpuller --sys-prefix && \
+    pip install jupyterlab-git && \
+    jupyter serverextension enable --py jupyterlab_git && \
     jupyter labextension install @jupyter-widgets/jupyterlab-manager@^1.0.1 --no-build && \
+    jupyter labextension install @jupyterlab/git --no-build && \
     jupyter labextension install jupyterlab_bokeh@1.0.0 --no-build && \
     jupyter lab build && \
     npm cache clean --force && \
@@ -63,6 +69,8 @@ RUN conda update --quiet --yes -n base conda && conda install --quiet --yes \
     rm -rf /home/$NB_USER/.node-gyp && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
+
+ENV NBGITPULLER_APP lab
 
 # Install facets which does not have a pip or conda package at the moment
 RUN cd /tmp && \
@@ -74,7 +82,7 @@ RUN cd /tmp && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
 
-USER root
+# USER root
 
 # USER $NB_UID --> it's ok with root but some warning try NB_UID
 
@@ -88,10 +96,8 @@ USER root
 
 RUN pip install xgboost
 
-# Install SAS Swat package - for viyapy services
+# Install SAS Swat package
 RUN pip install swat
-
-USER $NB_UID
 
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/ &&

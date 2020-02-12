@@ -56,8 +56,9 @@ services:
             - dsnet
         ports:
             - 8888:8888
-        volumes: 
+        volumes:
             - ./2_DevLab/:/home/jovyan/work
+            # - /:/home/jovyan/work
 
     ### CI/CD ENVIRONMENT ###
     
