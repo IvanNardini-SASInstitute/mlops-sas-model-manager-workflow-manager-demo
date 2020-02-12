@@ -88,8 +88,8 @@ USER root
 
 RUN pip install xgboost
 
-# Install SAS Swat package
-# RUN pip install swat
+# Install SAS Swat package - for viyapy services
+RUN pip install swat
 
 USER $NB_UID
 
