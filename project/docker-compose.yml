@@ -83,7 +83,7 @@ services:
         networks: 
             - jenkins
     
-    # docker:
+    docker:
         privileged: true
         image: "docker:dind"
         container_name: "jenkins-docker"
