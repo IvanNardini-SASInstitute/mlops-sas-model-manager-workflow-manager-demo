@@ -2,7 +2,7 @@ version: "3"
 
 networks:
     dsnet:
-    jenkins:
+    # jenkins:
 
 
 services:
@@ -57,8 +57,8 @@ services:
         ports:
             - 8888:8888
         volumes:
-            - /home/ubuntu/ModelOps_Credit_scoring:/home/jovyan/work/ModelOps_Credit_Scoring
-                # ./2_DevLab/:/home/jovyan/work/2_DevLab
+            # - /home/ubuntu/ModelOps_Credit_scoring:/home/jovyan/work/ModelOps_Credit_Scoring
+              - ./2_DevLab/:/home/jovyan/work/2_DevLab
             # /home/ubuntu/ModelOps_DEMO_TESTING:/home/jovyan/work/ModelOps_Credit_Scoring
             #  /home/ubuntu/work:/home/jovyan/work/
             # ./2_DevLab/:/home/jovyan/work
@@ -67,38 +67,38 @@ services:
     ### CI/CD ENVIRONMENT ###
     
     # Jenkins service
-    jenkins-master:
-        image: "devopslab/jenkins"
-        container_name: "jenkins-blueocean"
-        privileged: true
-        build: ./3_CI_CD/
-        ports:
-          - "50000:50000"
-          - "8080:8080"
-        volumes:
-            - "jenkins-docker-certs:/certs/client"
-            - "jenkins-data:/var/jenkins_home"
-            # Check the right path. Should be /home/project
-            - "./:/home"
-        networks: 
-            - jenkins
+    # jenkins-master:
+    #     image: "devopslab/jenkins"
+    #     container_name: "jenkins-blueocean"
+    #     privileged: true
+    #     build: ./3_CI_CD/
+    #     ports:
+    #       - "50000:50000"
+    #       - "8080:8080"
+    #     volumes:
+    #         - "jenkins-docker-certs:/certs/client"
+    #         - "jenkins-data:/var/jenkins_home"
+    #         # Check the right path. Should be /home/project
+    #         - "./:/home"
+    #     networks: 
+    #         - jenkins
     
-    docker:
-        privileged: true
-        image: "docker:dind"
-        container_name: "jenkins-docker"
-        ports:
-            - "2376:2376"
-        environment: 
-            - DOCKER_TLS_CERTDIR=/certs
-        volumes: 
-            - "jenkins-docker-certs:/certs/client"
-            - "jenkins-data:/var/jenkins_home"
-        networks: 
-            - jenkins
+    # docker:
+    #     privileged: true
+    #     image: "docker:dind"
+    #     container_name: "jenkins-docker"
+    #     ports:
+    #         - "2376:2376"
+    #     environment: 
+    #         - DOCKER_TLS_CERTDIR=/certs
+    #     volumes: 
+    #         - "jenkins-docker-certs:/certs/client"
+    #         - "jenkins-data:/var/jenkins_home"
+    #     networks: 
+    #         - jenkins
 
 
 volumes:
     mongodb:
-    jenkins-docker-certs:
-    jenkins-data:
+    # jenkins-docker-certs:
+    # jenkins-data:

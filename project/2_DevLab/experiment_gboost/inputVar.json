@@ -37,9 +37,9 @@
   {
     "name": "JOB",
     "role": "input",
-    "type": "decimal",
-    "level": "interval",
-    "length": 8
+    "type": "string",
+    "level": "nominal",
+    "length": 7
   },
   {
     "name": "LOAN",
@@ -65,9 +65,9 @@
   {
     "name": "REASON",
     "role": "input",
-    "type": "decimal",
-    "level": "interval",
-    "length": 8
+    "type": "string",
+    "level": "nominal",
+    "length": 7
   },
   {
     "name": "VALUE",
