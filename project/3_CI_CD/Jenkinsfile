@@ -264,7 +264,7 @@ pipeline {
 
             agent {
                 docker {
-                    image 'in92/devops_model_registration:v1.5'
+                    image 'in92/devops_model_registration:v1.6'
                     args '-p 9997:9997'
                     }
             }
