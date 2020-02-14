@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:sasbpmn="http://www.sas.com/xml/schema/bpmn" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/Test">
+  <process id="WFC9B4452C-7457-422B-86EF-8271F6C2F43E" name="SAS_ModelLifeCycle_Docker" isExecutable="true">
+    <extensionElements>
+      <sasbpmn:prompt id="WFF3E81170-7B1E-47BE-8392-A75500A70D0E" name="Project name" dataObjectRef="WF1FC2CAE5-B29B-48B8-800B-523800303F7E"></sasbpmn:prompt>
+    </extensionElements>
+    <dataObject id="WF1FC2CAE5-B29B-48B8-800B-523800303F7E" name="Project_Name" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <flowable:value>Please type the project name</flowable:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="WF1A9ACB5C-FFFB-4535-ABBD-1D8B1EE690CC" name="Project_ID" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <flowable:value></flowable:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="WF1ABDFCBC-FBA4-40A2-94BE-2EC2A763EFD2" name="Champion_ID" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <flowable:value></flowable:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="WFDF7119F9-AD8B-42B6-A00A-7B0FCDD16A71" name="Model_Name" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <flowable:value></flowable:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="WFEC2AE017-BB18-4E7D-A4A9-2E99E3B7FDD0" name="Model_List" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <flowable:value></flowable:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="WF8354960E-4AE5-411E-A557-6EB1B1ADDF0B" name="Approver_List" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <flowable:value>Your user ID or group ID</flowable:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="WF0EBC61BB-5FF9-4EA9-BE8C-1616EBFEA23D" name="Approval_Count" itemSubjectRef="xsd:long">
+      <extensionElements>
+        <flowable:value>1</flowable:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="WF49725C35-BFA2-477E-B91D-612EC9415534" name="Approved" itemSubjectRef="xsd:boolean">
+      <extensionElements>
+        <flowable:value>false</flowable:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="WF3EB8467F-DC6E-4BE6-9D01-EE6B19AE9C69" name="WORKFLOW_TOKEN" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <flowable:value>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</flowable:value>
+      </extensionElements>
+    </dataObject>
+    <sequenceFlow id="WF9B875229-EDD8-40A3-BBC7-3900B53A0908" sourceRef="WF9A84C901-2AB0-4740-B348-2856F92D7D72" targetRef="WFB952BE3B-25EA-426E-8A46-8CDA4EE28CEA"></sequenceFlow>
+    <sequenceFlow id="WF0FE6852A-7B1B-4E5F-B904-0D5B8151866F" sourceRef="WFB952BE3B-25EA-426E-8A46-8CDA4EE28CEA" targetRef="WFBA3F8544-582B-4727-B974-E4F3C15EFE02"></sequenceFlow>
+    <sequenceFlow id="WF60B08192-C5A2-426D-BFA4-D697ECB20A1F" sourceRef="WFBA3F8544-582B-4727-B974-E4F3C15EFE02" targetRef="WFE95936D0-5FA1-4B5B-B03A-4F8D6871ABC0"></sequenceFlow>
+    <endEvent id="WFE95936D0-5FA1-4B5B-B03A-4F8D6871ABC0" name="End"></endEvent>
+    <startEvent id="WF9A84C901-2AB0-4740-B348-2856F92D7D72" name="Start">
+      <extensionElements>
+        <sasbpmn:promptDefinition promptRef="WFF3E81170-7B1E-47BE-8392-A75500A70D0E" required="true"></sasbpmn:promptDefinition>
+      </extensionElements>
+    </startEvent>
+    <subProcess id="WFB952BE3B-25EA-426E-8A46-8CDA4EE28CEA" name="Model Registration">
+      <sequenceFlow id="WFCC6ED22F-DA08-46F3-8447-F395C7A75468" sourceRef="WFBFBA23BC-4ED7-44E5-B1F4-2C7C0A5000A8" targetRef="WF31144C58-641A-4503-9599-575D31C82767"></sequenceFlow>
+      <sequenceFlow id="WF6728F1A3-87F3-4A11-8A45-43AA71E0C9D8" sourceRef="WF31144C58-641A-4503-9599-575D31C82767" targetRef="WFC0713BA6-7456-466B-A185-46D3423078B4"></sequenceFlow>
+      <sequenceFlow id="WFCA61FC7B-E61B-4C2E-BC07-A1B14E00B215" sourceRef="WFC0713BA6-7456-466B-A185-46D3423078B4" targetRef="WFEDDA4F3B-4E7F-45E5-89B0-F094EE671B35"></sequenceFlow>
+      <sequenceFlow id="WF463746E5-B9EB-4D71-94FF-0B8FB699BBE1" sourceRef="WFEDDA4F3B-4E7F-45E5-89B0-F094EE671B35" targetRef="WF3171CE83-F552-47D1-86C9-B9700400413F"></sequenceFlow>
+      <endEvent id="WF3171CE83-F552-47D1-86C9-B9700400413F" name="End"></endEvent>
+      <startEvent id="WFBFBA23BC-4ED7-44E5-B1F4-2C7C0A5000A8" name="Start"></startEvent>
+      <serviceTask id="WF31144C58-641A-4503-9599-575D31C82767" name="Automated Project Registration" flowable:delegateExpression="${restTask}">
+        <extensionElements>
+          <flowable:field name="url">
+            <flowable:expression><![CDATA[/modelRepository/projects?filter=eq(name, ${Project_Name})]]></flowable:expression>
+          </flowable:field>
+          <flowable:field name="method">
+            <flowable:string><![CDATA[GET]]></flowable:string>
+          </flowable:field>
+          <flowable:field name="statusCode">
+            <flowable:string><![CDATA[200]]></flowable:string>
+          </flowable:field>
+          <flowable:field name="bodyType">
+            <flowable:string><![CDATA[EMPTY]]></flowable:string>
+          </flowable:field>
+          <flowable:field name="headers">
+            <flowable:string><![CDATA[{"Accept":"application/json"}]]></flowable:string>
+          </flowable:field>
+          <flowable:executionListener event="end" delegateExpression="${jsonPathListener}">
+            <flowable:field name="json">
+              <flowable:expression><![CDATA[${responseBody}]]></flowable:expression>
+            </flowable:field>
+            <flowable:field name="outputDataObjectName">
+              <flowable:string><![CDATA[Project_ID]]></flowable:string>
+            </flowable:field>
+            <flowable:field name="jsonPath">
+              <flowable:string><![CDATA[$.items[0].id]]></flowable:string>
+            </flowable:field>
+          </flowable:executionListener>
+        </extensionElements>
+      </serviceTask>
+      <intermediateCatchEvent id="WFC0713BA6-7456-466B-A185-46D3423078B4" name="Intermediate Timer">
+        <timerEventDefinition>
+          <timeDuration>PT10S</timeDuration>
+        </timerEventDefinition>
+      </intermediateCatchEvent>
+      <serviceTask id="WFEDDA4F3B-4E7F-45E5-89B0-F094EE671B35" name="Send Mail Registration" flowable:delegateExpression="${restTask}">
+        <extensionElements>
+          <flowable:field name="url">
+            <flowable:string><![CDATA[/SASJobExecution/?_program=/Users/sasdemo/sendmail]]></flowable:string>
+          </flowable:field>
+          <flowable:field name="method">
+            <flowable:string><![CDATA[GET]]></flowable:string>
+          </flowable:field>
+          <flowable:field name="statusCode">
+            <flowable:string><![CDATA[200]]></flowable:string>
+          </flowable:field>
+          <flowable:field name="bodyType">
+            <flowable:string><![CDATA[EMPTY]]></flowable:string>
+          </flowable:field>
+          <flowable:field name="headers">
+            <flowable:string><![CDATA[{"Content-type":"application/json"}]]></flowable:string>
+          </flowable:field>
+        </extensionElements>
+      </serviceTask>
+    </subProcess>
+    <subProcess id="WFBA3F8544-582B-4727-B974-E4F3C15EFE02" name="Model Selection">
+      <sequenceFlow id="WFEF081340-7485-4EA9-8BB0-C4B06060E81D" sourceRef="WF8BF9C3D3-35AB-4229-9205-BC88E8135AEB" targetRef="WFC601EEEA-273F-4651-8AFE-B8010E812B9D"></sequenceFlow>
+      <sequenceFlow id="WFBF6977D3-B4AE-4974-9515-0586CD17878A" sourceRef="WFC601EEEA-273F-4651-8AFE-B8010E812B9D" targetRef="WF617C7517-0FD0-40FC-8496-0302939AE174"></sequenceFlow>
+      <sequenceFlow id="WFF26B8E8B-043A-4DF7-BFC7-A1B7B3ADD9A8" sourceRef="WF617C7517-0FD0-40FC-8496-0302939AE174" targetRef="WFFDE5CB0D-64C5-422C-87F1-73C6632C8DB9"></sequenceFlow>
+      <endEvent id="WFFDE5CB0D-64C5-422C-87F1-73C6632C8DB9" name="End"></endEvent>
+      <startEvent id="WF8BF9C3D3-35AB-4229-9205-BC88E8135AEB" name="Start"></startEvent>
+      <serviceTask id="WFC601EEEA-273F-4651-8AFE-B8010E812B9D" name="Model Selection Notification" flowable:delegateExpression="${notificationTask}">
+        <extensionElements>
+          <flowable:field name="userIds">
+            <flowable:string><![CDATA[sasdemo]]></flowable:string>
+          </flowable:field>
+          <flowable:field name="level">
+            <flowable:string><![CDATA[info]]></flowable:string>
+          </flowable:field>
+          <flowable:field name="templateName">
+            <flowable:string><![CDATA[ivnard_MMnotify_Champion_Docker_1]]></flowable:string>
+          </flowable:field>
+          <flowable:field name="mail">
+            <flowable:string><![CDATA[false]]></flowable:string>
+          </flowable:field>
+        </extensionElements>
+      </serviceTask>
+      <userTask id="WF617C7517-0FD0-40FC-8496-0302939AE174" name="Select the Champion Model" flowable:dueDate="P1D">
+        <potentialOwner>
+          <resourceAssignmentExpression>
+            <formalExpression>user(sasdemo)</formalExpression>
+          </resourceAssignmentExpression>
+        </potentialOwner>
+      </userTask>
+    </subProcess>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_WFC9B4452C-7457-422B-86EF-8271F6C2F43E">
+    <bpmndi:BPMNPlane bpmnElement="WFC9B4452C-7457-422B-86EF-8271F6C2F43E" id="BPMNPlane_WFC9B4452C-7457-422B-86EF-8271F6C2F43E">
+      <bpmndi:BPMNShape bpmnElement="WFE95936D0-5FA1-4B5B-B03A-4F8D6871ABC0" id="BPMNShape_WFE95936D0-5FA1-4B5B-B03A-4F8D6871ABC0">
+        <omgdc:Bounds height="16.0" width="16.0" x="-80.0" y="110.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="WF9A84C901-2AB0-4740-B348-2856F92D7D72" id="BPMNShape_WF9A84C901-2AB0-4740-B348-2856F92D7D72">
+        <omgdc:Bounds height="16.0" width="16.0" x="-890.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="WFB952BE3B-25EA-426E-8A46-8CDA4EE28CEA" id="BPMNShape_WFB952BE3B-25EA-426E-8A46-8CDA4EE28CEA" isExpanded="false">
+        <omgdc:Bounds height="80.0" width="120.0" x="-700.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="WFBA3F8544-582B-4727-B974-E4F3C15EFE02" id="BPMNShape_WFBA3F8544-582B-4727-B974-E4F3C15EFE02" isExpanded="false">
+        <omgdc:Bounds height="80.0" width="139.0" x="-450.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="WF9B875229-EDD8-40A3-BBC7-3900B53A0908" id="BPMNEdge_WF9B875229-EDD8-40A3-BBC7-3900B53A0908">
+        <omgdi:waypoint x="-850.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-820.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-800.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-800.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-780.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-760.0" y="140.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="WF0FE6852A-7B1B-4E5F-B904-0D5B8151866F" id="BPMNEdge_WF0FE6852A-7B1B-4E5F-B904-0D5B8151866F">
+        <omgdi:waypoint x="-640.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-610.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-574.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-574.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-539.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-519.0" y="140.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="WF60B08192-C5A2-426D-BFA4-D697ECB20A1F" id="BPMNEdge_WF60B08192-C5A2-426D-BFA4-D697ECB20A1F">
+        <omgdi:waypoint x="-380.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-350.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-225.0" y="140.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-225.0" y="130.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-100.0" y="130.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-80.0" y="130.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_WFB952BE3B-25EA-426E-8A46-8CDA4EE28CEA">
+    <bpmndi:BPMNPlane bpmnElement="WFB952BE3B-25EA-426E-8A46-8CDA4EE28CEA" id="BPMNPlane_WFB952BE3B-25EA-426E-8A46-8CDA4EE28CEA">
+      <bpmndi:BPMNEdge bpmnElement="WFCC6ED22F-DA08-46F3-8447-F395C7A75468" id="BPMNEdge_WFCC6ED22F-DA08-46F3-8447-F395C7A75468">
+        <omgdi:waypoint x="-820.0" y="190.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-820.0" y="220.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-820.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-820.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-820.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-820.0" y="330.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="WF6728F1A3-87F3-4A11-8A45-43AA71E0C9D8" id="BPMNEdge_WF6728F1A3-87F3-4A11-8A45-43AA71E0C9D8">
+        <omgdi:waypoint x="-760.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-730.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-700.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-700.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-670.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-650.0" y="370.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="WFCA61FC7B-E61B-4C2E-BC07-A1B14E00B215" id="BPMNEdge_WFCA61FC7B-E61B-4C2E-BC07-A1B14E00B215">
+        <omgdi:waypoint x="-610.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-580.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-560.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-560.0" y="360.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-540.0" y="360.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-520.0" y="360.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="WF463746E5-B9EB-4D71-94FF-0B8FB699BBE1" id="BPMNEdge_WF463746E5-B9EB-4D71-94FF-0B8FB699BBE1">
+        <omgdi:waypoint x="-460.0" y="400.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-460.0" y="430.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-460.0" y="455.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-460.0" y="455.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-460.0" y="480.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-460.0" y="500.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="WF3171CE83-F552-47D1-86C9-B9700400413F" id="BPMNShape_WF3171CE83-F552-47D1-86C9-B9700400413F">
+        <omgdc:Bounds height="16.0" width="16.0" x="-480.0" y="500.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="WFBFBA23BC-4ED7-44E5-B1F4-2C7C0A5000A8" id="BPMNShape_WFBFBA23BC-4ED7-44E5-B1F4-2C7C0A5000A8">
+        <omgdc:Bounds height="16.0" width="16.0" x="-840.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="WF31144C58-641A-4503-9599-575D31C82767" id="BPMNShape_WF31144C58-641A-4503-9599-575D31C82767">
+        <omgdc:Bounds height="80.0" width="120.0" x="-820.0" y="370.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="WFC0713BA6-7456-466B-A185-46D3423078B4" id="BPMNShape_WFC0713BA6-7456-466B-A185-46D3423078B4">
+        <omgdc:Bounds height="16.0" width="16.0" x="-650.0" y="350.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="WFEDDA4F3B-4E7F-45E5-89B0-F094EE671B35" id="BPMNShape_WFEDDA4F3B-4E7F-45E5-89B0-F094EE671B35">
+        <omgdc:Bounds height="80.0" width="120.0" x="-460.0" y="360.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_WFBA3F8544-582B-4727-B974-E4F3C15EFE02">
+    <bpmndi:BPMNPlane bpmnElement="WFBA3F8544-582B-4727-B974-E4F3C15EFE02" id="BPMNPlane_WFBA3F8544-582B-4727-B974-E4F3C15EFE02">
+      <bpmndi:BPMNEdge bpmnElement="WFEF081340-7485-4EA9-8BB0-C4B06060E81D" id="BPMNEdge_WFEF081340-7485-4EA9-8BB0-C4B06060E81D">
+        <omgdi:waypoint x="-867.0" y="67.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-867.0" y="97.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-867.0" y="143.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-860.0" y="143.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-860.0" y="190.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-860.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="WFBF6977D3-B4AE-4974-9515-0586CD17878A" id="BPMNEdge_WFBF6977D3-B4AE-4974-9515-0586CD17878A">
+        <omgdi:waypoint x="-800.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-770.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-760.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-760.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-750.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-730.0" y="250.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="WFF26B8E8B-043A-4DF7-BFC7-A1B7B3ADD9A8" id="BPMNEdge_WFF26B8E8B-043A-4DF7-BFC7-A1B7B3ADD9A8">
+        <omgdi:waypoint x="-610.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-580.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-550.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-550.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-520.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-500.0" y="250.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="WFFDE5CB0D-64C5-422C-87F1-73C6632C8DB9" id="BPMNShape_WFFDE5CB0D-64C5-422C-87F1-73C6632C8DB9">
+        <omgdc:Bounds height="16.0" width="16.0" x="-500.0" y="230.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="WF8BF9C3D3-35AB-4229-9205-BC88E8135AEB" id="BPMNShape_WF8BF9C3D3-35AB-4229-9205-BC88E8135AEB">
+        <omgdc:Bounds height="16.0" width="16.0" x="-887.0" y="27.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="WFC601EEEA-273F-4651-8AFE-B8010E812B9D" id="BPMNShape_WFC601EEEA-273F-4651-8AFE-B8010E812B9D">
+        <omgdc:Bounds height="80.0" width="120.0" x="-860.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="WF617C7517-0FD0-40FC-8496-0302939AE174" id="BPMNShape_WF617C7517-0FD0-40FC-8496-0302939AE174">
+        <omgdc:Bounds height="80.0" width="120.0" x="-670.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
