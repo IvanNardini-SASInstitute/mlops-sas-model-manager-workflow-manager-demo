@@ -29,13 +29,13 @@ datalines;
       }
    ],
    "from":{ 
-      "email":"ivan.nardini92@gmail.com"
+      "email":"sas_workflow_manager@sas.com"
    },
-   "subject":"Mailtest - Buon weekend sulla neve",
+   "subject":"SAS Model Governance: Mail service - Model Registration",
    "content":[ 
       { 
          "type":"text/plain",
-         "value":"Divertiti, rilassati e riposa :)"
+         "value":"The Candidate Champion is registred into the SAS Model Manager. You will receive an email with Model report!"
       }
    ]
 }

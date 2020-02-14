@@ -27,7 +27,7 @@ class Model_Manager_Registration_services():
             RawConfigParser object parsing the config file
         '''
 
-        self.randid = random.randint(1,100)
+        self.randid = random.randint(1,1000)
 
         #path = os.path.join(os.getcwd(), 'demo.properties')
         scriptpath = os.path.dirname(os.path.realpath(__file__))
