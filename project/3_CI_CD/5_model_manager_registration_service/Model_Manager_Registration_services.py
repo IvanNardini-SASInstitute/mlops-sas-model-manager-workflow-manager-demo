@@ -265,8 +265,6 @@ class Model_Manager_Registration_services():
 
                     resp = json.loads(req.text)
 
-                    print(resp)
-
                     self.projectID = resp['id']   
 
                     print('Model Repository service creates {} repository!'.format(payload['name']))
@@ -386,10 +384,14 @@ if __name__ == "__main__":
     try:
         sg = SendGridAPIClient(SENDGRID_API_KEY)
         response = sg.send(message)
-        print(response.status_code)
+        # print(response.status_code)
         print('Model Registration Mail successfully delivered!')
         # print(response.body)
         # print(response.headers)
-    except Exception as e:
-        print(e.message)
+    # Exception as e
+    except ValueError:
+        # print(e.message)
+        print(response.status_code)
+        print('')
+        print(response.body)
         sys.exit(1)
