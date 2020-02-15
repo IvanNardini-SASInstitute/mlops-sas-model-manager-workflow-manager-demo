@@ -12,8 +12,12 @@ import sys
 # import urllib3
 # urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# # main class
+# using SendGrid's Python Library
+# https://github.com/sendgrid/sendgrid-python
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
+# # main class
 
 class Model_Manager_Registration_services():
 
@@ -240,7 +244,12 @@ class Model_Manager_Registration_services():
                     payload['name'] = self.modelproj_name
                     payload['description'] = 'Marketing Churn project with Containers'
                     payload['function'] = 'Classification'
-                    payload['external_url'] = 'https://github.com/IvanNardini/ModelOps.git'
+                    payload['targetLevel'] = 'binary',
+                    payload['targetEventValue'] = '1',
+                    payload['classTargetValues'] ='1,0',
+                    payload['targetVariable'] ='BAD',
+                    payload['eventProbabilityVariable'] = 'P_BAD1',
+                    payload['externalUrl'] = 'https://github.com/IvanNardini/ModelOps.git'
                     payload['repositoryId'] = self.repositoryID
                     payload['folderId'] = self.folder_ID
 
@@ -361,3 +370,24 @@ if __name__ == "__main__":
     registration.model_folder_service()
     registration.model_project_service()
     registration.model_registration_service()
+
+    SENDGRID_API_KEY='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'
+    
+    message = Mail(
+    from_email='SASModelManager_RegistrationService@jenkins.com',
+    to_emails='ivan.nardini@sas.com',
+    subject='Churn Classification Project: Status',
+    html_content='<strong> Analytics team delivers the champion model. \
+                           Jenkins validates it.\
+                           The system registers it in SAS Model Manager \
+                           To approve it, go to http://172.28.234.57/SASModelManager/ </strong>')
+    try:
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+        print(response.status_code)
+        print('Model Registration Mail successfully delivered!')
+        # print(response.body)
+        # print(response.headers)
+    except Exception as e:
+        print(e.message)
+        sys.exit(1)

@@ -6,7 +6,8 @@ LABEL description="A basic python:3 image modified for SAS Model Registring Serv
 USER root
 
 RUN pip install --upgrade pip; \
-    pip install requests;
+    pip install requests; \
+    pip install sendgrid;
 
 WORKDIR /pyservice/registration
 
