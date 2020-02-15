@@ -1,4 +1,4 @@
-filename logfile '/home/sasdemo/modelops_credit_scoring_docker/WFsendmail.log';
+filename logfile '/home/sasdemo/modelops_credit_scoring_docker/WFsendmail2.log';
 
 proc printto log=logfile;
 run;
@@ -31,11 +31,11 @@ datalines;
    "from":{ 
       "email":"sas_workflow_manager@sas.com"
    },
-   "subject":"SAS Model Governance: Mail service - Model Registration",
+   "subject":"SAS Model Governance: Mail service - Model Reporting",
    "content":[ 
       { 
          "type":"text/plain",
-         "value":"The Candidate Champion is registred into the SAS Model Manager. You will receive an email with Model report!"
+         "value":"value":" Please review the candidate champion model at http://172.28.234.57/links/resources/report?uri=%2Freports%2Freports%2Fdf8d8168-e06e-487b-9a23-3cc31a12b889&page=vi21"
       }
    ]
 }
@@ -52,4 +52,15 @@ proc http
     "Content-Type"="application/json";
   run;
   
-libname resp JSON fileref=resp; 
+libname resps JSON fileref=resp; 
+
+data _null_;
+set resps.ROOT;
+call symputx( "statusId", status);
+run;
+
+data _null_;
+put "&statusId.";
+run;
+
+filename resp clear;
