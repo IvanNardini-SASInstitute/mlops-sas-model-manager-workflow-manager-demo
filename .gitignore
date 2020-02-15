@@ -32,6 +32,6 @@ utils/
 openstack.pem
 MLOps_dockers.pem
 ModelOps_OMM.pem
-ModelOps-master.zip
+ModelOps-master_latest.zip
 minishift.pem
 minishift-1.34.2-linux-amd64.tgz
