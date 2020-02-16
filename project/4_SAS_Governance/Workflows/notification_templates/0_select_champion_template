@@ -1,0 +1,15 @@
+curl --location --request POST 'http://sasdemo.sas.com/templates/templates' \
+--header 'Content-Type: application/vnd.sas.template+json' \
+--header 'Accept: application/vnd.sas.template+json' \
+--header 'Authorization: Bearer xxxxxxxxxx' \
+--data-raw '{
+  "name" : "ivnard_MMnotify_Champion_Docker_1",
+  "description" : "Model Manager Champion Notification Template",
+  "locale" : "en-US",
+  "type" : "TEXT",
+  "textParts": {
+    "text": "The Champion model is ready!",
+    "subject": "You have a Champion Model to approve!"
+  }
+}
+'
