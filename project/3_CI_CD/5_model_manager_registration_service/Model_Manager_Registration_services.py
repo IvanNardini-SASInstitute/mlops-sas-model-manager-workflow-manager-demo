@@ -361,6 +361,14 @@ class Model_Manager_Registration_services():
             print('Something wrong with Model Repository service! Please check logs')
             sys.exit(1)
 
+    # def model_performance_service(self):
+    #     print('-' * 30)
+    #     print("Setting Model Performance Monitoring service...")
+    #     print('-' * 30)
+    #     print('')
+      
+
+
 
 if __name__ == "__main__":
         
