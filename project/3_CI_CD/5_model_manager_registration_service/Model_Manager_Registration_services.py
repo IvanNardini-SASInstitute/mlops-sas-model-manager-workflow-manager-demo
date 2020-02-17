@@ -243,7 +243,7 @@ class Model_Manager_Registration_services():
                     payload = {}
                     payload['name'] = self.modelproj_name
                     payload['description'] = 'Marketing Churn project with Containers'
-                    payload['function'] = 'Classification'
+                    payload['function'] = 'classification'
                     payload['targetLevel'] = 'binary'
                     payload['targetEventValue'] = '1'
                     payload['classTargetValues'] ='1,0'
