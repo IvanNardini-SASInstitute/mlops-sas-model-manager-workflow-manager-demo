@@ -15,7 +15,7 @@ _PASSWORD = 'Orion123'
 _CASLIB = 'Public'
 
 _PATH="./Data/performances/*.csv"
-_MODEL_ID=""
+_MODEL_ID="_33c17397-7213-42ee-92c1-f85051c44a5d_champion"
 
 
 # Start CAS Session
@@ -34,7 +34,8 @@ for tblpath in glob.glob(_PATH):
         df = pd.read_csv(tblpath, sep=';', header=0)
         # replace=True
         # print(tbl_csv)
-        perftbl = cas_session.upload_frame(df, casout=dict(name=str(tbl_csv[:-4]), caslib=_CASLIB, promote=True))
+        tblname = tbl_csv[:-4] + _MODEL_ID
+        perftbl = cas_session.upload_frame(df, casout=dict(name=str(tblname), caslib=_CASLIB, promote=True))
         time.sleep(15)
     except:
         print(sys.exc_info()[0],"occured.")
