@@ -15,6 +15,7 @@ _PASSWORD = 'Orion123'
 _CASLIB = 'Public'
 
 _PATH="./Data/performances/*.csv"
+_MODEL_ID=""
 
 
 # Start CAS Session
