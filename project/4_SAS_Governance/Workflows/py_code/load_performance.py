@@ -1,6 +1,9 @@
 
 #Libraries
 import glob
+import os
+import sys
+import time
 import pandas as pd
 import swat
 
@@ -22,13 +25,15 @@ out = cas_session.serverstatus()
 print(out)
 
 # For each csv, load into caslib Public with 30 secs
+print("Loading Performance Table...")
 
-for table in glob.glob(_PATH):
-    print("Loading Performance Table...")
-    # df = pd.read_csv(_PATH, sep=',', header=0)
-    # perftbl = cas_session.upload_frame(df, casout=dict(name="input",replace=True,caslib=cas_library))
-
-
-# df = pd.DataFrame(data = [[1,1,1,'HomeImp','ProfExe',1,1,1,1,1,1,1],[_LOAN, _MORTDUE, _VALUE, _REASON, _JOB, _YOJ, _DEROG, _DELINQ, _CLAGE, _NINQ, _CLNO, _DEBTINC]], 
-#   	columns = ["LOAN", "MORTDUE", "VALUE", "REASON", "JOB", "YOJ", "DEROG", "DELINQ", "CLAGE", "NINQ", "CLNO", "DEBTINC"])
-#   scoretbl = cas_session.upload_frame(df, casout=dict(name="input",replace=True,caslib=cas_library))
+for tblpath in glob.glob(_PATH):
+    try: 
+        tbl_csv = os.path.basename(tblpath)
+        df = pd.read_csv(tblpath, sep=';', header=0)
+        # replace=True
+        # print(tbl_csv)
+        perftbl = cas_session.upload_frame(df, casout=dict(name=str(tbl_csv[:-4]), caslib=_CASLIB, promote=True))
+        time.sleep(15)
+    except:
+        print(sys.exc_info()[0],"occured.")
