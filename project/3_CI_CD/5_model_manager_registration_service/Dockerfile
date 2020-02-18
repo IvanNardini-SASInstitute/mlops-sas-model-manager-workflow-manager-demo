@@ -11,7 +11,7 @@ RUN pip install --upgrade pip; \
 
 WORKDIR /pyservice/registration
 
-COPY "." /pyservice/registration
+COPY . .
 
 EXPOSE 9997:9997
 
