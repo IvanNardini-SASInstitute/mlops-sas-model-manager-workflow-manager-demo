@@ -69,15 +69,15 @@ def run(model_file, input_file, output_file):
     in_dataf = load_data_by_input_vars(inputDf)
 
     model = open(model_file, 'rb')
-    pipe = joblib.load(model)
+    rfor = joblib.load(model)
     model.close()
 
-    outputDf = pd.DataFrame(pipe.predict_proba(in_dataf))
+    outputDf = pd.DataFrame(rfor.predict_proba(in_dataf))
 
     if output_vars is None:
-        outputcols = map(lambda x: 'P_' + str(x), list(pipe.classes_))
+        outputcols = map(lambda x: 'P_' + str(x), list(rfor.classes_))
     else:
-        outputcols = map(lambda x: output_vars[x], list(pipe.classes_))
+        outputcols = map(lambda x: output_vars[x], list(rfor.classes_))
     outputDf.columns = outputcols
 
     # merge with input data
