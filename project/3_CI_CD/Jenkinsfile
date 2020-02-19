@@ -17,7 +17,7 @@ pipeline {
                     }
 
                     steps{
-                        sh 'pylint --disable=C,R,W project/2_DevLab/experiment_xgboost/score.py'
+                        sh 'pylint --disable=C,R,W project/2_DevLab/experiment_rfor/score.py'
                     }
 
                     post {
@@ -39,7 +39,7 @@ pipeline {
                     }
 
                     steps{
-                        sh 'pylint --disable=C project/2_DevLab/experiment_xgboost/train.py'
+                        sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
                     }
 
                     post {
