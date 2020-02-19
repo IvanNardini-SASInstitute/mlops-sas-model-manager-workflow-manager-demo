@@ -117,7 +117,7 @@ pipeline {
             }
 
             steps {
-                sh 'python project/3_CI_CD/3_unit_test/unit_test_rforpipeline.py project/2_DevLab/experiment_xgboost/xgboost_pipeline.pickle project/3_CI_CD/3_unit_test/test.csv result.csv'
+                sh 'python project/3_CI_CD/3_unit_test/unit_test_rforpipeline.py project/2_DevLab/experiment_xgboost/xgb_pipeline.pickle project/3_CI_CD/3_unit_test/test.csv result.csv'
             }
 
             post {
