@@ -69,10 +69,10 @@ def run(model_file, input_file, output_file):
     in_dataf = load_data_by_input_vars(inputDf)
 
     model = open(model_file, 'rb')
-    rfor = joblib.load(model)
+    pipe = joblib.load(model)
     model.close()
 
-    outputDf = pd.DataFrame(rfor.predict_proba(in_dataf))
+    outputDf = pd.DataFrame(pipe.predict_proba(in_dataf))
 
     if output_vars is None:
         outputcols = map(lambda x: 'P_' + str(x), list(rfor.classes_))
