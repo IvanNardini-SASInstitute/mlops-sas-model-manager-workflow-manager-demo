@@ -8,4 +8,5 @@ ENV PYLINTHOME=.
 WORKDIR /usr/src/app
 
 RUN pip install pylint numpy pandas joblib sklearn
+RUN pip install xgboost
 RUN pip3 install pymongo
