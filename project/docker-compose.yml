@@ -58,8 +58,8 @@ services:
             - 8888:8888
         volumes:
             # or ModelOps_Credit_Scoring folder depending on the demo
-            # - /home/ubuntu/ModelOps:/home/jovyan/work/ModelOps
-            - ./2_DevLab/:/home/jovyan/work/2_DevLab
+            - /home/ubuntu/ModelOps:/home/jovyan/work/ModelOps
+            # - ./2_DevLab/:/home/jovyan/work/2_DevLab
 
     ### CI/CD ENVIRONMENT ###
     
