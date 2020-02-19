@@ -91,9 +91,15 @@ X_train, X_test, y_train, y_test = model_selection.train_test_split(abt[abt.colu
                                                                     test_size=0.33, random_state=27513)
 
 # Build Sklearn Random Forest
-rfor = RandomForestClassifier()
-rfor.fit(X_train, y_train)
+xgb = XGBClassifier(max_depth=4,
+                        subsample=0.9,
+                        objective='binary:logistic',
+                        n_estimators=100,
+                        learning_rate = 0.1)
+eval_set = [(X_train, y_train), (X_test, y_test)]
+xgb.fit(X_train, y_train.values.ravel(), early_stopping_rounds=10,
+          eval_metric=["error", "logloss"], eval_set=eval_set, verbose=True)
 
-output = open('./experiment_rfor/rfor.pickle', 'wb')
-joblib.dump(rfor, output)
+output = open('./experiment_xgboost/xgboost.pickle', 'wb')
+joblib.dump(xgb, output)
 output.close()

@@ -245,11 +245,6 @@ class Model_Manager_Registration_services():
                     payload['description'] = 'Marketing Churn project with Containers'
                     payload['function'] = 'classification'
                     payload['targetLevel'] = 'binary'
-                    payload['targetEventValue'] = '1'
-                    payload['classTargetValues'] ='1,0'
-                    payload['targetVariable'] ='BAD'
-                    payload['eventProbabilityVariable'] = 'P_BAD1'
-                    payload['externalUrl'] = 'https://github.com/IvanNardini/ModelOps.git'
                     payload['repositoryId'] = self.repositoryID
                     payload['folderId'] = self.folder_ID
 
@@ -265,7 +260,15 @@ class Model_Manager_Registration_services():
 
                     resp = json.loads(req.text)
 
-                    self.projectID = resp['id']   
+                    self.projectID = resp['id']
+
+                    #Update the project
+
+                    # payload['targetEventValue'] = '1'
+                    # payload['classTargetValues'] ='1,0'
+                    # payload['targetVariable'] ='BAD'
+                    # payload['eventProbabilityVariable'] = 'P_BAD1'
+                    # payload['externalUrl'] = 'https://github.com/IvanNardini/ModelOps.git'
 
                     print('Model Repository service creates {} repository!'.format(payload['name']))
                     print('')
@@ -377,29 +380,29 @@ if __name__ == "__main__":
     registration.model_repository_service()
     registration.model_folder_service()
     registration.model_project_service()
-    registration.model_registration_service()
+    # registration.model_registration_service()
 
-    SENDGRID_API_KEY='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'
+    # SENDGRID_API_KEY='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'
     
-    message = Mail(
-    from_email='SASModelManager_RegistrationService@jenkins.com',
-    to_emails='ivan.nardini92@gmail.com',
-    subject='Churn Classification Project: Status',
-    html_content='<strong> Analytics team delivers the champion model. \
-                           Jenkins validates it.\
-                           The system registers it in SAS Model Manager \
-                           To approve it, go to http://172.28.234.57/SASModelManager/ </strong>')
-    try:
-        sg = SendGridAPIClient(SENDGRID_API_KEY)
-        response = sg.send(message)
-        # print(response.status_code)
-        print('Model Registration Mail successfully delivered!')
-        # print(response.body)
-        # print(response.headers)
-    # Exception as e
-    except ValueError:
-        # print(e.message)
-        print(response.status_code)
-        print('')
-        print(response.body)
-        sys.exit(1)
+    # message = Mail(
+    # from_email='SASModelManager_RegistrationService@jenkins.com',
+    # to_emails='ivan.nardini92@gmail.com',
+    # subject='Churn Classification Project: Status',
+    # html_content='<strong> Analytics team delivers the champion model. \
+    #                        Jenkins validates it.\
+    #                        The system registers it in SAS Model Manager \
+    #                        To approve it, go to http://172.28.234.57/SASModelManager/ </strong>')
+    # try:
+    #     sg = SendGridAPIClient(SENDGRID_API_KEY)
+    #     response = sg.send(message)
+    #     # print(response.status_code)
+    #     print('Model Registration Mail successfully delivered!')
+    #     # print(response.body)
+    #     # print(response.headers)
+    # # Exception as e
+    # except ValueError:
+    #     # print(e.message)
+    #     print(response.status_code)
+    #     print('')
+    #     print(response.body)
+    #     sys.exit(1)

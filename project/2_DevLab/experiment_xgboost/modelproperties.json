@@ -1,6 +1,6 @@
 {
-  "name": "experiment_rfor",
-  "description": "random forest for hmeq : bad",
+  "name": "experiment_xgboost",
+  "description": "xgboost for hmeq : bad",
   "function": "classification",
   "scoreCodeType": "python",
   "trainTable": " ",
