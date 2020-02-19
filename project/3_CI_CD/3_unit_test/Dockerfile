@@ -15,7 +15,9 @@ RUN pip install --upgrade pip; \
                 scipy==1.3.3 \
                 scikit-image==0.15.0 \
                 scikit-learn==0.21.3; \
+    pip install xgboost; \
     pip install pytest;
+    
 
 WORKDIR /home/unittest
 
