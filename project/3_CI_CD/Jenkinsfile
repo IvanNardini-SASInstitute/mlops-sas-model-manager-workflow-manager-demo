@@ -54,59 +54,59 @@ pipeline {
             }
         }  
 
-        // stage('Code Validation Test') {
+        stage('Code Validation Test') {
 
-        //     parallel {
+            parallel {
 
-        //         stage('Validate Score Code') {
+                stage('Validate Score Code') {
 
-        //             agent {
-        //                 docker {
-        //                     image 'python:3-alpine' 
-        //                 }
-        //             }
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
 
-        //             steps {
-        //                 sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
-        //             }
+                    steps {
+                        sh 'python -m py_compile project/2_DevLab/experiment_xgboost/score.py'
+                    }
 
-        //             post {
+                    post {
 
-        //             success {
-        //                     echo 'Score code file successfully validated!'
-        //                 }
+                    success {
+                            echo 'Score code file successfully validated!'
+                        }
 
-        //             failure {
-        //                     echo 'Code failed the Validation test, please see logs.'
-        //                 }
-        //             }
-        //         }
+                    failure {
+                            echo 'Code failed the Validation test, please see logs.'
+                        }
+                    }
+                }
 
-        //         stage('Validate Train Code') {
+                stage('Validate Train Code') {
 
-        //             agent {
-        //                 docker {
-        //                     image 'python:3-alpine' 
-        //                 }
-        //             }
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
 
-        //             steps {
-        //                 sh 'python -m py_compile project/2_DevLab/experiment_rfor/train.py'
-        //             }
+                    steps {
+                        sh 'python -m py_compile project/2_DevLab/experiment_xgboost/train.py'
+                    }
 
-        //             post {
+                    post {
 
-        //             success {
-        //                     echo 'Train code file successfully validated!'
-        //                 }
+                    success {
+                            echo 'Train code file successfully validated!'
+                        }
 
-        //             failure {
-        //                     echo 'Code failed the Validation test, please see logs.'
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+                    failure {
+                            echo 'Code failed the Validation test, please see logs.'
+                        }
+                    }
+                }
+            }
+        }
 
         // stage('Unit Test for Score code') {
 
