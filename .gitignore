@@ -33,6 +33,7 @@ openstack.pem
 MLOps_dockers.pem
 ModelOps_OMM.pem
 ModelOps-master_latest.zip
+ModelOps-master_lastupdate.zip
 minishift.pem
 minishift-1.34.2-linux-amd64.tgz
 SAS_Viya_deployment_data.zip
