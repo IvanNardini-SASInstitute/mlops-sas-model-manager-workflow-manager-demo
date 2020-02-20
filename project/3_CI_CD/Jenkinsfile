@@ -260,29 +260,29 @@ pipeline {
             }
         }
 
-        // stage('SAS Model Manager Repo service') {
+        stage('SAS Model Manager Repo service') {
 
-        //     agent {
-        //         docker {
-        //             image 'in92/devops_model_registration:v1.9'
-        //             args '-p 9997:9997'
-        //             }
-        //     }
+            agent {
+                docker {
+                    image 'in92/devops_model_registration:v1.9'
+                    args '-p 9997:9997'
+                    }
+            }
 
-        //     steps {
-        //         sh 'python /pyservice/registration/Model_Manager_Registration_services.py'
-        //     }
+            steps {
+                sh 'python /pyservice/registration/Model_Manager_Registration_services.py'
+            }
 
-        //     post {
+            post {
 
-        //     success {
-        //             echo 'Model Image successfully registered!'
-        //         }
+            success {
+                    echo 'Model Image successfully registered!'
+                }
 
-        //     failure {
-        //             echo 'Model Repository fails to register the model image, please see logs.'
-        //         }
-        //     }
-        // }
+            failure {
+                    echo 'Model Repository fails to register the model image, please see logs.'
+                }
+            }
+        }
     }
 }

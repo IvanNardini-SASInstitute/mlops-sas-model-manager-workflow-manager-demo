@@ -242,9 +242,6 @@ class Model_Manager_Registration_services():
 
                     payload = {}
                     payload['name'] = self.modelproj_name
-                    payload['description'] = 'Marketing Churn project with Containers'
-                    payload['function'] = 'classification'
-                    payload['targetLevel'] = 'binary'
                     payload['repositoryId'] = self.repositoryID
                     payload['folderId'] = self.folder_ID
 
@@ -261,14 +258,6 @@ class Model_Manager_Registration_services():
                     resp = json.loads(req.text)
 
                     self.projectID = resp['id']
-
-                    #Update the project
-
-                    # payload['targetEventValue'] = '1'
-                    # payload['classTargetValues'] ='1,0'
-                    # payload['targetVariable'] ='BAD'
-                    # payload['eventProbabilityVariable'] = 'P_BAD1'
-                    # payload['externalUrl'] = 'https://github.com/IvanNardini/ModelOps.git'
 
                     print('Model Repository service creates {} repository!'.format(payload['name']))
                     print('')
@@ -360,18 +349,50 @@ class Model_Manager_Registration_services():
                 print('Please contact the Viya Administrator')
                 sys.exit(1)
 
+            # Some Metadata of the project needs to be updated once it created
+
+            payload={}
+            payload['name'] = self.modelproj_name
+            payload['description'] = 'Marketing Churn project with Containers'
+            payload['function'] = 'classification'
+            payload['targetLevel'] = 'binary'
+            payload['targetEventValue'] = '1'
+            payload['classTargetValues'] ='1,0'
+            payload['targetVariable'] ='BAD'
+            payload['eventProbabilityVariable'] = 'P_BAD1'
+            payload['externalUrl'] = 'https://github.com/IvanNardini/ModelOps.git'
+            payload['repositoryId'] = self.repositoryID
+            payload['folderId'] = self.folder_ID
+
+
+            req = requests.get(self.server_ip + '/modelRepository/projects/' + self.projectID, 
+                               headers = {
+                                'content-type':  'application/vnd.sas.models.project+json',
+                                'Authorization': 'bearer {}'.format(self.token)
+                               }
+                            )
+
+            resp = json.loads(req.text)
+            
+            self.projectEtag = req.headers['ETag']
+
+            req = requests.put(self.server_ip + '/modelRepository/projects/' + self.projectID,
+                                headers={
+                                        'Content-type': 'application/vnd.sas.models.project+json',
+                                        'If-match': self.projectEtag,
+                                        'Authorization': 'bearer {}'.format(self.token)
+                                        },
+                                data=json.dumps(payload)
+                            )
+
+            resp = json.loads(req.text)
+
+            print(resp)
+
         except ValueError:
             print('Something wrong with Model Repository service! Please check logs')
             sys.exit(1)
-
-    # def model_performance_service(self):
-    #     print('-' * 30)
-    #     print("Setting Model Performance Monitoring service...")
-    #     print('-' * 30)
-    #     print('')
-      
-
-
+    
 
 if __name__ == "__main__":
         
@@ -380,7 +401,7 @@ if __name__ == "__main__":
     registration.model_repository_service()
     registration.model_folder_service()
     registration.model_project_service()
-    # registration.model_registration_service()
+    registration.model_registration_service()
 
     # SENDGRID_API_KEY='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'
     
