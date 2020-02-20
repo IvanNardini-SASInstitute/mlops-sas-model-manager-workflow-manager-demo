@@ -1,0 +1,86 @@
+[
+  {
+    "name": "CLAGE",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "CLNO",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "DEBTINC",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "DELINQ",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "DEROG",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "JOB",
+    "role": "input",
+    "type": "string",
+    "level": "nominal",
+    "length": 7
+  },
+  {
+    "name": "LOAN",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "MORTDUE",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "NINQ",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "REASON",
+    "role": "input",
+    "type": "string",
+    "level": "nominal",
+    "length": 7
+  },
+  {
+    "name": "VALUE",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  },
+  {
+    "name": "YOJ",
+    "role": "input",
+    "type": "decimal",
+    "level": "interval",
+    "length": 8
+  }
+]
