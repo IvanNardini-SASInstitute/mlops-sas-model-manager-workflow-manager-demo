@@ -11,7 +11,8 @@ RUN pip install --upgrade pip; \
                 scipy==1.3.3 \
                 scikit-learn==0.21.3; \
     # pip install dill numpy jsonify pandas scipy sklearn; \
-    pip install flask gunicorn; 
+    pip install flask gunicorn; \
+    pip install xgboost;
 
 WORKDIR /pybox/app
 

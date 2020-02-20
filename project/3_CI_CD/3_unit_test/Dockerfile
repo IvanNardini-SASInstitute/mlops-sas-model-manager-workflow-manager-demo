@@ -21,4 +21,4 @@ RUN pip install --upgrade pip; \
 
 WORKDIR /home/unittest
 
-# COPY . .
+COPY . .
