@@ -304,8 +304,8 @@ class Model_Manager_Registration_services():
             sys.exit(1)
         else:
             self.contentname = files[0][:-4]
-            # self.randid
-            self.modelname = "{}_{}".format(self.contentname)
+            # self.randid _{}
+            self.modelname = "{}".format(self.contentname)
             self.model_path = self.model_dir + files[0]
         
         try:
