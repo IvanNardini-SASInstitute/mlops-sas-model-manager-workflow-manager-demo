@@ -270,7 +270,8 @@ pipeline {
             }
 
             steps {
-                sh 'python /pyservice/registration/Model_Manager_Registration_services.py'
+                // sh 'python /pyservice/registration/Model_Manager_Registration_services.py'
+                sh 'python project/3_CI_CD/5_model_manager_registration_service/Model_Manager_Registration_services.py'
             }
 
             post {
