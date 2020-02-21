@@ -387,8 +387,6 @@ class Model_Manager_Registration_services():
 
             resp = json.loads(req.text)
 
-            print(resp)
-
         except ValueError:
             print('Something wrong with Model Repository service! Please check logs')
             sys.exit(1)
