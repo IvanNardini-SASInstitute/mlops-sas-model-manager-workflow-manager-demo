@@ -35,7 +35,7 @@ datalines;
    "content":[ 
       { 
          "type":"text/plain",
-         "value":"value":" Please review the candidate champion model at http://172.28.234.57/links/resources/report?uri=%2Freports%2Freports%2Fdf8d8168-e06e-487b-9a23-3cc31a12b889&page=vi21"
+         "value":"value":" Please review the candidate champion model comparing with Challenger"
       }
    ]
 }
