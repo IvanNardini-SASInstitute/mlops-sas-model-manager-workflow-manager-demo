@@ -15,7 +15,7 @@ _PASSWORD = 'Orion123'
 _CASLIB = 'Public'
 
 _PATH="./Data/performances/*.csv"
-_MODEL_ID="_33c17397-7213-42ee-92c1-f85051c44a5d_champion"
+_MODEL_ID="_636ca1ee-17a7-4113-8ede-8d730cb2aa9f_champion"
 
 
 # Start CAS Session
@@ -23,7 +23,7 @@ _MODEL_ID="_33c17397-7213-42ee-92c1-f85051c44a5d_champion"
 cas_session = swat.CAS(_HOST, _PORT, _USERNAME, _PASSWORD)
 
 out = cas_session.serverstatus()
-print(out)
+# print(out)
 
 # For each csv, load into caslib Public with 30 secs
 print("Loading Performance Table...")
