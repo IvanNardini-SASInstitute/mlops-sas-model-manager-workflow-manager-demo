@@ -8,14 +8,14 @@ import pandas as pd
 import swat
 
 # Session variable
-_HOST = '172.28.234.57'
+_HOST = '10.96.15.151'
 _PORT = '5570'
 _USERNAME = 'sasdemo'
 _PASSWORD = 'Orion123'
 _CASLIB = 'Public'
 
 _PATH="./Data/performances/*.csv"
-_MODEL_ID="_bd092c0e-06ec-47ee-b7f8-a81c5b956689_champion"
+_MODEL_ID="_b377316a-ce39-4528-929a-5dd2785a2b93_champion"
 
 
 # Start CAS Session

@@ -1,0 +1,15 @@
+curl --location --request POST 'http://sasdemo.sas.com/templates/templates' \
+--header 'Content-Type: application/vnd.sas.template+json' \
+--header 'Accept: application/vnd.sas.template+json' \
+--header 'Authorization: Bearer xxxxxxxxx' \
+--data-raw '{
+  "name" : "ivnard_MMnotify_Champion_Docker_2",
+  "description" : "Model Manager Performance Notification Template",
+  "locale" : "en-US",
+  "type" : "TEXT",
+  "textParts": {
+    "text": "Performance repo is ready!",
+    "subject": "Remider: Check the model performances!"
+  }
+}
+'
