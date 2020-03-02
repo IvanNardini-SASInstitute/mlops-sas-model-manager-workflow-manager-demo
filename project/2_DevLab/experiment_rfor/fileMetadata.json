@@ -14,5 +14,9 @@
   {
     "role": "python pickle",
     "name": "rfor_pipeline.pickle"
+  },
+  {
+    "role": "scoreResource",
+    "name": "requirements.json"
   }
 ]
