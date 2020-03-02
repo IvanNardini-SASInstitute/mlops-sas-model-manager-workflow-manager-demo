@@ -17,7 +17,7 @@ pipeline {
                     }
 
                     steps{
-                        sh 'pylint --disable=C,R,W project/2_DevLab/experiment_xgboost/score.py'
+                        sh 'pylint --disable=C,R,W project/2_DevLab/experiment_rfor/score.py'
                     }
 
                     post {
@@ -39,7 +39,7 @@ pipeline {
                     }
 
                     steps{
-                        sh 'pylint --disable=C project/2_DevLab/experiment_xgboost/train.py'
+                        sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
                     }
 
                     post {
@@ -67,7 +67,7 @@ pipeline {
                     }
 
                     steps {
-                        sh 'python -m py_compile project/2_DevLab/experiment_xgboost/score.py'
+                        sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
                     }
 
                     post {
@@ -91,7 +91,7 @@ pipeline {
                     }
 
                     steps {
-                        sh 'python -m py_compile project/2_DevLab/experiment_xgboost/train.py'
+                        sh 'python -m py_compile project/2_DevLab/experiment_rfor/train.py'
                     }
 
                     post {
@@ -108,30 +108,30 @@ pipeline {
             }
         }
 
-        // stage('Unit Test for Score code') {
+        stage('Unit Test for Score code') {
 
-        //     agent {
-        //         docker {
-        //             image 'in92/devops_pyunit:v1.1' 
-        //             }
-        //     }
+            agent {
+                docker {
+                    image 'in92/devops_pyunit:v1.1' 
+                    }
+            }
 
-        //     steps {
-        //         sh 'python project/3_CI_CD/3_unit_test/unit_test_pipeline.py project/2_DevLab/experiment_xgboost/xgb_pipeline.pickle project/3_CI_CD/3_unit_test/test.csv result.csv'
-        //     }
+            steps {
+                sh 'python project/3_CI_CD/3_unit_test/unit_test_pipeline.py project/2_DevLab/experiment_rfor/rfor_pipeline.pickle project/3_CI_CD/3_unit_test/test.csv result.csv'
+            }
 
-        //     post {
+            post {
 
-        //         success {
-        //                 echo 'Score code file successfully passed Unit Test!'
-        //             }
+                success {
+                        echo 'Score code file successfully passed Unit Test!'
+                    }
 
-        //         failure {
-        //                 echo 'Code failed the Unit test, please see logs.'
-        //             }
-        //     }
+                failure {
+                        echo 'Code failed the Unit test, please see logs.'
+                    }
+            }
 
-        // }
+        }
 
         // stage('Integration test for Score code') {
 
