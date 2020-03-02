@@ -193,7 +193,7 @@ pipeline {
                     }
 
                     steps {
-                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_xgboost/inputVar.json"
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/inputVar.json"
                     }
 
                     post {
@@ -217,7 +217,7 @@ pipeline {
                     }
 
                     steps {
-                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_xgboost/outputVar.json"
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/outputVar.json"
                     }
 
                     post {
@@ -242,7 +242,7 @@ pipeline {
                     }
 
                     steps {
-                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_xgboost/fileMetadata.json"
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/fileMetadata.json"
                     }
 
                     post {

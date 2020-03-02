@@ -362,60 +362,6 @@ class Model_Manager_Registration_services():
                 except ValueError:
                     print('Something wrong with Model Repository service! Please check logs')
                     sys.exit(1)
-        
-        # files = [content for content in os.listdir(self.model_dir) if content.endswith(".zip")]
-
-        # if not files:
-        #     print("Can't find model zip file in the {} repository !".format(self.model_dir))
-        #     print('')
-        #     sys.exit(1)
-        # else:
-        #     self.contentname = files[0][:-4]
-        #     # self.randid _{}
-        #     self.modelname = "{}".format(self.contentname)
-        #     self.model_path = self.model_dir + files[0]
-        
-        # try:
-
-        #     print(' Registring {} model as {}...'.format(self.contentname, self.modelname))
-        #     print('')
-            
-        #     modelfile = open(self.model_path, 'rb')
-
-        #     files_dic = {}
-        #     files_dic['files'] = ("{}.zip".format(self.modelname), modelfile, 'multipart/form-data')
-
-        #     req = requests.post(
-        #     self.server_ip + "/modelRepository/models?name={}&type=ZIP&projectId={}&versionOption=Latest".format(self.modelname, self.projectID),
-        #     headers={
-        #         'Authorization': 'bearer {}'.format(self.token)
-        #     },
-        #     files=files_dic)
-            
-        #     resp = json.loads(req.text)
-
-        #     if req.status_code == 201:
-
-        #         try:
-
-        #             print('The {} model is successfully registered as {} !'.format(self.contentname, self.modelname))
-        #             print('')
-        #             self.modelID = resp['items'][0]['id']
-        #             print('{} ID is {}'.format(self.modelname, self.modelID))
-        #             print('')
-
-        #         except ValueError:
-
-        #             print('Model Registration service is not able to register {} model!'.format(self.modelname))
-        #             print('')
-        #             print('Please check logs')
-        #             sys.exit(1)
-            
-        #     else:
-        #         print('Model Registration service is not able to retrive Model Metadata!')
-        #         print('')
-        #         print('Please contact the Viya Administrator')
-        #         sys.exit(1)
 
             # Some Metadata of the project needs to be updated once it created
 
