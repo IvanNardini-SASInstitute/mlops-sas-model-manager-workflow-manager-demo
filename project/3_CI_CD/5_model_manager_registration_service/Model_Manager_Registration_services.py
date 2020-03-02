@@ -296,101 +296,168 @@ class Model_Manager_Registration_services():
         print('-' * 30)
         print('')
 
-        files = [content for content in os.listdir(self.model_dir) if content.endswith(".zip")]
+        model_zips =[]
+        model_paths=[]
 
-        if not files:
+        for subdir, dirs, files in os.walk((self.model_dir)):
+            model_paths.append(subdir)
+            for file in files:
+                if file.endswith(".zip"):
+                    model_zips.append(file)
+
+        if not model_zips:
             print("Can't find model zip file in the {} repository !".format(self.model_dir))
             print('')
             sys.exit(1)
         else:
-            self.contentname = files[0][:-4]
-            # self.randid _{}
-            self.modelname = "{}".format(self.contentname)
-            self.model_path = self.model_dir + files[0]
+
+            for model_path, model_zip in zip(model_paths[1:], model_zips):
+                self.contentname = model_zip[:-4]
+                # # self.randid _{}
+                self.modelname = "{}".format(self.contentname)
+                self.model_PATH = "{}/{}".format(model_path, model_zip)
         
-        try:
-
-            print(' Registring {} model as {}...'.format(self.contentname, self.modelname))
-            print('')
-            
-            modelfile = open(self.model_path, 'rb')
-
-            files_dic = {}
-            files_dic['files'] = ("{}.zip".format(self.modelname), modelfile, 'multipart/form-data')
-
-            req = requests.post(
-            self.server_ip + "/modelRepository/models?name={}&type=ZIP&projectId={}&versionOption=Latest".format(self.modelname, self.projectID),
-            headers={
-                'Authorization': 'bearer {}'.format(self.token)
-            },
-            files=files_dic)
-            
-            resp = json.loads(req.text)
-
-            if req.status_code == 201:
-
                 try:
 
-                    print('The {} model is successfully registered as {} !'.format(self.contentname, self.modelname))
+                    print(' Registring {} model as {}...'.format(self.contentname, self.modelname))
                     print('')
-                    self.modelID = resp['items'][0]['id']
-                    print('{} ID is {}'.format(self.modelname, self.modelID))
-                    print('')
+                    
+                    modelfile = open(self.model_PATH, 'rb')
 
+                    files_dic = {}
+                    files_dic['files'] = ("{}.zip".format(self.modelname), modelfile, 'multipart/form-data')
+
+                    req = requests.post(
+                    self.server_ip + "/modelRepository/models?name={}&type=ZIP&projectId={}&versionOption=Latest".format(self.modelname, self.projectID),
+                    headers={
+                        'Authorization': 'bearer {}'.format(self.token)
+                    },
+                    files=files_dic)
+                    
+                    resp = json.loads(req.text)
+
+                    if req.status_code == 201:
+
+                        try:
+
+                            print('The {} model is successfully registered as {} !'.format(self.contentname, self.modelname))
+                            print('')
+                            self.modelID = resp['items'][0]['id']
+                            print('{} ID is {}'.format(self.modelname, self.modelID))
+                            print('')
+
+                        except ValueError:
+
+                            print('Model Registration service is not able to register {} model!'.format(self.modelname))
+                            print('')
+                            print('Please check logs')
+                            sys.exit(1)
+                    
+                    else:
+                        print('Model Registration service is not able to retrive Model Metadata!')
+                        print('')
+                        print('Please contact the Viya Administrator')
+                        sys.exit(1)
+                
                 except ValueError:
-
-                    print('Model Registration service is not able to register {} model!'.format(self.modelname))
-                    print('')
-                    print('Please check logs')
+                    print('Something wrong with Model Repository service! Please check logs')
                     sys.exit(1)
+        
+        # files = [content for content in os.listdir(self.model_dir) if content.endswith(".zip")]
+
+        # if not files:
+        #     print("Can't find model zip file in the {} repository !".format(self.model_dir))
+        #     print('')
+        #     sys.exit(1)
+        # else:
+        #     self.contentname = files[0][:-4]
+        #     # self.randid _{}
+        #     self.modelname = "{}".format(self.contentname)
+        #     self.model_path = self.model_dir + files[0]
+        
+        # try:
+
+        #     print(' Registring {} model as {}...'.format(self.contentname, self.modelname))
+        #     print('')
             
-            else:
-                print('Model Registration service is not able to retrive Model Metadata!')
-                print('')
-                print('Please contact the Viya Administrator')
-                sys.exit(1)
+        #     modelfile = open(self.model_path, 'rb')
+
+        #     files_dic = {}
+        #     files_dic['files'] = ("{}.zip".format(self.modelname), modelfile, 'multipart/form-data')
+
+        #     req = requests.post(
+        #     self.server_ip + "/modelRepository/models?name={}&type=ZIP&projectId={}&versionOption=Latest".format(self.modelname, self.projectID),
+        #     headers={
+        #         'Authorization': 'bearer {}'.format(self.token)
+        #     },
+        #     files=files_dic)
+            
+        #     resp = json.loads(req.text)
+
+        #     if req.status_code == 201:
+
+        #         try:
+
+        #             print('The {} model is successfully registered as {} !'.format(self.contentname, self.modelname))
+        #             print('')
+        #             self.modelID = resp['items'][0]['id']
+        #             print('{} ID is {}'.format(self.modelname, self.modelID))
+        #             print('')
+
+        #         except ValueError:
+
+        #             print('Model Registration service is not able to register {} model!'.format(self.modelname))
+        #             print('')
+        #             print('Please check logs')
+        #             sys.exit(1)
+            
+        #     else:
+        #         print('Model Registration service is not able to retrive Model Metadata!')
+        #         print('')
+        #         print('Please contact the Viya Administrator')
+        #         sys.exit(1)
 
             # Some Metadata of the project needs to be updated once it created
 
-            payload={}
-            payload['name'] = self.modelproj_name
-            payload['description'] = 'Marketing Churn project with Containers'
-            payload['function'] = 'classification'
-            payload['targetLevel'] = 'binary'
-            payload['targetEventValue'] = '1'
-            payload['classTargetValues'] ='1,0'
-            payload['targetVariable'] ='BAD'
-            payload['eventProbabilityVariable'] = 'P_BAD1'
-            payload['externalUrl'] = 'https://github.com/IvanNardini/ModelOps.git'
-            payload['repositoryId'] = self.repositoryID
-            payload['folderId'] = self.folder_ID
+        payload={}
+        payload['name'] = self.modelproj_name
+        payload['description'] = 'Marketing Churn project with Containers'
+        payload['function'] = 'classification'
+        payload['targetLevel'] = 'binary'
+        payload['targetEventValue'] = '1'
+        payload['classTargetValues'] ='1,0'
+        payload['targetVariable'] ='BAD'
+        payload['eventProbabilityVariable'] = 'P_BAD1'
+        payload['externalUrl'] = 'https://github.com/IvanNardini/ModelOps.git'
+        payload['repositoryId'] = self.repositoryID
+        payload['folderId'] = self.folder_ID
 
 
-            req = requests.get(self.server_ip + '/modelRepository/projects/' + self.projectID, 
-                               headers = {
-                                'content-type':  'application/vnd.sas.models.project+json',
-                                'Authorization': 'bearer {}'.format(self.token)
-                               }
-                            )
+        req = requests.get(self.server_ip + '/modelRepository/projects/' + self.projectID, 
+                            headers = {
+                            'content-type':  'application/vnd.sas.models.project+json',
+                            'Authorization': 'bearer {}'.format(self.token)
+                            }
+                        )
 
-            resp = json.loads(req.text)
-            
-            self.projectEtag = req.headers['ETag']
+        resp = json.loads(req.text)
+        
+        self.projectEtag = req.headers['ETag']
 
-            req = requests.put(self.server_ip + '/modelRepository/projects/' + self.projectID,
-                                headers={
-                                        'Content-type': 'application/vnd.sas.models.project+json',
-                                        'If-match': self.projectEtag,
-                                        'Authorization': 'bearer {}'.format(self.token)
-                                        },
-                                data=json.dumps(payload)
-                            )
+        req = requests.put(self.server_ip + '/modelRepository/projects/' + self.projectID,
+                            headers={
+                                    'Content-type': 'application/vnd.sas.models.project+json',
+                                    'If-match': self.projectEtag,
+                                    'Authorization': 'bearer {}'.format(self.token)
+                                    },
+                            data=json.dumps(payload)
+                        )
 
-            resp = json.loads(req.text)
+        resp = json.loads(req.text)
 
-        except ValueError:
-            print('Something wrong with Model Repository service! Please check logs')
-            sys.exit(1)
+        # except ValueError:
+        #     print('Something wrong with Model Repository service! Please check logs')
+        #     sys.exit(1)
     
 
 if __name__ == "__main__":
@@ -402,27 +469,27 @@ if __name__ == "__main__":
     registration.model_project_service()
     registration.model_registration_service()
 
-    SENDGRID_API_KEY='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'
+    # SENDGRID_API_KEY='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'
     
-    message = Mail(
-    from_email='SASModelManager_RegistrationService@jenkins.com',
-    to_emails='ivan.nardini92@gmail.com',
-    subject='Churn Classification Project: Status',
-    html_content='<strong> Analytics team delivers the champion model. \
-                           Jenkins validates it.\
-                           The system registers it in SAS Model Manager \
-                           To approve it, go to http://172.28.234.57/SASModelManager/ </strong>')
-    try:
-        sg = SendGridAPIClient(SENDGRID_API_KEY)
-        response = sg.send(message)
-        # print(response.status_code)
-        print('Model Registration Mail successfully delivered!')
-        # print(response.body)
-        # print(response.headers)
-    # Exception as e
-    except ValueError:
-        # print(e.message)
-        print(response.status_code)
-        print('')
-        print(response.body)
-        sys.exit(1)
+    # message = Mail(
+    # from_email='SASModelManager_RegistrationService@jenkins.com',
+    # to_emails='ivan.nardini92@gmail.com',
+    # subject='Churn Classification Project: Status',
+    # html_content='<strong> Analytics team delivers the champion model. \
+    #                        Jenkins validates it.\
+    #                        The system registers it in SAS Model Manager \
+    #                        To approve it, go to http://172.28.234.57/SASModelManager/ </strong>')
+    # try:
+    #     sg = SendGridAPIClient(SENDGRID_API_KEY)
+    #     response = sg.send(message)
+    #     # print(response.status_code)
+    #     print('Model Registration Mail successfully delivered!')
+    #     # print(response.body)
+    #     # print(response.headers)
+    # # Exception as e
+    # except ValueError:
+    #     # print(e.message)
+    #     print(response.status_code)
+    #     print('')
+    #     print(response.body)
+    #     sys.exit(1)
