@@ -180,110 +180,110 @@ pipeline {
             // }
         }
 
-        // stage('Model MetaData Quality Test') {
+        stage('Model MetaData Quality Test') {
 
-        //     parallel {
+            parallel {
 
-        //         stage('Validate inputVar.json file') {
+                stage('Validate inputVar.json file') {
 
-        //             agent {
-        //                 docker {
-        //                     image 'python:3-alpine' 
-        //                 }
-        //             }
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
 
-        //             steps {
-        //                 sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_xgboost/inputVar.json"
-        //             }
+                    steps {
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_xgboost/inputVar.json"
+                    }
 
-        //             post {
+                    post {
 
-        //             success {
-        //                     echo 'inputVar.json file successfully validated!'
-        //                 }
+                    success {
+                            echo 'inputVar.json file successfully validated!'
+                        }
 
-        //             failure {
-        //                     echo 'inputVar.json file failed the quality test, please see review them.'
-        //                 }
-        //             }
-        //         }
+                    failure {
+                            echo 'inputVar.json file failed the quality test, please see review them.'
+                        }
+                    }
+                }
 
-        //         stage('Validate outputVar.json file') {
+                stage('Validate outputVar.json file') {
 
-        //             agent {
-        //                 docker {
-        //                     image 'python:3-alpine' 
-        //                 }
-        //             }
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
 
-        //             steps {
-        //                 sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_xgboost/outputVar.json"
-        //             }
+                    steps {
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_xgboost/outputVar.json"
+                    }
 
-        //             post {
+                    post {
 
-        //             success {
-        //                     echo 'outputVar.json file successfully validated!'
-        //                 }
+                    success {
+                            echo 'outputVar.json file successfully validated!'
+                        }
 
-        //             failure {
-        //                     echo 'outputVar.json file failed the quality test, please see review them.'
-        //                 }
-        //             }
+                    failure {
+                            echo 'outputVar.json file failed the quality test, please see review them.'
+                        }
+                    }
 
-        //         }
+                }
 
-        //         stage('Validate fileMetadata.json file') {
+                stage('Validate fileMetadata.json file') {
 
-        //             agent {
-        //                 docker {
-        //                     image 'python:3-alpine' 
-        //                 }
-        //             }
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
 
-        //             steps {
-        //                 sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_xgboost/fileMetadata.json"
-        //             }
+                    steps {
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_xgboost/fileMetadata.json"
+                    }
 
-        //             post {
+                    post {
 
-        //             success {
-        //                     echo 'fileMetadata.json file successfully validated!'
-        //                 }
+                    success {
+                            echo 'fileMetadata.json file successfully validated!'
+                        }
 
-        //             failure {
-        //                     echo 'fileMetadata.json file failed the quality test, please see review them.'
-        //                 }
-        //             }
+                    failure {
+                            echo 'fileMetadata.json file failed the quality test, please see review them.'
+                        }
+                    }
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
 
-        // stage('SAS Model Manager Repo service') {
+        stage('SAS Model Manager Repo service') {
 
-        //     agent {
-        //         docker {
-        //             image 'in92/devops_model_registration:v2.0'
-        //             args '-p 9997:9997'
-        //             }
-        //     }
+            agent {
+                docker {
+                    image 'in92/devops_model_registration:v2.0'
+                    args '-p 9997:9997'
+                    }
+            }
 
-        //     steps {
-        //         // sh 'python /pyservice/registration/Model_Manager_Registration_services.py'
-        //         sh 'python project/3_CI_CD/5_model_manager_registration_service/Model_Manager_Registration_services.py'
-        //     }
+            steps {
+                // sh 'python /pyservice/registration/Model_Manager_Registration_services.py'
+                sh 'python project/3_CI_CD/5_model_manager_registration_service/Model_Manager_Registration_services.py'
+            }
 
-        //     post {
+            post {
 
-        //     success {
-        //             echo 'Model Image successfully registered!'
-        //         }
+            success {
+                    echo 'Model Image successfully registered!'
+                }
 
-        //     failure {
-        //             echo 'Model Repository fails to register the model image, please see logs.'
-        //         }
-        //     }
-        // }
+            failure {
+                    echo 'Model Repository fails to register the model image, please see logs.'
+                }
+            }
+        }
     }
 }
