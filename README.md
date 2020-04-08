@@ -1,7 +1,7 @@
 # SAS for Model Ops
 # A ModelOps Environment Architecture with SAS Model Manager and SAS Workflow Manager
 
-<img src="https://gitlab.sas.com/ivnard/modelops-with-sas-model-manager-and-sas-workflow-manager/raw/master/Operationalize_Analytics.png">
+<img src="https://github.com/IvanNardini/ModelOps/raw/master/Operationalize_Analytics.png">
 
 ## Covered functionality
 
@@ -40,7 +40,7 @@ and others...
 
 Below the **high-level architecture of the solution**: 
 
-<img src="https://gitlab.sas.com/ivnard/modelops-with-sas-model-manager-and-sas-workflow-manager/raw/master/Solution_Architecture.png">
+<img src="https://github.com/IvanNardini/ModelOps/raw/master/Solution_Architecture.png">
 
 ## Requirements
 
