@@ -127,7 +127,7 @@ And you can switch to **Blue Ocean for Jenkins Pipelines** to get a more appelli
     >
     >
 
-<img src="https://gitlab.sas.com/ivnard/modelops-with-sas-model-manager-and-sas-workflow-manager/raw/master/Workflow.png">
+<img src="https://github.com/IvanNardini/ModelOps/raw/master/Workflow.png">
 
 ## Contributions
 
