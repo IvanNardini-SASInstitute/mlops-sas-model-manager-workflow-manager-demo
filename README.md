@@ -91,13 +91,13 @@ Once you get all services up and running you have to configure them. So let's do
     One last thing: under *project\3_CI_CD\5_model_manager_registration_service\registration.properties*, **please update the parameters based on your SAS Open Model Manager server**
 
     > set SASLogon username
-    > username=sasdemo
+    > username=xxxxxx
 
     > set SASLogon password
-    > password=Orion123
+    > password=xxxxxx
 
     > VIYA server
-    > server_ip=http://10.96.1.209/
+    > server_ip=http://xxxxxxxxx
 
 4. To configure Jenkins, once the container is up and running, the post-installation setup wizard begins.
 
